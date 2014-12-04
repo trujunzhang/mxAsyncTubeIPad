@@ -76,8 +76,8 @@
 
 #define SUBSCRIPTION_LIST_MAX 20
 #define subscriptionIndex  120
-//#define debugLeftMenuTapSubscription NO
-#define debugLeftMenuTapSubscription YES
+#define debugLeftMenuTapSubscription NO
+//#define debugLeftMenuTapSubscription YES
 
 
 // module

@@ -11,7 +11,7 @@
 #import "Foundation.h"
 #import "ASCacheNetworkImageNode.h"
 
-static CGFloat ROW_TITLE_FONT_SIZE = 18;
+static CGFloat ROW_TITLE_FONT_SIZE = 16;
 
 
 @interface YTLeftRowTableViewCellNode () {
