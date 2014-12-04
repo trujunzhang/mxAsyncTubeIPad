@@ -436,6 +436,7 @@ static GYoutubeHelper * instance = nil;
     @"id" : channelId,
 //    @"fields" : @"items/brandingSettings(channel,image),statistics(subscriberCount)",
     @"fields" : @"items/brandingSettings(channel,image),items/statistics(subscriberCount)",
+//    @"fields" : @"items/brandingSettings/channel(title),items/statistics(subscriberCount)",
    };
    NSURLSessionDataTask * task = [self fetchChannelWithDictionary:parameters
                                                        completion:completion
