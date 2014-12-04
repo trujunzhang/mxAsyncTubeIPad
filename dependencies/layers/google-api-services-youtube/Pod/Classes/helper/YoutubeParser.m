@@ -80,6 +80,11 @@ NSMutableDictionary * channelIdThumbnailDictionary;
 }
 
 
++ (NSString *)getSubscriptionSnippetTitle:(YTYouTubeSubscription *)subscription {
+   return subscription.snippet.title;
+}
+
+
 #pragma mark -
 #pragma mark  Video cache
 

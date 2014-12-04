@@ -505,192 +505,6 @@
 }
 
 
-- (void)LISTPlayListItemsForURL:(NSString *)urlStr andHandler:(MABYoutubeResponseBlock)handler {
-
-   __block NSString * nxtURLStr = @"";
-   NSMutableArray * arr = [[NSMutableArray alloc] init];
-   NSMutableURLRequest * request = [[NSMutableURLRequest alloc] init];
-   [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@&key=%@", urlStr, apiKey]]];
-
-   [request setHTTPMethod:@"GET"];
-   [self appendAuthInfo:request];
-
-   NSOperationQueue * queue = [[NSOperationQueue alloc] init];
-   [NSURLConnection sendAsynchronousRequest:request
-                                      queue:queue
-                          completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
-
-                              NSHTTPURLResponse * httpresp = (NSHTTPURLResponse *) response;
-                              if (httpresp.statusCode == 200) {
-                                 NSError * e = nil;
-                                 NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data
-                                                                                       options:NSJSONReadingMutableContainers
-                                                                                         error:&e];
-                                 if ([dict objectForKey:@"items"]) {
-                                    NSArray * items = [dict objectForKey:@"items"];
-                                    if (items.count > 0) {
-                                       for (int i = 0; i < items.count; i++) {
-                                          MABYT3_PlayListItem * itm = [[MABYT3_PlayListItem alloc] initFromDictionary:items[i]];
-                                          [arr addObject:itm];
-                                       }
-                                    }
-                                 }
-                                 if ([dict objectForKey:@"nextPageToken"]) {
-                                    NSString * pagetoken = [dict objectForKey:@"nextPageToken"];
-                                    nxtURLStr = [NSString stringWithFormat:@"%@&nextPageToken=%@", urlStr, pagetoken];
-                                 }
-                              }
-                              else {
-                                 NSError * e = nil;
-                                 NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data
-                                                                                       options:NSJSONReadingMutableContainers
-                                                                                         error:&e];
-                                 if ([dict objectForKey:@"error"]) {
-                                    NSDictionary * dict2 = [dict objectForKey:@"error"];
-                                    if ([dict2 objectForKey:@"errors"]) {
-                                       NSArray * items = [dict2 objectForKey:@"errors"];
-                                       if (items.count > 0) {
-                                          NSString * dom = @"YTAPI";
-                                          if ([items[0] objectForKey:@"domain"]) {
-                                             dom = [items[0] objectForKey:@"domain"];
-                                          }
-                                          error = [NSError errorWithDomain:dom
-                                                                      code:httpresp.statusCode
-                                                                  userInfo:items[0]];
-                                       }
-                                    }
-                                 }
-                              }
-                              dispatch_async(dispatch_get_main_queue(), ^(void) {
-//                                  handler(arr, error, nxtURLStr);
-                              });
-
-                          }];
-}
-
-
-- (void)LISTPlayListsForURL:(NSString *)urlStr andHandler:(MABYoutubeResponseBlock)handler {
-
-   __block NSString * nxtURLStr = @"";
-   NSMutableArray * arr = [[NSMutableArray alloc] init];
-   NSMutableURLRequest * request = [[NSMutableURLRequest alloc] init];
-   [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@&key=%@", urlStr, apiKey]]];
-
-   [request setHTTPMethod:@"GET"];
-   [self appendAuthInfo:request];
-
-   NSOperationQueue * queue = [[NSOperationQueue alloc] init];
-   [NSURLConnection sendAsynchronousRequest:request
-                                      queue:queue
-                          completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
-
-                              NSHTTPURLResponse * httpresp = (NSHTTPURLResponse *) response;
-                              if (httpresp.statusCode == 200) {
-                                 NSError * e = nil;
-                                 NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data
-                                                                                       options:NSJSONReadingMutableContainers
-                                                                                         error:&e];
-                                 if ([dict objectForKey:@"items"]) {
-                                    NSArray * items = [dict objectForKey:@"items"];
-                                    if (items.count > 0) {
-                                       for (int i = 0; i < items.count; i++) {
-                                          MABYT3_PlayList * itm = [[MABYT3_PlayList alloc] initFromDictionary:items[i]];
-                                          [arr addObject:itm];
-                                       }
-                                    }
-                                 }
-                                 if ([dict objectForKey:@"nextPageToken"]) {
-                                    NSString * pagetoken = [dict objectForKey:@"nextPageToken"];
-                                    nxtURLStr = [NSString stringWithFormat:@"%@&nextPageToken=%@", urlStr, pagetoken];
-                                 }
-                              }
-                              else {
-                                 NSError * e = nil;
-                                 NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data
-                                                                                       options:NSJSONReadingMutableContainers
-                                                                                         error:&e];
-                                 if ([dict objectForKey:@"error"]) {
-                                    NSDictionary * dict2 = [dict objectForKey:@"error"];
-                                    if ([dict2 objectForKey:@"errors"]) {
-                                       NSArray * items = [dict2 objectForKey:@"errors"];
-                                       if (items.count > 0) {
-                                          NSString * dom = @"YTAPI";
-                                          if ([items[0] objectForKey:@"domain"]) {
-                                             dom = [items[0] objectForKey:@"domain"];
-                                          }
-                                          error = [NSError errorWithDomain:dom
-                                                                      code:httpresp.statusCode
-                                                                  userInfo:items[0]];
-                                       }
-                                    }
-                                 }
-                              }
-                              dispatch_async(dispatch_get_main_queue(), ^(void) {
-//                                  handler(arr, error, nxtURLStr);
-                              });
-
-                          }];
-}
-
-
-- (void)LISTRegionsForURL:(NSString *)urlStr andHandler:(MABYoutubeResponseBlock)handler {
-
-   NSMutableArray * arr = [[NSMutableArray alloc] init];
-   NSMutableURLRequest * request = [[NSMutableURLRequest alloc] init];
-   [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@&key=%@", urlStr, apiKey]]];
-
-   [request setHTTPMethod:@"GET"];
-
-   NSOperationQueue * queue = [[NSOperationQueue alloc] init];
-   [NSURLConnection sendAsynchronousRequest:request
-                                      queue:queue
-                          completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
-
-                              NSHTTPURLResponse * httpresp = (NSHTTPURLResponse *) response;
-                              if (httpresp.statusCode == 200) {
-                                 NSError * e = nil;
-                                 NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data
-                                                                                       options:NSJSONReadingMutableContainers
-                                                                                         error:&e];
-                                 if ([dict objectForKey:@"items"]) {
-                                    NSArray * items = [dict objectForKey:@"items"];
-                                    if (items.count > 0) {
-                                       for (int i = 0; i < items.count; i++) {
-                                          MABYT3_Region * itm = [[MABYT3_Region alloc] initFromDictionary:items[i]];
-                                          [arr addObject:itm];
-                                       }
-                                    }
-                                 }
-                              }
-                              else {
-                                 NSError * e = nil;
-                                 NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data
-                                                                                       options:NSJSONReadingMutableContainers
-                                                                                         error:&e];
-                                 if ([dict objectForKey:@"error"]) {
-                                    NSDictionary * dict2 = [dict objectForKey:@"error"];
-                                    if ([dict2 objectForKey:@"errors"]) {
-                                       NSArray * items = [dict2 objectForKey:@"errors"];
-                                       if (items.count > 0) {
-                                          NSString * dom = @"YTAPI";
-                                          if ([items[0] objectForKey:@"domain"]) {
-                                             dom = [items[0] objectForKey:@"domain"];
-                                          }
-                                          error = [NSError errorWithDomain:dom
-                                                                      code:httpresp.statusCode
-                                                                  userInfo:items[0]];
-                                       }
-                                    }
-                                 }
-                              }
-                              dispatch_async(dispatch_get_main_queue(), ^(void) {
-                                  handler(arr, error);
-                              });
-
-                          }];
-}
-
-
 #pragma mark -
 #pragma mark fetch youtube search
 
@@ -716,6 +530,40 @@
                                           });
                                        }
 
+                                   } failure:^(NSURLSessionDataTask * task, NSError * error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(nil, error);
+        });
+    }];
+
+   return task;
+}
+
+
+- (NSURLSessionDataTask *)LISTSubscriptionsForURL:(NSMutableDictionary *)parameters completion:(MABYoutubeResponseBlock)completion accessToken:(NSString *)accessToken {
+   NSString * maxResultsString = [NSString stringWithFormat:@"%d", SUBSCRIPTION_LIST_MAX];
+   NSMutableDictionary * dictionary = [self commonDictionary:parameters maxResultsString:maxResultsString];
+
+   [[MABYT3_APIRequest sharedInstance].requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", accessToken]
+                                               forHTTPHeaderField:@"Authorization"];
+
+   NSURLSessionDataTask * task = [self GET:@"/youtube/v3/subscriptions"
+                                parameters:dictionary
+                                   success:^(NSURLSessionDataTask * task, id responseObject) {
+                                       NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *) task.response;
+
+                                       if (httpResponse.statusCode == 200) {
+                                          YoutubeResponseInfo * responseInfo = [self parseSubscriptionListWithData:responseObject];
+                                          dispatch_async(dispatch_get_main_queue(), ^{
+                                              completion(responseInfo, nil);
+                                          });
+                                       } else {
+                                          NSError * error = [YoutubeParser getError:responseObject
+                                                                           httpresp:httpResponse];
+                                          dispatch_async(dispatch_get_main_queue(), ^{
+                                              completion(nil, error);
+                                          });
+                                       }
                                    } failure:^(NSURLSessionDataTask * task, NSError * error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             completion(nil, error);
@@ -934,134 +782,6 @@
 }
 
 
-- (void)LISTSearchItemsForURL:(NSString *)urlStr andHandler:(MABYoutubeResponseBlock)handler {
-
-   __block NSString * nxtURLStr = @"";
-   NSMutableArray * arr = [[NSMutableArray alloc] init];
-   NSMutableURLRequest * request = [[NSMutableURLRequest alloc] init];
-   [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@&key=%@", urlStr, apiKey]]];
-
-   [request setHTTPMethod:@"GET"];
-   [self appendAuthInfo:request];
-
-   NSOperationQueue * queue = [[NSOperationQueue alloc] init];
-   [NSURLConnection sendAsynchronousRequest:request
-                                      queue:queue
-                          completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
-
-                              NSHTTPURLResponse * httpresp = (NSHTTPURLResponse *) response;
-                              if (httpresp.statusCode == 200) {
-                                 NSError * e = nil;
-                                 NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data
-                                                                                       options:NSJSONReadingMutableContainers
-                                                                                         error:&e];
-                                 if ([dict objectForKey:@"items"]) {
-                                    NSArray * items = [dict objectForKey:@"items"];
-                                    if (items.count > 0) {
-                                       for (int i = 0; i < items.count; i++) {
-                                          MABYT3_SearchItem * itm = [[MABYT3_SearchItem alloc] initFromDictionary:items[i]];
-                                          [arr addObject:itm];
-                                       }
-                                    }
-                                 }
-                                 if ([dict objectForKey:@"nextPageToken"]) {
-                                    NSString * pagetoken = [dict objectForKey:@"nextPageToken"];
-                                    nxtURLStr = [NSString stringWithFormat:@"%@&nextPageToken=%@", urlStr, pagetoken];
-                                 }
-                              }
-                              else {
-                                 NSError * e = nil;
-                                 NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data
-                                                                                       options:NSJSONReadingMutableContainers
-                                                                                         error:&e];
-                                 if ([dict objectForKey:@"error"]) {
-                                    NSDictionary * dict2 = [dict objectForKey:@"error"];
-                                    if ([dict2 objectForKey:@"errors"]) {
-                                       NSArray * items = [dict2 objectForKey:@"errors"];
-                                       if (items.count > 0) {
-                                          NSString * dom = @"YTAPI";
-                                          if ([items[0] objectForKey:@"domain"]) {
-                                             dom = [items[0] objectForKey:@"domain"];
-                                          }
-                                          error = [NSError errorWithDomain:dom
-                                                                      code:httpresp.statusCode
-                                                                  userInfo:items[0]];
-                                       }
-                                    }
-                                 }
-                              }
-                              dispatch_async(dispatch_get_main_queue(), ^(void) {
-//                                  handler(arr, error, nxtURLStr);
-                              });
-
-                          }];
-}
-
-
-- (void)LISTSubscriptionsForURL:(NSString *)urlStr andHandler:(MABYoutubeResponseBlock)handler {
-
-   __block NSString * nxtURLStr = @"";
-   NSMutableArray * arr = [[NSMutableArray alloc] init];
-   NSMutableURLRequest * request = [[NSMutableURLRequest alloc] init];
-   [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@&key=%@", urlStr, apiKey]]];
-
-   [request setHTTPMethod:@"GET"];
-   [self appendAuthInfo:request];
-
-   NSOperationQueue * queue = [[NSOperationQueue alloc] init];
-   [NSURLConnection sendAsynchronousRequest:request
-                                      queue:queue
-                          completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
-
-                              NSHTTPURLResponse * httpresp = (NSHTTPURLResponse *) response;
-                              if (httpresp.statusCode == 200) {
-                                 NSError * e = nil;
-                                 NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data
-                                                                                       options:NSJSONReadingMutableContainers
-                                                                                         error:&e];
-                                 if ([dict objectForKey:@"items"]) {
-                                    NSArray * items = [dict objectForKey:@"items"];
-                                    if (items.count > 0) {
-                                       for (int i = 0; i < items.count; i++) {
-                                          MABYT3_Subscription * itm = [[MABYT3_Subscription alloc] initFromDictionary:items[i]];
-                                          [arr addObject:itm];
-                                       }
-                                    }
-                                 }
-                                 if ([dict objectForKey:@"nextPageToken"]) {
-                                    NSString * pagetoken = [dict objectForKey:@"nextPageToken"];
-                                    nxtURLStr = [NSString stringWithFormat:@"%@&nextPageToken=%@", urlStr, pagetoken];
-                                 }
-                              }
-                              else {
-                                 NSError * e = nil;
-                                 NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data
-                                                                                       options:NSJSONReadingMutableContainers
-                                                                                         error:&e];
-                                 if ([dict objectForKey:@"error"]) {
-                                    NSDictionary * dict2 = [dict objectForKey:@"error"];
-                                    if ([dict2 objectForKey:@"errors"]) {
-                                       NSArray * items = [dict2 objectForKey:@"errors"];
-                                       if (items.count > 0) {
-                                          NSString * dom = @"YTAPI";
-                                          if ([items[0] objectForKey:@"domain"]) {
-                                             dom = [items[0] objectForKey:@"domain"];
-                                          }
-                                          error = [NSError errorWithDomain:dom
-                                                                      code:httpresp.statusCode
-                                                                  userInfo:items[0]];
-                                       }
-                                    }
-                                 }
-                              }
-                              dispatch_async(dispatch_get_main_queue(), ^(void) {
-//                                  handler(arr, error, nxtURLStr);
-                              });
-
-                          }];
-}
-
-
 - (void)LISTVideoCategoriesForURL:(NSString *)urlStr andHandler:(MABYoutubeResponseBlock)handler {
 
    NSMutableArray * arr = [[NSMutableArray alloc] init];
@@ -1123,9 +843,9 @@
 
 - (void)appendAuthInfo:(NSMutableURLRequest *)request {
    if ([MAB_GoogleUserCredentials sharedInstance].signedin) {
-//      [request setValue:[NSString stringWithFormat:@"Bearer %@",
-//                                                   [MAB_GoogleUserCredentials sharedInstance].token.accessToken]
-//     forHTTPHeaderField:@"Authorization"];
+      [request setValue:[NSString stringWithFormat:@"Bearer %@",
+                                                   [MAB_GoogleUserCredentials sharedInstance].token.accessToken]
+     forHTTPHeaderField:@"Authorization"];
    }
 }
 
@@ -1930,6 +1650,26 @@
       if (items.count > 0) {
          for (int i = 0; i < items.count; i++) {
             MABYT3_SearchItem * itm = [[MABYT3_SearchItem alloc] initFromDictionary:items[i]];
+            [arr addObject:itm];
+         }
+      }
+   }
+
+   return [YoutubeResponseInfo infoWithArray:arr pageToken:[self parsePageToken:dict]];
+}
+
+
+- (YoutubeResponseInfo *)parseSubscriptionListWithData:(NSData *)data {
+   NSMutableArray * arr = [[NSMutableArray alloc] init];
+   NSError * e = nil;
+   NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&e];
+   if ([dict objectForKey:@"items"]) {
+      NSArray * items = [dict objectForKey:@"items"];
+      if (items.count > 0) {
+         for (int i = 0; i < items.count; i++) {
+            MABYT3_Subscription * itm = [[MABYT3_Subscription alloc] initFromDictionary:items[i]];
             [arr addObject:itm];
          }
       }

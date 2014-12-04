@@ -12,6 +12,8 @@
 #import "MAB_GDate.h"
 #import "MABYT3_ResourceId.h"
 #import "MABYT3_Thumbnail.h"
+@class MABYT3_ThumbnailDetails;
+
 
 @interface MABYT3_SubscriptionSnippet : NSObject
 
@@ -21,7 +23,8 @@
 @property (strong, nonatomic) NSString *descriptionString;
 @property (strong, nonatomic) MABYT3_ResourceId *resourceId;
 @property (strong, nonatomic) NSString *channelId;
-@property (strong, nonatomic) NSMutableDictionary *thumbnails;
+@property (strong, nonatomic) MABYT3_ThumbnailDetails *thumbnails;
+//@property (strong, nonatomic) NSMutableDictionary *thumbnails;
 
 - (id) initFromDictionary:(NSDictionary *)dict;
 

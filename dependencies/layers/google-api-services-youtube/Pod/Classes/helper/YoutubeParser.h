@@ -34,6 +34,7 @@
 // Subscription
 + (NSString *)getChannelIdBySubscription:(YTYouTubeSubscription *)subscription;
 + (NSString *)getSubscriptionSnippetThumbnailUrl:(YTYouTubeSubscription *)subscription;
++ (NSString *)getSubscriptionSnippetTitle:(YTYouTubeSubscription *)subscription;
 
 // Video cache
 + (NSString *)getVideoSnippetThumbnails:(YTYouTubeVideoCache *)video;

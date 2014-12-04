@@ -134,20 +134,6 @@ static GYoutubeHelper * instance = nil;
 }
 
 
-- (void)fetchChannelListBySubscriptionList:(NSArray *)subscriptionList completionHandler:(YoutubeResponseBlock)responseHandler errorHandler:(ErrorResponseBlock)errorHandler {
-   NSMutableArray * channelds = [[NSMutableArray alloc] init];
-   if (subscriptionList) {
-      // Merge video IDs
-      for (YTYouTubeSubscription * subscription in subscriptionList) {
-         [channelds addObject:[YoutubeParser getChannelIdBySubscription:subscription]];
-      }
-//      [self fetchChannelListWithIdentifier:[channelds componentsJoinedByString:@","]
-//                                completion:responseHandler
-//                              errorHandler:errorHandler];
-   }
-}
-
-
 - (void)fetchPlayListItemVideoByVideoIds:(NSArray *)searchResultList completionHandler:(YoutubeResponseBlock)responseHandler errorHandler:(ErrorResponseBlock)errorHandler {
    NSMutableArray * videoIds = [[NSMutableArray alloc] init];
 
@@ -262,7 +248,11 @@ static GYoutubeHelper * instance = nil;
        [self.delegate FetchYoutubeChannelCompletion:info];
 
        // 2
-       [self getUserSubscriptions:self.delegate];
+       if (debugLeftMenuTapSubscription) {
+          [self fetchAuthSubscriptionsList];
+       } else {
+          [self getUserSubscriptions:self.delegate];
+       }
 
        // "id" -> "UC0wObT_HayGfWLdRAnFyPwA"
        NSLog(@" user name = %@", [YoutubeParser getAuthChannelTitle:channel]);
@@ -275,19 +265,6 @@ static GYoutubeHelper * instance = nil;
 
 }
 
-
-- (void)getUserSubscriptions:(id<GYoutubeHelperDelegate>)delegate {
-   YoutubeResponseBlock completion = ^(NSArray * array, NSObject * respObject) {
-       self.youtubeAuthUser.subscriptions = array;
-       [delegate FetchYoutubeSubscriptionListCompletion:self.youtubeAuthUser];
-   };
-   ErrorResponseBlock error = ^(NSError * error) {
-       NSString * debug = @"debug";
-   };
-   [self fetchSubscriptionsListWithChannelId:[YoutubeParser getAuthChannelID:self.youtubeAuthUser.channel]
-                           CompletionHandler:completion
-                                errorHandler:error];
-}
 
 
 
@@ -314,6 +291,49 @@ static GYoutubeHelper * instance = nil;
 
 #pragma mark -
 #pragma mark Fetch auth User's Subscriptions
+
+
+- (void)fetchAuthSubscriptionsList {
+   YoutubeResponseBlock completion = ^(NSArray * array, NSObject * respObject) {
+       self.youtubeAuthUser.subscriptions = array;
+       [self.delegate FetchYoutubeSubscriptionListCompletion:self.youtubeAuthUser];
+   };
+   ErrorResponseBlock error = ^(NSError * error) {
+       NSString * debug = @"debug";
+   };
+
+   NSDictionary * parameters = @{
+    @"part" : @"id,snippet",
+    @"mine" : @"true",
+    @"fields" : @"items/snippet(title,resourceId,thumbnails),nextPageToken",
+   };
+
+   YTOAuth2Authentication * authorizer = self.youTubeService.authorizer;
+   NSURLSessionDataTask * task =
+    [[MABYT3_APIRequest sharedInstance] LISTSubscriptionsForURL:parameters
+                                                     completion:^(YoutubeResponseInfo * responseInfo, NSError * error) {
+                                                         if (responseInfo) {
+                                                            completion(responseInfo.array, nil);
+                                                         } else {
+                                                            NSLog(@"ERROR: %@", error);
+                                                         }
+                                                     }
+                                                    accessToken:authorizer.accessToken];
+}
+
+
+- (void)getUserSubscriptions:(id<GYoutubeHelperDelegate>)delegate {
+   YoutubeResponseBlock completion = ^(NSArray * array, NSObject * respObject) {
+       self.youtubeAuthUser.subscriptions = array;
+       [delegate FetchYoutubeSubscriptionListCompletion:self.youtubeAuthUser];
+   };
+   ErrorResponseBlock error = ^(NSError * error) {
+       NSString * debug = @"debug";
+   };
+   [self fetchSubscriptionsListWithChannelId:[YoutubeParser getAuthChannelID:self.youtubeAuthUser.channel]
+                           CompletionHandler:completion
+                                errorHandler:error];
+}
 
 
 - (void)fetchSubscriptionsListWithChannelId:(NSString *)channelId CompletionHandler:(YoutubeResponseBlock)completion errorHandler:(ErrorResponseBlock)errorBlock {

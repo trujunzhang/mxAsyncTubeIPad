@@ -69,6 +69,17 @@
 #endif
 
 
+
+//#define hasShowLeftMenu NO
+#define hasShowLeftMenu YES
+
+
+#define SUBSCRIPTION_LIST_MAX 2
+#define subscriptionIndex  1
+//#define debugLeftMenuTapSubscription NO
+#define debugLeftMenuTapSubscription YES
+
+
 // module
 
 //#define YTYouTubeVideo  GTLYouTubeVideo
@@ -85,7 +96,12 @@
 // Channel for other request
 #define YTYouTubeChannel  MABYT3_Channel
 
+#if debugLeftMenuTapSubscription == YES
+#define YTYouTubeSubscription  MABYT3_Subscription
+#elif debugLeftMenuTapSubscription == NO
 #define YTYouTubeSubscription  GTLYouTubeSubscription
+#endif
+
 #define YTYouTubeMABThumbmail  MABYT3_Thumbnail
 
 //
@@ -109,13 +125,6 @@
 
 
 
-//#define hasShowLeftMenu NO
-#define hasShowLeftMenu YES
-
-
-#define subscriptionIndex  4
-#define debugLeftMenuTapSubscription NO
-//#define debugLeftMenuTapSubscription YES
 
 
 

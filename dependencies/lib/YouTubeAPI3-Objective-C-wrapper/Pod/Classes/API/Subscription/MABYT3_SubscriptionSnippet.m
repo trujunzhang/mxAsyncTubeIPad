@@ -9,6 +9,8 @@
 //
 
 #import "MABYT3_SubscriptionSnippet.h"
+#import "MABYT3_ThumbnailDetails.h"
+
 
 @implementation MABYT3_SubscriptionSnippet
 
@@ -57,15 +59,20 @@
         if ([dict objectForKey:@"channelId"]) {
             _channelId = [dict objectForKey:@"channelId"];
         }
-        
-        if ([dict objectForKey:@"thumbnails"]) {
-            NSDictionary *thmbDict = [dict objectForKey:@"thumbnails"];
-            NSArray *keys = [thmbDict allKeys];
-            for (int i = 0; i < keys.count; i++) {
-                MABYT3_Thumbnail *thmb = [[MABYT3_Thumbnail alloc] initFromDictionary:[thmbDict objectForKey:keys[i]]];
-                [_thumbnails setObject:thmb forKey:keys[i]];
-            }
-        }
+
+       if ([dict objectForKey:@"thumbnails"]) {
+          NSDictionary * thmbDict = [dict objectForKey:@"thumbnails"];
+          _thumbnails = [[MABYT3_ThumbnailDetails alloc] initFromDictionary:thmbDict];
+       }
+
+//        if ([dict objectForKey:@"thumbnails"]) {
+//            NSDictionary *thmbDict = [dict objectForKey:@"thumbnails"];
+//            NSArray *keys = [thmbDict allKeys];
+//            for (int i = 0; i < keys.count; i++) {
+//                MABYT3_Thumbnail *thmb = [[MABYT3_Thumbnail alloc] initFromDictionary:[thmbDict objectForKey:keys[i]]];
+//                [_thumbnails setObject:thmb forKey:keys[i]];
+//            }
+//        }
     }
     return self;
 }
