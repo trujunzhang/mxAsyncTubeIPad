@@ -1,0 +1,34 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, 7.0
+
+pod 'Reveal-iOS-SDK'
+
+target 'TubeIPadApp', :exclusive => true do
+  # ________________open projects___________________
+  pod "WHTopTabBarController", :path => "../dependencies/lib/WHTopTabBarController"
+  pod "YKMediaPlayerKit", :path => "../dependencies/lib/YKMediaPlayerKit"
+  pod "XCDYouTubeKit", :path => "../dependencies/lib/XCDYouTubeKit"
+  pod "STCollapseTableView", :path => "../dependencies/lib/STCollapseTableView"
+  pod "SWRevealViewController", :path => "../dependencies/lib/SWRevealViewController"
+  pod "YouTubeAPI3-Objective-C-wrapper", :path => "../dependencies/lib/YouTubeAPI3-Objective-C-wrapper"
+  pod "AFNetworking", :path => "../dependencies/lib/AFNetworking"
+  pod "KRLCollectionViewGridLayout", :path => "../dependencies/lib/KRLCollectionViewGridLayout"
+  pod "AsyncDisplayKit", :path => "../dependencies/lib/AsyncDisplayKit"
+  pod "SDWebImage", :path => "../dependencies/lib/SDWebImage"
+
+
+  # ________________collect common library___________________
+  pod "IOS_Collection_Code", :path => "../dependencies/collect/IOS_Collection_Code"
+
+  # ________________Project layers___________________
+  pod "Business-Logic-Layer", :path => "../dependencies/layers/Business-Logic-Layer"
+  pod "google-api-services-youtube", :path => "../dependencies/layers/google-api-services-youtube"
+
+  # ________________Projects for iPad___________________
+  # ________________module Projects___________________
+  pod "YoutubeCollectionView", :path => "../dependencies/ipad/YoutubeCollectionView"
+  pod "youtube_slide_menu", :path => "../dependencies/ipad/youtube_slide_menu"
+  pod "VideoWatchDetailViewControlleriPad", :path => "../dependencies/ipad/VideoWatchDetailViewControlleriPad"
+
+end

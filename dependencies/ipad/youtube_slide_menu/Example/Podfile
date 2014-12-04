@@ -1,0 +1,30 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'youtube_slide_menu', :exclusive => true do
+  pod "youtube_slide_menu", :path => "../"
+
+  # ________________open projects___________________
+  pod "WHTopTabBarController", :path => "../../../lib/WHTopTabBarController"
+  pod "YKMediaPlayerKit", :path => "../../../lib/YKMediaPlayerKit"
+  
+  pod "XCDYouTubeKit", :path => "../../../lib/XCDYouTubeKit"
+  
+  # ________________collect common library___________________
+  pod "IOS_Collection_Code", :path => "../../../collect/IOS_Collection_Code"
+
+  # ________________Project layers___________________
+  pod "Business-Logic-Layer", :path => "../../../layers/Business-Logic-Layer"
+  pod "google-api-services-youtube", :path => "../../../layers/google-api-services-youtube"
+
+  # ________________Projects for iPad___________________
+  pod "YoutubeCollectionView", :path => "../../../ipad/YoutubeCollectionView"
+
+  # ________________module Projects___________________
+  pod "VideoWatchDetailViewControlleriPad", :path => "../../../ipad/VideoWatchDetailViewControlleriPad"
+
+end
+
+target 'Tests', :exclusive => true do
+  pod "youtube_slide_menu", :path => "../"
+
+end

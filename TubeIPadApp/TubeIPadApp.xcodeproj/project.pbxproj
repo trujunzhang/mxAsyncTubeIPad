@@ -1,0 +1,541 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5D1231EDA4B596D1A4B52F39 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1CDEDF3CCCA685EE57E69B /* libPods.a */; };
+		5E08C3DD19F8B45600F58D3D /* YoutubeGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E08C3DB19F8B45600F58D3D /* YoutubeGridViewController.m */; };
+		5E08C3DE19F8B45600F58D3D /* YoutubeGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E08C3DC19F8B45600F58D3D /* YoutubeGridViewController.xib */; };
+		5E493C611A1F126D00DA134D /* YoutubePopUpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E493C601A1F126D00DA134D /* YoutubePopUpTableViewController.m */; };
+		5ECE0F2B19F8AB500098CF65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECE0F2A19F8AB500098CF65 /* main.m */; };
+		5ECE0F2E19F8AB500098CF65 /* TubeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECE0F2D19F8AB500098CF65 /* TubeAppDelegate.m */; };
+		5ECE0F3119F8AB500098CF65 /* SubscriptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECE0F3019F8AB500098CF65 /* SubscriptionsViewController.m */; };
+		5ECE0F3419F8AB500098CF65 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECE0F3319F8AB500098CF65 /* SearchViewController.m */; };
+		5ECE0F3719F8AB500098CF65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5ECE0F3519F8AB500098CF65 /* Main.storyboard */; };
+		5ECE0F3919F8AB500098CF65 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ECE0F3819F8AB500098CF65 /* Images.xcassets */; };
+		5ECE0F3C19F8AB500098CF65 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ECE0F3A19F8AB500098CF65 /* LaunchScreen.xib */; };
+		5ECE0F4819F8AB500098CF65 /* TubeIPadAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECE0F4719F8AB500098CF65 /* TubeIPadAppTests.m */; };
+		9583B9FCD6418BAD14C2A3A7 /* libPods-TubeIPadApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F0CC6B7530131C6082DEDCD /* libPods-TubeIPadApp.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5ECE0F4219F8AB500098CF65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5ECE0F1D19F8AB500098CF65 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5ECE0F2419F8AB500098CF65;
+			remoteInfo = TubeIPadApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2B1CDEDF3CCCA685EE57E69B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		503B76BB03FC21C949257E3C /* Pods-TubeIPadApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TubeIPadApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TubeIPadApp/Pods-TubeIPadApp.debug.xcconfig"; sourceTree = "<group>"; };
+		5E08C3DA19F8B45600F58D3D /* YoutubeGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YoutubeGridViewController.h; path = CollectionView/YoutubeGridViewController.h; sourceTree = "<group>"; };
+		5E08C3DB19F8B45600F58D3D /* YoutubeGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YoutubeGridViewController.m; path = CollectionView/YoutubeGridViewController.m; sourceTree = "<group>"; };
+		5E08C3DC19F8B45600F58D3D /* YoutubeGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YoutubeGridViewController.xib; path = CollectionView/YoutubeGridViewController.xib; sourceTree = "<group>"; };
+		5E493C5F1A1F126D00DA134D /* YoutubePopUpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YoutubePopUpTableViewController.h; path = popup/YoutubePopUpTableViewController.h; sourceTree = "<group>"; };
+		5E493C601A1F126D00DA134D /* YoutubePopUpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YoutubePopUpTableViewController.m; path = popup/YoutubePopUpTableViewController.m; sourceTree = "<group>"; };
+		5ECE0F2519F8AB500098CF65 /* TubeIPadApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TubeIPadApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ECE0F2919F8AB500098CF65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5ECE0F2A19F8AB500098CF65 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5ECE0F2C19F8AB500098CF65 /* TubeAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubeAppDelegate.h; sourceTree = "<group>"; };
+		5ECE0F2D19F8AB500098CF65 /* TubeAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeAppDelegate.m; sourceTree = "<group>"; };
+		5ECE0F2F19F8AB500098CF65 /* SubscriptionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubscriptionsViewController.h; sourceTree = "<group>"; };
+		5ECE0F3019F8AB500098CF65 /* SubscriptionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubscriptionsViewController.m; sourceTree = "<group>"; };
+		5ECE0F3219F8AB500098CF65 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		5ECE0F3319F8AB500098CF65 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		5ECE0F3619F8AB500098CF65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5ECE0F3819F8AB500098CF65 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5ECE0F3B19F8AB500098CF65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		5ECE0F4119F8AB500098CF65 /* TubeIPadAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TubeIPadAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ECE0F4619F8AB500098CF65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5ECE0F4719F8AB500098CF65 /* TubeIPadAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeIPadAppTests.m; sourceTree = "<group>"; };
+		8F0CC6B7530131C6082DEDCD /* libPods-TubeIPadApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TubeIPadApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B09F99A83B37E01EEEA949E6 /* Pods-TubeIPadApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TubeIPadApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TubeIPadApp/Pods-TubeIPadApp.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5ECE0F2219F8AB500098CF65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9583B9FCD6418BAD14C2A3A7 /* libPods-TubeIPadApp.a in Frameworks */,
+				5D1231EDA4B596D1A4B52F39 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ECE0F3E19F8AB500098CF65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5E08C3D919F8B41200F58D3D /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				5E08C3DA19F8B45600F58D3D /* YoutubeGridViewController.h */,
+				5E08C3DB19F8B45600F58D3D /* YoutubeGridViewController.m */,
+				5E08C3DC19F8B45600F58D3D /* YoutubeGridViewController.xib */,
+			);
+			name = CollectionView;
+			sourceTree = "<group>";
+		};
+		5E493C5E1A1F123000DA134D /* popup */ = {
+			isa = PBXGroup;
+			children = (
+				5E493C5F1A1F126D00DA134D /* YoutubePopUpTableViewController.h */,
+				5E493C601A1F126D00DA134D /* YoutubePopUpTableViewController.m */,
+			);
+			name = popup;
+			sourceTree = "<group>";
+		};
+		5ECE0F1C19F8AB500098CF65 = {
+			isa = PBXGroup;
+			children = (
+				5ECE0F2719F8AB500098CF65 /* TubeIPadApp */,
+				5ECE0F4419F8AB500098CF65 /* TubeIPadAppTests */,
+				5ECE0F2619F8AB500098CF65 /* Products */,
+				655C24EC9CFD76F21250E609 /* Pods */,
+				9486E02470044646E19E3499 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		5ECE0F2619F8AB500098CF65 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5ECE0F2519F8AB500098CF65 /* TubeIPadApp.app */,
+				5ECE0F4119F8AB500098CF65 /* TubeIPadAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5ECE0F2719F8AB500098CF65 /* TubeIPadApp */ = {
+			isa = PBXGroup;
+			children = (
+				5E493C5E1A1F123000DA134D /* popup */,
+				5E08C3D919F8B41200F58D3D /* CollectionView */,
+				5ECE0F2C19F8AB500098CF65 /* TubeAppDelegate.h */,
+				5ECE0F2D19F8AB500098CF65 /* TubeAppDelegate.m */,
+				5ECE0F2F19F8AB500098CF65 /* SubscriptionsViewController.h */,
+				5ECE0F3019F8AB500098CF65 /* SubscriptionsViewController.m */,
+				5ECE0F3219F8AB500098CF65 /* SearchViewController.h */,
+				5ECE0F3319F8AB500098CF65 /* SearchViewController.m */,
+				5ECE0F3519F8AB500098CF65 /* Main.storyboard */,
+				5ECE0F3819F8AB500098CF65 /* Images.xcassets */,
+				5ECE0F3A19F8AB500098CF65 /* LaunchScreen.xib */,
+				5ECE0F2819F8AB500098CF65 /* Supporting Files */,
+			);
+			path = TubeIPadApp;
+			sourceTree = "<group>";
+		};
+		5ECE0F2819F8AB500098CF65 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5ECE0F2919F8AB500098CF65 /* Info.plist */,
+				5ECE0F2A19F8AB500098CF65 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5ECE0F4419F8AB500098CF65 /* TubeIPadAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				5ECE0F4719F8AB500098CF65 /* TubeIPadAppTests.m */,
+				5ECE0F4519F8AB500098CF65 /* Supporting Files */,
+			);
+			path = TubeIPadAppTests;
+			sourceTree = "<group>";
+		};
+		5ECE0F4519F8AB500098CF65 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5ECE0F4619F8AB500098CF65 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		655C24EC9CFD76F21250E609 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				503B76BB03FC21C949257E3C /* Pods-TubeIPadApp.debug.xcconfig */,
+				B09F99A83B37E01EEEA949E6 /* Pods-TubeIPadApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9486E02470044646E19E3499 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8F0CC6B7530131C6082DEDCD /* libPods-TubeIPadApp.a */,
+				2B1CDEDF3CCCA685EE57E69B /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5ECE0F2419F8AB500098CF65 /* TubeIPadApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5ECE0F4B19F8AB500098CF65 /* Build configuration list for PBXNativeTarget "TubeIPadApp" */;
+			buildPhases = (
+				FDD94F00BE4F221048B635F3 /* Check Pods Manifest.lock */,
+				5ECE0F2119F8AB500098CF65 /* Sources */,
+				5ECE0F2219F8AB500098CF65 /* Frameworks */,
+				5ECE0F2319F8AB500098CF65 /* Resources */,
+				CE8834B74A8DBA8A7529EF2B /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TubeIPadApp;
+			productName = TubeIPadApp;
+			productReference = 5ECE0F2519F8AB500098CF65 /* TubeIPadApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5ECE0F4019F8AB500098CF65 /* TubeIPadAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5ECE0F4E19F8AB500098CF65 /* Build configuration list for PBXNativeTarget "TubeIPadAppTests" */;
+			buildPhases = (
+				5ECE0F3D19F8AB500098CF65 /* Sources */,
+				5ECE0F3E19F8AB500098CF65 /* Frameworks */,
+				5ECE0F3F19F8AB500098CF65 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5ECE0F4319F8AB500098CF65 /* PBXTargetDependency */,
+			);
+			name = TubeIPadAppTests;
+			productName = TubeIPadAppTests;
+			productReference = 5ECE0F4119F8AB500098CF65 /* TubeIPadAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5ECE0F1D19F8AB500098CF65 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = djzhang;
+				TargetAttributes = {
+					5ECE0F2419F8AB500098CF65 = {
+						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = VCRS784KF3;
+					};
+					5ECE0F4019F8AB500098CF65 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 5ECE0F2419F8AB500098CF65;
+					};
+				};
+			};
+			buildConfigurationList = 5ECE0F2019F8AB500098CF65 /* Build configuration list for PBXProject "TubeIPadApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5ECE0F1C19F8AB500098CF65;
+			productRefGroup = 5ECE0F2619F8AB500098CF65 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+			);
+			projectRoot = "";
+			targets = (
+				5ECE0F2419F8AB500098CF65 /* TubeIPadApp */,
+				5ECE0F4019F8AB500098CF65 /* TubeIPadAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5ECE0F2319F8AB500098CF65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E08C3DE19F8B45600F58D3D /* YoutubeGridViewController.xib in Resources */,
+				5ECE0F3719F8AB500098CF65 /* Main.storyboard in Resources */,
+				5ECE0F3C19F8AB500098CF65 /* LaunchScreen.xib in Resources */,
+				5ECE0F3919F8AB500098CF65 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ECE0F3F19F8AB500098CF65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CE8834B74A8DBA8A7529EF2B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TubeIPadApp/Pods-TubeIPadApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FDD94F00BE4F221048B635F3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5ECE0F2119F8AB500098CF65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E493C611A1F126D00DA134D /* YoutubePopUpTableViewController.m in Sources */,
+				5ECE0F3419F8AB500098CF65 /* SearchViewController.m in Sources */,
+				5E08C3DD19F8B45600F58D3D /* YoutubeGridViewController.m in Sources */,
+				5ECE0F2E19F8AB500098CF65 /* TubeAppDelegate.m in Sources */,
+				5ECE0F3119F8AB500098CF65 /* SubscriptionsViewController.m in Sources */,
+				5ECE0F2B19F8AB500098CF65 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ECE0F3D19F8AB500098CF65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5ECE0F4819F8AB500098CF65 /* TubeIPadAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5ECE0F4319F8AB500098CF65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5ECE0F2419F8AB500098CF65 /* TubeIPadApp */;
+			targetProxy = 5ECE0F4219F8AB500098CF65 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5ECE0F3519F8AB500098CF65 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5ECE0F3619F8AB500098CF65 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5ECE0F3A19F8AB500098CF65 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5ECE0F3B19F8AB500098CF65 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5ECE0F4919F8AB500098CF65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		5ECE0F4A19F8AB500098CF65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5ECE0F4C19F8AB500098CF65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 503B76BB03FC21C949257E3C /* Pods-TubeIPadApp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = TubeIPadApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
+			};
+			name = Debug;
+		};
+		5ECE0F4D19F8AB500098CF65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B09F99A83B37E01EEEA949E6 /* Pods-TubeIPadApp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = TubeIPadApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
+			};
+			name = Release;
+		};
+		5ECE0F4F19F8AB500098CF65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TubeIPadAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TubeIPadApp.app/TubeIPadApp";
+			};
+			name = Debug;
+		};
+		5ECE0F5019F8AB500098CF65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TubeIPadAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TubeIPadApp.app/TubeIPadApp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5ECE0F2019F8AB500098CF65 /* Build configuration list for PBXProject "TubeIPadApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5ECE0F4919F8AB500098CF65 /* Debug */,
+				5ECE0F4A19F8AB500098CF65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5ECE0F4B19F8AB500098CF65 /* Build configuration list for PBXNativeTarget "TubeIPadApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5ECE0F4C19F8AB500098CF65 /* Debug */,
+				5ECE0F4D19F8AB500098CF65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5ECE0F4E19F8AB500098CF65 /* Build configuration list for PBXNativeTarget "TubeIPadAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5ECE0F4F19F8AB500098CF65 /* Debug */,
+				5ECE0F5019F8AB500098CF65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5ECE0F1D19F8AB500098CF65 /* Project object */;
+}

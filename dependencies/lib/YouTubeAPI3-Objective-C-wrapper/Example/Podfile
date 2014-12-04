@@ -1,0 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'YouTubeAPI3-Objective-C-wrapper', :exclusive => true do
+  pod "YouTubeAPI3-Objective-C-wrapper", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "YouTubeAPI3-Objective-C-wrapper", :path => "../"
+
+  
+end

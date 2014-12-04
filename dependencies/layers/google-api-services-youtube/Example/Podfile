@@ -1,0 +1,15 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+
+target 'google-api-services-youtube', :exclusive => true do
+  pod "google-api-services-youtube", :path => "../"
+
+  pod "Business-Logic-Layer", :path => "../../../layers/Business-Logic-Layer"
+
+  # post_install do | installer |
+  #   require 'fileutils'
+  #   FileUtils.cp_r('Pods/Pods-Acknowledgements.plist', 'Resources/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
+  # end
+
+end
+
