@@ -1,0 +1,14 @@
+PODS:
+  - Google-API-Client-local (0.1.0)
+
+DEPENDENCIES:
+  - Google-API-Client-local (from `../`)
+
+EXTERNAL SOURCES:
+  Google-API-Client-local:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Google-API-Client-local: 9036975fda262319008022a5415e33c757aadbe0
+
+COCOAPODS: 0.35.0

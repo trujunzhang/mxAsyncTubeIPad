@@ -1,0 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'gtm-oauth2-local', :exclusive => true do
+  pod "gtm-oauth2-local", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "gtm-oauth2-local", :path => "../"
+
+  
+end

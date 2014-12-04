@@ -1,0 +1,14 @@
+PODS:
+  - gtm-oauth2-local (0.1.0)
+
+DEPENDENCIES:
+  - gtm-oauth2-local (from `../`)
+
+EXTERNAL SOURCES:
+  gtm-oauth2-local:
+    :path: ../
+
+SPEC CHECKSUMS:
+  gtm-oauth2-local: d94c7c651fd7a7afac9ab7047e5f90cffcd84000
+
+COCOAPODS: 0.35.0

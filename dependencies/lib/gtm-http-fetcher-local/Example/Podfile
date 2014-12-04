@@ -1,0 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'gtm-http-fetcher-local', :exclusive => true do
+  pod "gtm-http-fetcher-local", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "gtm-http-fetcher-local", :path => "../"
+
+  
+end

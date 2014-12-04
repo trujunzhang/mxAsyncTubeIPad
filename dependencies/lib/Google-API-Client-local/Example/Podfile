@@ -1,0 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'Google-API-Client-local', :exclusive => true do
+  pod "Google-API-Client-local", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "Google-API-Client-local", :path => "../"
+
+  
+end

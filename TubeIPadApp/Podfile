@@ -18,6 +18,11 @@ target 'TubeIPadApp', :exclusive => true do
   pod "SDWebImage", :path => "../dependencies/lib/SDWebImage"
 
 
+  pod "Google-API-Client-local", :path => "../dependencies/lib/Google-API-Client-local"
+  pod "gtm-http-fetcher-local", :path => "../dependencies/lib/gtm-http-fetcher-local"
+  pod "gtm-oauth2-local", :path => "../dependencies/lib/gtm-oauth2-local"
+
+
   # ________________collect common library___________________
   pod "IOS_Collection_Code", :path => "../dependencies/collect/IOS_Collection_Code"
 

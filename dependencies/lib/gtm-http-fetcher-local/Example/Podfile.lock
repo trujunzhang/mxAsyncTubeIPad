@@ -1,0 +1,14 @@
+PODS:
+  - gtm-http-fetcher-local (0.1.0)
+
+DEPENDENCIES:
+  - gtm-http-fetcher-local (from `../`)
+
+EXTERNAL SOURCES:
+  gtm-http-fetcher-local:
+    :path: ../
+
+SPEC CHECKSUMS:
+  gtm-http-fetcher-local: 3b86c0169651821b3ddaefa8eba995cbc8d53111
+
+COCOAPODS: 0.35.0
