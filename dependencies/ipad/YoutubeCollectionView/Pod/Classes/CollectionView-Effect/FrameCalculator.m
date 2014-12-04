@@ -134,8 +134,6 @@
    CGFloat divX = 6;
    CGFloat divY = (containerSize.height - 26) / 2;
 
-//   CGFloat thumbnailHeight = containerSize.height - (thumbnailPaddingTop * 2);
-
    return CGRectMake(divX, divY, 26, 26);
 }
 
