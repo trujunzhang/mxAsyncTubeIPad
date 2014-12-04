@@ -13,6 +13,7 @@
 
 #import "LeftRevealHelper.h"
 #import "YoutubeChannelPageViewController.h"
+#import "YoutubeParser.h"
 
 
 @interface SubscriptionsViewController ()<IpadGridViewCellDelegate, YoutubeCollectionNextPageDelegate>
@@ -85,11 +86,13 @@
 }
 
 
-- (void)endToggleLeftMenuEventForChannelPageWithSubscription:(GTLYouTubeSubscription *)subscription withTitle:(NSString *)title {
+- (void)endToggleLeftMenuEventForChannelPageWithSubscription:(GTLYouTubeSubscription *)subscription {
    // 1
-   YoutubeChannelPageViewController * controller = [[YoutubeChannelPageViewController alloc] initWithSubscription:subscription];
+   YoutubeChannelPageViewController * controller =
+    [[YoutubeChannelPageViewController alloc] initWithChannelId:[YoutubeParser getChannelIdBySubscription:subscription]];
+
    controller.navigationItem.leftBarButtonItem = self.revealButtonItem;
-   controller.title = title;
+   controller.title = [YoutubeParser getSubscriptionSnippetTitle:subscription];
    controller.delegate = self;
 
    // 2

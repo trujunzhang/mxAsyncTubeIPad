@@ -13,6 +13,6 @@
 
 @property(nonatomic, assign) id<IpadGridViewCellDelegate> delegate;
 
-- (instancetype)initWithSubscription:(YTYouTubeSubscription *)subscription;
+- (instancetype)initWithChannelId:(NSString *)channelId;
 
 @end

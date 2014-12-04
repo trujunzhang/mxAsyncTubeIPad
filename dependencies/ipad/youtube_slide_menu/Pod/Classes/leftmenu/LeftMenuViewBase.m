@@ -217,9 +217,7 @@ static const int TABLE_WIDTH = 258;
    // test
    if (debugLeftMenuTapSubscription) {
       if (self.authUser.subscriptions.count >= subscriptionIndex) {
-         YTYouTubeSubscription * subscription = self.authUser.subscriptions[subscriptionIndex];
-         [self.delegate endToggleLeftMenuEventForChannelPageWithSubscription:subscription
-                                                                   withTitle:subscription.snippet.title];
+         [self.delegate endToggleLeftMenuEventForChannelPageWithSubscription:self.authUser.subscriptions[subscriptionIndex]];
       }
    }
 }

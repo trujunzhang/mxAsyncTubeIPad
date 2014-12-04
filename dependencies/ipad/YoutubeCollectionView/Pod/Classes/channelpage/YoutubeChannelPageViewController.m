@@ -18,7 +18,9 @@
 @property(strong, nonatomic) IBOutlet UIView * topBannerContainer;
 @property(strong, nonatomic) IBOutlet UIView * tabbarViewsContainer;
 
-@property(nonatomic, strong) YTYouTubeSubscription * subscription;
+
+@property(nonatomic, strong) NSString * channelId;
+@property(nonatomic, strong) YTYouTubeChannel * pageChannel;
 
 //@property(nonatomic, strong) YoutubeChannelTopCell * topBanner;
 @property(nonatomic, strong) YTAsyncYoutubeChannelTopCellNode * topBanner;
@@ -33,10 +35,12 @@
 
 @implementation YoutubeChannelPageViewController
 
-- (instancetype)initWithSubscription:(YTYouTubeSubscription *)subscription {
+
+- (instancetype)initWithChannelId:(NSString *)channelId {
    self = [super init];
    if (self) {
-      self.subscription = subscription;
+      self.channelId = channelId;
+
    }
 
    return self;
@@ -154,16 +158,17 @@
    if ([self.selectedController getYoutubeRequestInfo].hasFirstFetch)
       return;
 
+   NSString * channelId = [YoutubeParser getChannelIdBySubscription:self.subscription];
    switch (self.selectedSegmentItemType) {
       case YTSegmentItemVideo:
          [self.selectedController fetchActivityListByType:self.selectedSegmentItemType
-                                            withChannelId:[YoutubeParser getChannelIdBySubscription:self.subscription]];
+                                            withChannelId:channelId];
          break;
       case YTSegmentItemChannel:
-         [self.selectedController fetchVideoListFromChannelWithChannelId:[YoutubeParser getChannelIdBySubscription:self.subscription]];
+         [self.selectedController fetchVideoListFromChannelWithChannelId:channelId];
          break;
       case YTSegmentItemPlaylist:
-         [self.selectedController fetchPlayListFromChannelWithChannelId:[YoutubeParser getChannelIdBySubscription:self.subscription]];
+         [self.selectedController fetchPlayListFromChannelWithChannelId:channelId];
          break;
    }
 }

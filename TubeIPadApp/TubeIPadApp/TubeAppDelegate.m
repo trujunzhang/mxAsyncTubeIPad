@@ -151,9 +151,9 @@
 }
 
 
-- (void)endToggleLeftMenuEventForChannelPageWithSubscription:(YTYouTubeSubscription *)subscription withTitle:(NSString *)title {
+- (void)endToggleLeftMenuEventForChannelPageWithSubscription:(YTYouTubeSubscription *)subscription {
    [[LeftRevealHelper sharedLeftRevealHelper] closeLeftMenuAndNoRearOpen];
-   [self.subscriptionsViewController endToggleLeftMenuEventForChannelPageWithSubscription:subscription withTitle:title];
+   [self.subscriptionsViewController endToggleLeftMenuEventForChannelPageWithSubscription:subscription];
 }
 
 @end
