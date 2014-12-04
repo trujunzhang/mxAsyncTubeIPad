@@ -23,10 +23,6 @@ Pod::Spec.new do |s|
     sub.source_files = 'Pod/Classes/resolution/*.{h,m}'
   end
 
-  s.subspec 'youtube' do |sub|
-    sub.source_files = 'Pod/Classes/youtube/*.{h,m}'
-  end
-
   s.subspec 'LeftReveal' do |sub|
     sub.source_files = 'Pod/Classes/LeftReveal/*.{h,m}'
   end

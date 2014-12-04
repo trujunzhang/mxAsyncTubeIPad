@@ -17,6 +17,7 @@ target 'TubeIPadApp', :exclusive => true do
   pod "AsyncDisplayKit", :path => "../dependencies/lib/AsyncDisplayKit"
   pod "SDWebImage", :path => "../dependencies/lib/SDWebImage"
 
+  pod "MagicalRecord", :path => "../dependencies/lib/MagicalRecord"
 
   pod "Google-API-Client-local", :path => "../dependencies/lib/Google-API-Client-local"
   pod "gtm-http-fetcher-local", :path => "../dependencies/lib/gtm-http-fetcher-local"
