@@ -131,14 +131,14 @@
 
 
 + (CGRect)frameForLeftMenuSubscriptionThumbnail:(CGSize)containerSize {
-   CGFloat thumbnailPaddingTop = 8;
+   CGFloat thumbnailPaddingTop = 4;
 
-   CGFloat divX = 8;
-   CGFloat divY = thumbnailPaddingTop;
+   CGFloat divX = 5;
+   CGFloat divY = (containerSize.height - 26) / 2;
 
-   CGFloat thumbnailHeight = containerSize.height - (thumbnailPaddingTop * 2);
+//   CGFloat thumbnailHeight = containerSize.height - (thumbnailPaddingTop * 2);
 
-   return CGRectMake(divX, divY, thumbnailHeight, thumbnailHeight);
+   return CGRectMake(divX, divY, 26, 26);
 }
 
 

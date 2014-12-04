@@ -90,7 +90,7 @@
 
    NSDictionary * titleAttributes =
     @{ NSFontAttributeName : font,
-     NSForegroundColorAttributeName : [UIColor whiteColor],
+     NSForegroundColorAttributeName : [UIColor lightTextColor],
      NSParagraphStyleAttributeName : [NSParagraphStyle justifiedParagraphStyleForLeftMenuSubscriptionTitle]
     };
 

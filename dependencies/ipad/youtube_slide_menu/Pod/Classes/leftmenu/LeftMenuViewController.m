@@ -18,7 +18,7 @@
 
 static NSString * const leftmenuIdentifier = @"LeftMenuViewIdentifier";
 
-static CGFloat ROW_HEIGHT = 50;
+static CGFloat ROW_HEIGHT = 42;
 
 
 @interface LeftMenuViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -103,7 +103,7 @@ nodeConstructionQueue:self.nodeConstructionQueue];
       return 0;
    }
 
-   return 40;
+   return 42;
 }
 
 
