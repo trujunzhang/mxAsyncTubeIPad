@@ -16,7 +16,7 @@
 + (NSAttributedString *)attributedStringForDurationText:(NSString *)text;
 + (NSAttributedString *)attributedStringForChannelTitleText:(NSString *)text;
 
-+ (NSAttributedString *)attributedStringForLeftMenuSubscriptionTitleText:(NSString *)text;
++ (NSAttributedString *)attributedStringForLeftMenuSubscriptionTitleText:(NSString *)text fontSize:(CGFloat)fontSize;
 
 @end
 

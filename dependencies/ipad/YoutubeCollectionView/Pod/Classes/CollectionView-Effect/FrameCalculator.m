@@ -130,24 +130,26 @@
 #pragma mark Left menu table cell
 
 
-+ (CGRect)frameForLeftMenuSubscriptionThumbnail:(CGSize)containersize {
-   CGFloat thumbnailPaddingTop = 5;
++ (CGRect)frameForLeftMenuSubscriptionThumbnail:(CGSize)containerSize {
+   CGFloat thumbnailPaddingTop = 8;
 
-   CGFloat divX = 6;
+   CGFloat divX = 8;
    CGFloat divY = thumbnailPaddingTop;
 
-   CGFloat thumbnailHeight = containersize.height - (thumbnailPaddingTop * 2);
+   CGFloat thumbnailHeight = containerSize.height - (thumbnailPaddingTop * 2);
 
    return CGRectMake(divX, divY, thumbnailHeight, thumbnailHeight);
 }
 
 
-+ (CGRect)frameForLeftMenuSubscriptionTitleText:(CGRect)containerBounds thirdRowHeight:(CGFloat)thirdRowHeight leftNodeFrame:(CGRect)leftNodeFrame {
-   CGFloat titlePaddingTop = 7;
-
++ (CGRect)frameForLeftMenuSubscriptionTitleText:(CGSize)containerSize leftNodeFrame:(CGRect)leftNodeFrame withFontHeight:(CGFloat)fontHeight {
    CGFloat divX = leftNodeFrame.origin.x + leftNodeFrame.size.width + leftNodeFrame.origin.x;
-   CGFloat divY = containerBounds.size.height - thirdRowHeight + titlePaddingTop;
-   return CGRectMake(divX, divY, 180.0f, thirdRowHeight - titlePaddingTop);
+   CGFloat divY = (containerSize.height - fontHeight) / 2 - 2;
+
+   CGFloat titleWidth = containerSize.width - divX - 4;
+   CGFloat titleHeight = fontHeight;
+
+   return CGRectMake(divX, divY, titleWidth, titleHeight);
 }
 
 

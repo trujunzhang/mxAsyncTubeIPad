@@ -85,8 +85,8 @@
 #pragma mark Left menu table cell
 
 
-+ (NSAttributedString *)attributedStringForLeftMenuSubscriptionTitleText:(NSString *)text {
-   UIFont * font = [UIFont systemFontOfSize:14];
++ (NSAttributedString *)attributedStringForLeftMenuSubscriptionTitleText:(NSString *)text fontSize:(CGFloat)fontSize {
+   UIFont * font = [UIFont systemFontOfSize:fontSize];
 
    NSDictionary * titleAttributes =
     @{ NSFontAttributeName : font,
@@ -135,7 +135,7 @@
 }
 
 
-+ (NSMutableParagraphStyle*)justifiedParagraphStyleForTitleText:(UIFont *)font {
++ (NSMutableParagraphStyle *)justifiedParagraphStyleForTitleText:(UIFont *)font {
    NSMutableParagraphStyle * style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
 //   style.paragraphSpacing = 0.5 * font.lineHeight;
    style.hyphenationFactor = 1.0;
@@ -195,7 +195,6 @@
 
    return shadow;
 }
-
 
 
 @end

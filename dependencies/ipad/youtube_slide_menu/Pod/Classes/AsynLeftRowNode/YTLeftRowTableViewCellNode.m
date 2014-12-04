@@ -11,8 +11,7 @@
 #import "Foundation.h"
 #import "ASCacheNetworkImageNode.h"
 
-
-static const int THIRD_ROW_HEIGHT = 28;
+static CGFloat ROW_TITLE_FONT_SIZE = 18;
 
 
 @interface YTLeftRowTableViewCellNode () {
@@ -78,7 +77,8 @@ static const int THIRD_ROW_HEIGHT = 28;
    [self showSubscriptionThumbnail];
    // 2
    self.channelTitleTextNode = [[ASTextNode alloc] init];
-   self.channelTitleTextNode.attributedString = [NSAttributedString attributedStringForLeftMenuSubscriptionTitleText:self.lineTitle];
+   self.channelTitleTextNode.attributedString = [NSAttributedString attributedStringForLeftMenuSubscriptionTitleText:self.lineTitle
+                                                                                                            fontSize:ROW_TITLE_FONT_SIZE];
 
    [self addSubnode:self.channelTitleTextNode];
 }
@@ -105,9 +105,11 @@ static const int THIRD_ROW_HEIGHT = 28;
    self.videoChannelThumbnailsNode.frame = [FrameCalculator frameForLeftMenuSubscriptionThumbnail:self.nodeCellSize];
 
 
-   self.channelTitleTextNode.frame = [FrameCalculator frameForLeftMenuSubscriptionTitleText:self.bounds
-                                                                             thirdRowHeight:THIRD_ROW_HEIGHT
-                                                                              leftNodeFrame:self.videoChannelThumbnailsNode.frame];
+   self.channelTitleTextNode.frame =
+    [FrameCalculator frameForLeftMenuSubscriptionTitleText:self.nodeCellSize
+                                             leftNodeFrame:self.videoChannelThumbnailsNode.frame
+                                            withFontHeight:ROW_TITLE_FONT_SIZE];
+
 }
 
 
