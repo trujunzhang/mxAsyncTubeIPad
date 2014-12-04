@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 djzhang. All rights reserved.
 //
 
+#import <google-api-services-youtube/GYoutubeHelper.h>
 #import "YoutubeChannelPageViewController.h"
 #import "YoutubeChannelTopCell.h"
 #import "WHTopTabBarController.h"
@@ -41,6 +42,13 @@
    if (self) {
       self.channelId = channelId;
 
+      YoutubeResponseBlock completion = ^(NSArray * array, NSObject * respObject) {
+          NSString * debug = @"debug";
+      };
+      ErrorResponseBlock error = ^(NSError * error) {
+          NSString * debug = @"debug";
+      };
+      [[GYoutubeHelper getInstance] fetchChannelForPageView:self.channelId completion:completion errorHandler:error];
    }
 
    return self;
@@ -99,22 +107,15 @@
 
    dispatch_async(_backgroundQueue, ^{
 
-       self.topBanner = [[YTAsyncYoutubeChannelTopCellNode alloc] initWithSubscription:self.subscription
-                                                                              cellSize:parentView.frame.size];
+//       self.topBanner = [[YTAsyncYoutubeChannelTopCellNode alloc] initWithSubscription:self.subscription
+//                                                                              cellSize:parentView.frame.size];
        // self.view isn't a node, so we can only use it on the main thread
        dispatch_sync(dispatch_get_main_queue(), ^{
-           self.topBanner.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;// used
-           [parentView addSubview:self.topBanner.view];
+//           self.topBanner.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;// used
+//           [parentView addSubview:self.topBanner.view];
        });
    });
 }
-
-//- (void)makeTopBanner:(UIView *)parentView {
-//   self.topBanner = [[YoutubeChannelTopCell alloc] initWithSubscription:self.subscription];
-//   self.topBanner.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-//
-//   [parentView addSubview:self.topBanner];
-//}
 
 
 - (void)didReceiveMemoryWarning {
@@ -158,7 +159,7 @@
    if ([self.selectedController getYoutubeRequestInfo].hasFirstFetch)
       return;
 
-   NSString * channelId = [YoutubeParser getChannelIdBySubscription:self.subscription];
+   NSString * channelId = self.channelId;
    switch (self.selectedSegmentItemType) {
       case YTSegmentItemVideo:
          [self.selectedController fetchActivityListByType:self.selectedSegmentItemType
