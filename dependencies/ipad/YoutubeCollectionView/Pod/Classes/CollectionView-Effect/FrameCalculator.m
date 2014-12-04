@@ -143,7 +143,7 @@
 
 
 + (CGRect)frameForLeftMenuSubscriptionTitleText:(CGSize)containerSize leftNodeFrame:(CGRect)leftNodeFrame withFontHeight:(CGFloat)fontHeight {
-   CGFloat divX = leftNodeFrame.origin.x + leftNodeFrame.size.width + leftNodeFrame.origin.x;
+   CGFloat divX = leftNodeFrame.origin.x + leftNodeFrame.size.width + leftNodeFrame.origin.x + 4;
    CGFloat divY = (containerSize.height - fontHeight) / 2 - 2;
 
    CGFloat titleWidth = containerSize.width - divX - 4;

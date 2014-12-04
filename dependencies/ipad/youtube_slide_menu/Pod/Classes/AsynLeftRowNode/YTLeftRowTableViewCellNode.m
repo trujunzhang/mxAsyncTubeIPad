@@ -21,8 +21,6 @@ static CGFloat ROW_TITLE_FONT_SIZE = 18;
 @property(nonatomic, strong) ASCacheNetworkImageNode * videoChannelThumbnailsNode;
 @property(nonatomic, strong) ASTextNode * channelTitleTextNode;
 
-@property(nonatomic, strong) ASDisplayNode * divider;
-
 @end
 
 
@@ -35,7 +33,6 @@ static CGFloat ROW_TITLE_FONT_SIZE = 18;
       self.lineTitle = lineTitle;
       self.lineIconUrl = lineIconUrl;
       self.isRemoteImage = isRemoteImage;
-
 
       [self rowThirdForChannelInfo];
       [self layoutSubNodes];
@@ -116,6 +113,22 @@ static CGFloat ROW_TITLE_FONT_SIZE = 18;
 - (void)effectThirdForChannelInfo {
    // 4
    self.videoChannelThumbnailsNode.layerBacked = true;
+   if (self.isRemoteImage) {
+      self.videoChannelThumbnailsNode.imageModificationBlock = ^UIImage *(UIImage * image) {
+          UIImage * modifiedImage = nil;
+          CGRect rect = (CGRect) { CGPointZero, image.size };
+
+          UIGraphicsBeginImageContextWithOptions(image.size, NO, [UIScreen mainScreen].scale);
+
+          [[UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:4.0] addClip];
+          [image drawInRect:rect];
+          modifiedImage = UIGraphicsGetImageFromCurrentImageContext();
+
+          UIGraphicsEndImageContext();
+
+          return modifiedImage;
+      };
+   }
 
    // 3
    self.channelTitleTextNode.layerBacked = true;
