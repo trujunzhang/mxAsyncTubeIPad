@@ -16,7 +16,7 @@
 #import "UIColor+iOS8Colors.h"
 #import "Foundation.h"
 
-static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 42;
+static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
 
 
 @interface YTAsyncYoutubeChannelTopCellNode () {
@@ -151,10 +151,10 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 42;
 
 
 - (void)rowSecondForChannelInfo {
-   NSString * channelTitleValue = self.subscription.snippet.title;
    // 1
    ASTextNode * channelTitleTextNode = [[ASTextNode alloc] init];
-   channelTitleTextNode.attributedString = [NSAttributedString attributedStringForChannelTitleText:channelTitleValue];
+   channelTitleTextNode.attributedString =
+    [NSAttributedString attributedStringForPageChannelTitleText:[YoutubeParser getSubscriptionSnippetTitle:self.subscription]];
 
    //MARK: Container Node Creation Section
    self.channelTitleTextNode = channelTitleTextNode;
@@ -170,7 +170,6 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 42;
 
 
 - (void)effectThirdForChannelInfo {
-
    // 3
    self.channelTitleTextNode.backgroundColor = [UIColor clearColor];
 }

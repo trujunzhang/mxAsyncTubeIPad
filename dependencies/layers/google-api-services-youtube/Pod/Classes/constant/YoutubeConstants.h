@@ -74,10 +74,10 @@
 #define hasShowLeftMenu YES
 
 
-#define SUBSCRIPTION_LIST_MAX 20
-#define subscriptionIndex  120
-#define debugLeftMenuTapSubscription NO
-//#define debugLeftMenuTapSubscription YES
+#define SUBSCRIPTION_LIST_MAX 2
+#define subscriptionIndex  1
+//#define debugLeftMenuTapSubscription NO
+#define debugLeftMenuTapSubscription YES
 
 
 // module

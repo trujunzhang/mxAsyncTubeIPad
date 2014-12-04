@@ -167,7 +167,7 @@
 
 + (CGRect)frameForPageChannelTitle:(CGSize)cellSize secondRowFrameHeight:(CGFloat)nodeFrameHeight {
    CGFloat divY = cellSize.height - nodeFrameHeight;
-   return CGRectMake(4, divY + 4, 120, 15);
+   return CGRectMake(12, divY + 8, 200, 15);
 }
 
 

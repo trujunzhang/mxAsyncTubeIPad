@@ -44,6 +44,19 @@
 }
 
 
++ (NSAttributedString *)attributedStringForPageChannelTitleText:(NSString *)text {
+   UIFont * font = [UIFont systemFontOfSize:12];
+
+   NSDictionary * titleAttributes =
+    @{ NSFontAttributeName : font,
+     NSForegroundColorAttributeName : [UIColor darkTextColor],
+     NSParagraphStyleAttributeName : [NSParagraphStyle justifiedParagraphStyleForPageChannelTitle]
+    };
+
+   return [[NSAttributedString alloc] initWithString:text attributes:titleAttributes];
+}
+
+
 - (NSDictionary *)createAttributesForFontStyle:(NSString *)style
                                      withTrait:(uint32_t)trait {
    UIFontDescriptor * fontDescriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleBody];
@@ -130,6 +143,14 @@
    style.lineBreakMode = NSLineBreakByTruncatingTail;
    style.alignment = NSTextAlignmentLeft;
 
+   return style;
+}
+
+
++ (NSParagraphStyle *)justifiedParagraphStyleForPageChannelTitle {
+   NSMutableParagraphStyle * style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+   style.lineBreakMode = NSLineBreakByTruncatingTail;
+   style.alignment = NSTextAlignmentLeft;
 
    return style;
 }

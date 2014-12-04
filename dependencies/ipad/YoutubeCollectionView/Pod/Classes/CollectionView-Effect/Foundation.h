@@ -16,6 +16,8 @@
 + (NSAttributedString *)attributedStringForDurationText:(NSString *)text;
 + (NSAttributedString *)attributedStringForChannelTitleText:(NSString *)text;
 
++ (NSAttributedString *)attributedStringForPageChannelTitleText:(NSString *)text;
+
 + (NSAttributedString *)attributedStringForLeftMenuSubscriptionTitleText:(NSString *)text fontSize:(CGFloat)fontSize;
 
 @end
@@ -27,6 +29,7 @@
 + (NSParagraphStyle *)justifiedParagraphStyleForDuration;
 + (NSMutableParagraphStyle *)justifiedParagraphStyleForTitleText:(UIFont *)font;
 + (NSParagraphStyle *)justifiedParagraphStyleForChannelTitle;
++ (NSParagraphStyle *)justifiedParagraphStyleForPageChannelTitle;
 
 + (NSParagraphStyle *)justifiedParagraphStyleForLeftMenuSubscriptionTitle;
 
