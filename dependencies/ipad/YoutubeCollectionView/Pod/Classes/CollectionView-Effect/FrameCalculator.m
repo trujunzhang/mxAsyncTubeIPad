@@ -130,12 +130,12 @@
 #pragma mark Left menu table cell
 
 
-+ (CGRect)frameForLeftMenuSubscriptionThumbnail:(CGRect)containerBounds thirdRowHeight:(CGFloat)thirdRowHeight {
++ (CGRect)frameForLeftMenuSubscriptionThumbnail:(CGSize)containersize {
    CGFloat thumbnailPaddingTop = 5;
 
    CGFloat divX = 6;
-   CGFloat divY = containerBounds.size.height - thirdRowHeight + thumbnailPaddingTop;
-   CGFloat thumbnailHeight = thirdRowHeight - thumbnailPaddingTop * 2;
+   CGFloat divY = containersize.height + thumbnailPaddingTop;
+   CGFloat thumbnailHeight = containersize.height - (thumbnailPaddingTop * 2);
    return CGRectMake(divX, divY, thumbnailHeight, thumbnailHeight);
 }
 

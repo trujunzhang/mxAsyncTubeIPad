@@ -25,7 +25,7 @@
 + (CGRect)frameForContainer:(CGSize)featureImageSize;
 + (CGSize)sizeThatFits:(CGSize)size withImageSize:(CGSize)imageSize;
 + (CGSize)aspectSizeForWidth:(CGFloat)width originalSize:(CGSize)originalSize;
-+ (CGRect)frameForLeftMenuSubscriptionThumbnail:(CGRect)containerBounds thirdRowHeight:(CGFloat)thirdRowHeight;
++ (CGRect)frameForLeftMenuSubscriptionThumbnail:(CGSize)containersize;
 + (CGRect)frameForLeftMenuSubscriptionTitleText:(CGRect)containerBounds thirdRowHeight:(CGFloat)thirdRowHeight leftNodeFrame:(CGRect)leftNodeFrame;
 
 + (CGRect)frameForPageChannelBannerThumbnails:(CGSize)cellSize secondRowFrameHeight:(CGFloat)nodeFrameHeight;

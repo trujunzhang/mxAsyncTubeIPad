@@ -18,6 +18,8 @@
 
 static NSString * const leftmenuIdentifier = @"LeftMenuViewIdentifier";
 
+static CGFloat ROW_HEIGHT = 50;
+
 
 @interface LeftMenuViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong) STCollapseTableView * tableView;
@@ -54,7 +56,6 @@ static NSString * const leftmenuIdentifier = @"LeftMenuViewIdentifier";
 }
 
 
-
 #pragma mark -
 #pragma mark UITableViewDataSource
 
@@ -76,7 +77,7 @@ static NSString * const leftmenuIdentifier = @"LeftMenuViewIdentifier";
    [cell   bind:line[0]
 withLineIconUrl:line[1]
   isRemoteImage:menuItemTree.isRemoteImage
-             cellSize:CGSizeMake(250, 30)
+             cellSize:CGSizeMake(250, ROW_HEIGHT)
 nodeConstructionQueue:self.nodeConstructionQueue];
 
    cell.backgroundColor = [UIColor clearColor];
@@ -92,7 +93,7 @@ nodeConstructionQueue:self.nodeConstructionQueue];
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-   return 42;
+   return ROW_HEIGHT;
 }
 
 
@@ -138,7 +139,6 @@ nodeConstructionQueue:self.nodeConstructionQueue];
       }
    }
 }
-
 
 
 @end

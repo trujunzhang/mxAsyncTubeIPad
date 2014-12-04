@@ -84,10 +84,6 @@ static const int THIRD_ROW_HEIGHT = 28;
 }
 
 
-//"file://
-// /Volumes/Home/djzhang/Library/Developer/CoreSimulator/Devices/B726A371-DD83-4419-9531-82465E59D6B1/data/Containers/Bundle/Application/6A560665-DA76-4BAE-B4A7-8778C1247D1D/TubeIPadApp.app
-// /subscriptions.png
-//      NSURL * url = [[NSBundle mainBundle] URLForResource:self.lineIconUrl withExtension:@"png"];
 - (void)showSubscriptionThumbnail {
    if (self.isRemoteImage) {
       ASCacheNetworkImageNode * cacheNetworkImageNode = [[ASCacheNetworkImageNode alloc] initForImageCache];
@@ -106,8 +102,8 @@ static const int THIRD_ROW_HEIGHT = 28;
 
 
 - (void)layoutThirdForChannelInfo {
-   self.videoChannelThumbnailsNode.frame = [FrameCalculator frameForLeftMenuSubscriptionThumbnail:self.bounds
-                                                                                   thirdRowHeight:THIRD_ROW_HEIGHT];
+   self.videoChannelThumbnailsNode.frame = [FrameCalculator frameForLeftMenuSubscriptionThumbnail:self.nodeCellSize];
+
 
    self.channelTitleTextNode.frame = [FrameCalculator frameForLeftMenuSubscriptionTitleText:self.bounds
                                                                              thirdRowHeight:THIRD_ROW_HEIGHT
