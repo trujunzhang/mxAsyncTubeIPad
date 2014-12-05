@@ -12,6 +12,8 @@
 #import "KRLCollectionViewGridLayout.h"
 #import "YTGridVideoCellNode.h"
 
+int step = 0;
+
 
 @interface YoutubeGridLayoutViewController ()<ASCollectionViewDataSource, ASCollectionViewDelegate, CHTCollectionViewDelegateWaterfallLayout, UICollectionViewDelegate>
 @property(strong, nonatomic) ASCollectionView * collectionView;
@@ -33,7 +35,24 @@
 - (void)viewWillAppear:(BOOL)animated {
    [super viewDidAppear:animated];
 
-//   [self.nextPageDelegate executeNextPageTask]; // test
+   [self.nextPageDelegate executeNextPageTask]; // test
+
+   [self reloadControlAction];
+}
+
+
+- (void)reloadControlAction {
+   // Enter your code for request you are creating here when you pull the collectionView. When the request is completed then the collectionView go to its original position.
+   [self performSelector:@selector(refreshPerformEvent) withObject:(self) afterDelay:(12.0)];
+}
+
+
+- (void)refreshPerformEvent {
+   [self.nextPageDelegate executeNextPageTask]; // test
+
+   step++;
+   if (step < 4)
+      [self reloadControlAction];
 }
 
 
@@ -57,12 +76,13 @@
    if (!self.collectionView) {
       self.layout = [[KRLCollectionViewGridLayout alloc] init];
       self.layout.aspectRatio = 1;
-      self.layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-      self.layout.interitemSpacing = 30;
-      self.layout.lineSpacing = 20;
-      self.layout.aspectRatio = 1.1;
-      self.layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+      self.layout.interitemSpacing = 10;
+      self.layout.lineSpacing = LAYOUT_MINIMUMCOLUMNSPACING;
 
+      UIEdgeInsets uiEdgeInsets = [self getUIEdgeInsetsForLayout];
+      self.layout.sectionInset = uiEdgeInsets;
+
+      self.layout.scrollDirection = UICollectionViewScrollDirectionVertical;
 
       self.collectionView = [[ASCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
       self.collectionView.asyncDataSource = self;
@@ -100,44 +120,19 @@
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-   if (section == 0) {
-      return [self getYoutubeRequestInfo].videoList.count;
-   } else {
-      return 1;
-   }
+   return [self getYoutubeRequestInfo].videoList.count;
 }
 
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-   return 2;
+   return 1;
 }
 
 
 - (ASCellNode *)collectionView:(ASCollectionView *)collectionView nodeForItemAtIndexPath:(NSIndexPath *)indexPath {
-   ASCellNode * node;
-
-   switch (indexPath.section) {
-      case 0:
-         node = [self getCellNodeAtIndexPath:indexPath];
-         break;
-      case 1:
-         node = [self getLoadMoreNode];
-         [self checkVisible];
-         NSLog(@"collection view loading more. %s", sel_getName(_cmd));
-         [self.nextPageDelegate executeNextPageTask];
-         break;
-   }
-
+   ASCellNode * node = [self getCellNodeAtIndexPath:indexPath];
 
    return node;
-}
-
-
-- (void)checkVisible {
-   NSArray * array = [self.collectionView indexPathsForVisibleItems];
-
-   NSString * debug = @"debug";
-
 }
 
 
@@ -195,10 +190,12 @@
 
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+   NSLog(@"method:  %s", sel_getName(_cmd));
    for (UICollectionViewCell * cell in [self.collectionView visibleCells]) {
       NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
-      if (indexPath.section == 1) {
-//         [self.nextPageDelegate executeNextPageTask];
+      if (indexPath.section == 0) {
+         NSLog(@"%s", sel_getName(_cmd));
+         [self.nextPageDelegate executeNextPageTask];
          return;
       }
    }

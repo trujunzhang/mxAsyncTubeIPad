@@ -7,11 +7,15 @@
 //
 
 #import <YoutubeCollectionView/IpadGridViewCell.h>
+#import <IOS_Collection_Code/HexColor.h>
 #import "YTGridVideoCellNode.h"
 #import "YoutubeParser.h"
 #import "GYoutubeHelper.h"
 #import "CacheImageConstant.h"
 #import "YTAsChannelThumbnailsImageNode.h"
+#import "FrameCalculator.h"
+#import "Foundation.h"
+#import "AsyncDisplayKitStatic.h"
 
 
 CGFloat thumbnailHeight = 142;
@@ -25,6 +29,7 @@ CGFloat thumbnailHeight = 142;
    ASImageNode * _channelImageNode;
    ASTextNode * _videoTitleNode;
    ASTextNode * _channelTitleNode;
+   ASTextNode * _durationTextNode;
 }
 @end
 
@@ -52,6 +57,16 @@ CGFloat thumbnailHeight = 142;
    _imageNode = [ASCacheNetworkImageNode nodeWithImageUrl:[YoutubeParser getVideoSnippetThumbnails:self.video]];
    _imageNode.backgroundColor = [UIColor clearColor];
    [self addSubnode:_imageNode];
+
+   // 2
+   NSString * durationString = [YoutubeParser getVideoDurationForVideoInfo:self.video];
+   self.durationLabelWidth = [FrameCalculator calculateWidthForDurationLabel:durationString];
+
+   _durationTextNode = [ASTextNode initWithAttributedString:
+    [NSAttributedString attributedStringForDurationText:durationString]];
+   _durationTextNode.backgroundColor = [UIColor colorWithHexString:@"1F1F21" alpha:0.6];
+
+   [self addSubnode:_durationTextNode];
 
    // 2
    _infoContainerNode = [[ASDisplayNode alloc] init];
@@ -113,6 +128,10 @@ CGFloat thumbnailHeight = 142;
 - (void)layout {
    // 1
    _imageNode.frame = CGRectMake(0, 0, _kittenSize.width, thumbnailHeight);
+
+   _durationTextNode.frame =
+    [FrameCalculator frameForDurationWithCloverSize:_imageNode.frame.size
+                                  withDurationWidth:self.durationLabelWidth];
 
    // 2
    CGFloat infoContainerHeight = _kittenSize.height - thumbnailHeight;
