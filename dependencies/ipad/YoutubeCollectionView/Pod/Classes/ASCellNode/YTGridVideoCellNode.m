@@ -10,12 +10,11 @@
 #import <IOS_Collection_Code/HexColor.h>
 #import "YTGridVideoCellNode.h"
 #import "YoutubeParser.h"
-#import "GYoutubeHelper.h"
-#import "CacheImageConstant.h"
 #import "YTAsChannelThumbnailsImageNode.h"
 #import "FrameCalculator.h"
 #import "Foundation.h"
 #import "AsyncDisplayKitStatic.h"
+#import "UIColor+iOS8Colors.h"
 
 
 CGFloat thumbnailHeight = 142;
@@ -24,7 +23,7 @@ CGFloat thumbnailHeight = 142;
 @interface YTGridVideoCellNode () {
    CGSize _kittenSize;
 
-   ASImageNode * _imageNode;
+   ASImageNode * _videoCoverThumbnailsNode;
    ASDisplayNode * _infoContainerNode;
    ASImageNode * _channelImageNode;
    ASTextNode * _videoTitleNode;
@@ -46,6 +45,7 @@ CGFloat thumbnailHeight = 142;
    self.delegate = delegate;
 
    [self makeUI];
+   [self effectFirstForChannelClover];
    [self setNodeTappedEvent];
 
    return self;
@@ -54,9 +54,9 @@ CGFloat thumbnailHeight = 142;
 
 - (void)makeUI {
    // 1
-   _imageNode = [ASCacheNetworkImageNode nodeWithImageUrl:[YoutubeParser getVideoSnippetThumbnails:self.video]];
-   _imageNode.backgroundColor = [UIColor clearColor];
-   [self addSubnode:_imageNode];
+   _videoCoverThumbnailsNode = [ASCacheNetworkImageNode nodeWithImageUrl:[YoutubeParser getVideoSnippetThumbnails:self.video]];
+   _videoCoverThumbnailsNode.backgroundColor = [UIColor clearColor];
+   [self addSubnode:_videoCoverThumbnailsNode];
 
    // 2
    NSString * durationString = [YoutubeParser getVideoDurationForVideoInfo:self.video];
@@ -88,6 +88,25 @@ CGFloat thumbnailHeight = 142;
     [[NSAttributedString alloc] initWithString:[YoutubeParser getVideoSnippetChannelTitle:self.video]
                                     attributes:[self textStyleForChannelTitle]]];
    [_infoContainerNode addSubnode:_channelTitleNode];
+}
+
+
+- (void)effectFirstForChannelClover {
+   // 2
+   _videoCoverThumbnailsNode.contentMode = UIViewContentModeScaleAspectFit;
+
+   // 2.1
+   _videoCoverThumbnailsNode.backgroundColor = [UIColor iOS8silverGradientStartColor];
+
+   // 2.2
+   _videoCoverThumbnailsNode.borderColor = [UIColor colorWithHexString:@"DDD"].CGColor;
+   _videoCoverThumbnailsNode.borderWidth = 1;
+
+   _videoCoverThumbnailsNode.shadowColor = [UIColor colorWithHexString:@"B5B5B5"].CGColor;
+   _videoCoverThumbnailsNode.shadowOffset = CGSizeMake(1, 3);
+   _videoCoverThumbnailsNode.shadowRadius = 2.0;
+
+
 }
 
 
@@ -129,10 +148,10 @@ CGFloat thumbnailHeight = 142;
 
 - (void)layout {
    // 1
-   _imageNode.frame = CGRectMake(0, 0, _kittenSize.width, thumbnailHeight);
+   _videoCoverThumbnailsNode.frame = CGRectMake(0, 0, _kittenSize.width, thumbnailHeight);
 
    _durationTextNode.frame =
-    [FrameCalculator frameForDurationWithCloverSize:_imageNode.frame.size
+    [FrameCalculator frameForDurationWithCloverSize:_videoCoverThumbnailsNode.frame.size
                                   withDurationWidth:self.durationLabelWidth];
 
    // 2
@@ -154,10 +173,10 @@ CGFloat thumbnailHeight = 142;
 
 - (void)setNodeTappedEvent {
    // configure the button
-   _imageNode.userInteractionEnabled = YES; // opt into touch handling
-   [_imageNode addTarget:self
-                  action:@selector(buttonTapped:)
-        forControlEvents:ASControlNodeEventTouchUpInside];
+   _videoCoverThumbnailsNode.userInteractionEnabled = YES; // opt into touch handling
+   [_videoCoverThumbnailsNode addTarget:self
+                                 action:@selector(buttonTapped:)
+                       forControlEvents:ASControlNodeEventTouchUpInside];
 }
 
 

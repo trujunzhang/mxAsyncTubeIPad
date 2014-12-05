@@ -190,15 +190,15 @@ int step = 0;
 
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-   NSLog(@"method:  %s", sel_getName(_cmd));
-   for (UICollectionViewCell * cell in [self.collectionView visibleCells]) {
-      NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
-      if (indexPath.section == 0) {
-         NSLog(@"%s", sel_getName(_cmd));
-         [self.nextPageDelegate executeNextPageTask];
-         return;
-      }
-   }
+//   NSLog(@"method:  %s", sel_getName(_cmd));
+//   for (UICollectionViewCell * cell in [self.collectionView visibleCells]) {
+//      NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
+//      if (indexPath.section == 0) {
+//         NSLog(@"%s", sel_getName(_cmd));
+//         [self.nextPageDelegate executeNextPageTask];
+//         return;
+//      }
+//   }
 }
 
 
