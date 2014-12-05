@@ -13,9 +13,12 @@
 
 
 @interface ASCacheNetworkImageNode : ASNetworkImageNode
-
 - (instancetype)initForImageCache;
 - (instancetype)initWithPlaceHolder:(UIImage *)placeHolder;
+
++ (instancetype)nodeWithPlaceHolderImage:(UIImage *)placeHolderImage;
++ (instancetype)nodeWithImageUrl:(NSString *)imageUrl;
+
 
 - (void)startFetchImageWithString:(NSString *)urlString;
 

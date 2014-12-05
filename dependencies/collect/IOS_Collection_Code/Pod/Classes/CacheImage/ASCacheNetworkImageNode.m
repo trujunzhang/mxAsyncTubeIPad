@@ -19,6 +19,23 @@
 
 @implementation ASCacheNetworkImageNode
 
+
++ (instancetype)nodeWithPlaceHolderImage:(UIImage *)placeHolderImage {
+   ASCacheNetworkImageNode * node = [[self alloc] initWithPlaceHolder:placeHolderImage];
+
+   return node;
+}
+
+
++ (instancetype)nodeWithImageUrl:(NSString *)imageUrl {
+   ASCacheNetworkImageNode * node = [[self alloc] initForImageCache];
+
+   [node startFetchImageWithString:imageUrl];
+
+   return node;
+}
+
+
 - (instancetype)initWithPlaceHolder:(UIImage *)placeHolder {
 //   self = [super initWithCache:self downloader:self];
 //   self = [super initWithCache:self downloader:[[ASBasicImageDownloader alloc] init]];

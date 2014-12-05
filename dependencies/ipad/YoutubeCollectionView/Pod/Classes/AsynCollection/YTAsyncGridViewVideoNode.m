@@ -125,8 +125,8 @@ static const int THIRD_ROW_HEIGHT = 28;
 
 - (void)rowFirstForChannelClover {
    // 1
-   ASCacheNetworkImageNode * videoChannelThumbnailsNode = [[ASCacheNetworkImageNode alloc] initForImageCache];
-   [videoChannelThumbnailsNode startFetchImageWithString:[YoutubeParser getVideoSnippetThumbnails:self.cardInfo]];
+   ASCacheNetworkImageNode * videoChannelThumbnailsNode =
+    [ASCacheNetworkImageNode nodeWithImageUrl:[YoutubeParser getVideoSnippetThumbnails:self.cardInfo]];
 
    // configure the button
    videoChannelThumbnailsNode.userInteractionEnabled = YES; // opt into touch handling
@@ -141,9 +141,9 @@ static const int THIRD_ROW_HEIGHT = 28;
    NSString * durationString = [YoutubeParser getVideoDurationForVideoInfo:self.cardInfo];
    self.durationLabelWidth = [FrameCalculator calculateWidthForDurationLabel:durationString];
 
-   ASTextNode * durationTextNode = [[ASTextNode alloc] init];
+   ASTextNode * durationTextNode = [ASTextNode initWithAttributedString:
+    [NSAttributedString attributedStringForDurationText:durationString]];
    durationTextNode.backgroundColor = [UIColor colorWithHexString:@"1F1F21" alpha:0.6];
-   durationTextNode.attributedString = [NSAttributedString attributedStringForDurationText:durationString];
 
    self.durationTextNode = durationTextNode;
    [self addSubnode:self.durationTextNode];
@@ -191,8 +191,8 @@ static const int THIRD_ROW_HEIGHT = 28;
 
 - (void)rowSecondForChannelTitle {
    // 1
-   ASTextNode * titleTextNode = [[ASTextNode alloc] init];
-   titleTextNode.attributedString = [NSAttributedString attributedStringForTitleText:[YoutubeParser getVideoSnippetTitle:self.cardInfo]];
+   ASTextNode * titleTextNode =
+    [ASTextNode initWithAttributedString:[NSAttributedString attributedStringForTitleText:[YoutubeParser getVideoSnippetTitle:self.cardInfo]]];
 
    //MARK: Container Node Creation Section
    self.videoTitleTextNode = titleTextNode;
@@ -268,9 +268,6 @@ static const int THIRD_ROW_HEIGHT = 28;
 
 
 - (void)effectThirdForChannelInfo {
-
-
-   // 3
    self.channelTitleTextNode.backgroundColor = [UIColor clearColor];
 }
 
