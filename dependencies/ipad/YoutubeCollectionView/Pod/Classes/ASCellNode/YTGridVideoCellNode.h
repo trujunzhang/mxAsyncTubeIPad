@@ -13,8 +13,7 @@
 
 @interface YTGridVideoCellNode : ASCellNode
 
-- (instancetype)initWithCellNodeOfSize:(CGSize)size;
-
+- (instancetype)initWithCellNodeOfSize:(CGSize)size withVideo:(YTYouTubeVideoCache *)video placeholderImage:(UIImage *)placeholder delegate:(id<IpadGridViewCellDelegate>)delegate;
 @property(nonatomic, strong) YTYouTubeVideoCache * video;
 @property(nonatomic, strong) id<IpadGridViewCellDelegate> delegate;
 - (void)bind:(YTYouTubeVideoCache *)video placeholderImage:(UIImage *)placeholder delegate:(id<IpadGridViewCellDelegate>)delegate;

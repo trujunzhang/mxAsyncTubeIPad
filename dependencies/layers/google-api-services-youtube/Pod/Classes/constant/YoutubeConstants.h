@@ -69,7 +69,6 @@
 #endif
 
 
-
 #define hasShowLeftMenu NO
 //#define hasShowLeftMenu YES
 
@@ -85,7 +84,7 @@
 //#define YTYouTubeVideo  GTLYouTubeVideo
 //#define YTYouTubeVideo  MABYT3_Video
 
-#define YTYouTubeVideoCache  YoutubeVideoCache
+#define YTYouTubeVideoCache  MABYT3_Video
 
 #define YTYouTubePlayList  MABYT3_PlayList
 #define YTYouTubePlaylistItem  GTLYouTubePlaylistItem

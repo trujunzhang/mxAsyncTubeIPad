@@ -49,7 +49,7 @@ CGFloat thumbnailHeight = 142;
 
 - (void)makeUI {
    // 1
-   _imageNode = [[ASImageNode alloc] init];
+   _imageNode = [ASCacheNetworkImageNode nodeWithImageUrl:[YoutubeParser getVideoSnippetThumbnails:self.video]];
    _imageNode.backgroundColor = [UIColor clearColor];
    [self addSubnode:_imageNode];
 
@@ -128,28 +128,10 @@ CGFloat thumbnailHeight = 142;
 
 
 - (void)bind:(YTYouTubeVideoCache *)video placeholderImage:(UIImage *)placeholder delegate:(id<IpadGridViewCellDelegate>)delegate {
-
    // 1
    NSString * videoThumbnailsUrl = [YoutubeParser getVideoSnippetThumbnails:video];
    NSString * videoTitleValue = video.snippet.title;
    NSString * channelTitleValue = video.snippet.channelTitle;
-
-//   if (video.hasImage) {
-//      _imageNode.image = video.image;
-//   } else {
-//      void (^downloadCompletion)(UIImage *) = ^(UIImage * image) {
-//          video.hasImage = YES;
-//          video.image = image;
-//          _imageNode.image = video.image;
-//      };
-//      [YTCacheImplement CacheWithImageView:_imageNode
-//                                       key:video.identifier
-//                                   withUrl:videoThumbnailsUrl
-//                           withPlaceholder:placeholder
-//                                completion:downloadCompletion
-//      ];
-//   }
-
 
    // configure the button
    _imageNode.userInteractionEnabled = YES; // opt into touch handling
