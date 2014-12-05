@@ -62,6 +62,7 @@ static const int THIRD_ROW_HEIGHT = 28;
 
 - (void)setAllNodeBacked {
    self.layerBacked = true;
+
    // line01
    self.videoCoverThumbnailsNode.layerBacked = true;
    self.durationTextNode.layerBacked = true;
@@ -118,11 +119,9 @@ static const int THIRD_ROW_HEIGHT = 28;
 
 
 - (void)rowFirstForChannelClover {
-   NSString * videoThumbnailsUrl = [YoutubeParser getVideoSnippetThumbnails:self.cardInfo];
-
    // 1
    ASCacheNetworkImageNode * videoChannelThumbnailsNode = [[ASCacheNetworkImageNode alloc] initForImageCache];
-   [videoChannelThumbnailsNode startFetchImageWithString:videoThumbnailsUrl];
+   [videoChannelThumbnailsNode startFetchImageWithString:[YoutubeParser getVideoSnippetThumbnails:self.cardInfo]];
 
    // configure the button
    videoChannelThumbnailsNode.userInteractionEnabled = YES; // opt into touch handling
@@ -135,7 +134,6 @@ static const int THIRD_ROW_HEIGHT = 28;
 
    // 2
    NSString * durationString = [YoutubeParser getVideoDurationForVideoInfo:self.cardInfo];
-//   NSLog(@"durationString = %@", durationString);
    self.durationLabelWidth = [FrameCalculator calculateWidthForDurationLabel:durationString];
 
    ASTextNode * durationTextNode = [[ASTextNode alloc] init];
@@ -147,19 +145,25 @@ static const int THIRD_ROW_HEIGHT = 28;
 }
 
 
-- (void)layoutFirstForChannelClover {
-   self.videoCoverThumbnailsNode.frame = [FrameCalculator frameForChannelThumbnails:self.nodeCellSize
-                                                                    nodeFrameHeight:142.0f];
+- (void)channelThumbnailsTapped:(id)buttonTapped {
+   [self.delegate gridViewCellTap:self.cardInfo];
+}
 
-   self.durationTextNode.frame = [FrameCalculator frameForDurationWithCloverSize:self.videoCoverThumbnailsNode.frame.size
-                                                               withDurationWidth:self.durationLabelWidth];
+
+- (void)layoutFirstForChannelClover {
+   self.videoCoverThumbnailsNode.frame =
+    [FrameCalculator frameForChannelThumbnails:self.nodeCellSize nodeFrameHeight:142.0f];
+
+
+   self.durationTextNode.frame =
+    [FrameCalculator frameForDurationWithCloverSize:self.videoCoverThumbnailsNode.frame.size
+                                  withDurationWidth:self.durationLabelWidth];
 }
 
 
 - (void)effectFirstForChannelClover {
    // 2
-
-   self.videoCoverThumbnailsNode.contentMode = UIViewContentModeScaleAspectFit;// .ScaleAspectFit
+   self.videoCoverThumbnailsNode.contentMode = UIViewContentModeScaleAspectFit;
 
    // 2.1
    self.videoCoverThumbnailsNode.backgroundColor = [UIColor iOS8silverGradientStartColor];
@@ -173,11 +177,6 @@ static const int THIRD_ROW_HEIGHT = 28;
    self.videoCoverThumbnailsNode.shadowRadius = 2.0;
 
 
-}
-
-
-- (void)channelThumbnailsTapped:(id)buttonTapped {
-   [self.delegate gridViewCellTap:self.cardInfo];
 }
 
 
