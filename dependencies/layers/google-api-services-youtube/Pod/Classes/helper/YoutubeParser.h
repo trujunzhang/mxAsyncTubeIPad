@@ -21,7 +21,8 @@
 
 + (NSError *)getError:(NSData *)data httpresp:(NSHTTPURLResponse *)httpresp;
 
-+ (NSString *)GetChannelBrandingSettingsTitle:(YTYouTubeChannel *)channel;
++ (NSString *)getChannelBrandingSettingsTitle:(YTYouTubeChannel *)channel;
++ (NSString *)getChannelStatisticsSubscriberCount:(YTYouTubeChannel *)channel;
 // Channel for author
 + (NSString *)getAuthChannelSnippetThumbnailUrl:(YTYouTubeAuthorChannel *)channel;
 + (NSString *)getAuthChannelTitle:(YTYouTubeAuthorChannel *)channel;
@@ -30,7 +31,7 @@
 
 // Channel for other request
 + (NSString *)getChannelBannerImageUrl:(YTYouTubeChannel *)channel;
-+ (NSString *)GetChannelSnippetThumbnail:(YTYouTubeChannel *)channel;
++ (NSString *)getChannelSnippetThumbnail:(YTYouTubeChannel *)channel;
 
 // Subscription
 + (NSString *)getChannelIdBySubscription:(YTYouTubeSubscription *)subscription;

@@ -170,5 +170,10 @@
    return CGRectMake(12, divY + 8, 200, 15);
 }
 
++ (CGRect)frameForPageChannelStatisticsSubscriberCount:(CGSize)cellSize secondRowFrameHeight:(CGFloat)nodeFrameHeight {
+   CGFloat divY = cellSize.height - nodeFrameHeight;
+   return CGRectMake(12, divY + 8, 200, 15);
+}
+
 
 @end

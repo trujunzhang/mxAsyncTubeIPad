@@ -17,6 +17,7 @@
 + (NSAttributedString *)attributedStringForChannelTitleText:(NSString *)text;
 
 + (NSAttributedString *)attributedStringForPageChannelTitleText:(NSString *)text;
++ (NSAttributedString *)attributedStringForChannelStatisticsSubscriberCount:(NSString *)text;
 
 + (NSAttributedString *)attributedStringForLeftMenuSubscriptionTitleText:(NSString *)text fontSize:(CGFloat)fontSize;
 

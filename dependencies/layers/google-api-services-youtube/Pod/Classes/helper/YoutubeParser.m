@@ -120,18 +120,24 @@ NSMutableDictionary * channelIdThumbnailDictionary;
 
 
 + (NSString *)getChannelBannerImageUrl:(YTYouTubeChannel *)channel {
-   return channel.brandingSettings.image.bannerMobileHdImageUrl;
+   return channel.brandingSettings.image.bannerImageUrl;
 }
 
 
-+ (NSString *)GetChannelSnippetThumbnail:(YTYouTubeChannel *)channel {
++ (NSString *)getChannelSnippetThumbnail:(YTYouTubeChannel *)channel {
    YTYouTubeMABThumbmail * thumbnail = channel.snippet.thumbnails[@"default"];
    return thumbnail.url;
 }
 
 
-+ (NSString *)GetChannelBrandingSettingsTitle:(YTYouTubeChannel *)channel {
++ (NSString *)getChannelBrandingSettingsTitle:(YTYouTubeChannel *)channel {
    return channel.brandingSettings.channel.title;
+}
+
+
++ (NSString *)getChannelStatisticsSubscriberCount:(YTYouTubeChannel *)channel {
+   unsigned long subscriberCount = channel.statistics.subscriberCount;
+   return [NSString stringWithFormat:@"%d", subscriberCount];
 }
 
 

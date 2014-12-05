@@ -31,4 +31,5 @@
 + (CGRect)frameForPageChannelBannerThumbnails:(CGSize)cellSize secondRowFrameHeight:(CGFloat)nodeFrameHeight;
 + (CGRect)frameForPageChannelThumbnails:(CGSize)cellSize;
 + (CGRect)frameForPageChannelTitle:(CGSize)cellSize secondRowFrameHeight:(CGFloat)nodeFrameHeight;
++ (CGRect)frameForPageChannelStatisticsSubscriberCount:(CGSize)cellSize secondRowFrameHeight:(CGFloat)nodeFrameHeight;
 @end

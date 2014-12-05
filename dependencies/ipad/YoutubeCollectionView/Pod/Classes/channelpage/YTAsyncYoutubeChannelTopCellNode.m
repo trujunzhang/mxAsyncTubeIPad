@@ -24,11 +24,12 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
 @property(nonatomic) CGSize nodeCellSize;
 
 // line01
-@property(nonatomic, strong) ASCacheNetworkImageNode * channelBannerThumbnailNode;
-@property(nonatomic, strong) ASCacheNetworkImageNode * channelThumbnailsNode;
+@property(nonatomic, strong) ASImageNode * channelBannerThumbnailNode;
+@property(nonatomic, strong) ASImageNode * channelThumbnailsNode;
 
 // line02
 @property(nonatomic, strong) ASTextNode * channelTitleTextNode;
+@property(nonatomic, strong) ASTextNode * channelSubscriptionCountTextNode;
 @end
 
 
@@ -102,22 +103,21 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
 - (void)rowFirstForChannelBanner {
    ASCacheNetworkImageNode * channelBannerThumbnailNode =
     [[ASCacheNetworkImageNode alloc] initWithPlaceHolder:[UIImage imageNamed:@"channel_default_banner.jpg"]];
-
    [channelBannerThumbnailNode startFetchImageWithString:[YoutubeParser getChannelBannerImageUrl:self.pageChannel]];
-   channelBannerThumbnailNode.contentMode = UIViewContentModeScaleToFill;
 
    self.channelBannerThumbnailNode = channelBannerThumbnailNode;
    [self addSubnode:self.channelBannerThumbnailNode];
 
    // 2
-   [self showChannelThumbnail:[YoutubeParser GetChannelSnippetThumbnail:self.pageChannel]];
+   [self showChannelThumbnail:[YoutubeParser getChannelSnippetThumbnail:self.pageChannel]];
 }
 
 
 - (void)showChannelThumbnail:(NSString *)channelThumbnailUrl {
-   self.channelThumbnailsNode = [[ASCacheNetworkImageNode alloc] initForImageCache];
-   [self.channelThumbnailsNode startFetchImageWithString:channelThumbnailUrl];
+   ASCacheNetworkImageNode * channelThumbnailsNode = [[ASCacheNetworkImageNode alloc] initForImageCache];
+   [channelThumbnailsNode startFetchImageWithString:channelThumbnailUrl];
 
+   self.channelBannerThumbnailNode = channelThumbnailsNode;
    [self addSubnode:self.channelThumbnailsNode];
 }
 
@@ -130,7 +130,7 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
 
 
 - (void)effectFirstForChannelBanner {
-
+   self.channelBannerThumbnailNode.contentMode = UIViewContentModeScaleToFill;
 }
 
 
@@ -142,17 +142,31 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
    // 1
    ASTextNode * channelTitleTextNode = [[ASTextNode alloc] init];
    channelTitleTextNode.attributedString =
-    [NSAttributedString attributedStringForPageChannelTitleText:[YoutubeParser GetChannelBrandingSettingsTitle:self.pageChannel]];
+    [NSAttributedString attributedStringForPageChannelTitleText:[YoutubeParser getChannelBrandingSettingsTitle:self.pageChannel]];
 
    //MARK: Container Node Creation Section
    self.channelTitleTextNode = channelTitleTextNode;
    [self addSubnode:self.channelTitleTextNode];
+
+   // 2
+   ASTextNode * channelSubscriptionCountTextNode = [[ASTextNode alloc] init];
+   channelSubscriptionCountTextNode.attributedString =
+    [NSAttributedString attributedStringForChannelStatisticsSubscriberCount:[YoutubeParser getChannelStatisticsSubscriberCount:self.pageChannel]];
+
+   //MARK: Container Node Creation Section
+   self.channelSubscriptionCountTextNode = channelSubscriptionCountTextNode;
+   [self addSubnode:self.channelSubscriptionCountTextNode];
+
 }
 
 
 - (void)layoutThirdForChannelInfo {
    self.channelTitleTextNode.frame = [FrameCalculator frameForPageChannelTitle:self.nodeCellSize
                                                           secondRowFrameHeight:TOP_CHANNEL_SECOND_ROW_HEIGHT];
+
+   self.channelSubscriptionCountTextNode.frame =
+    [FrameCalculator frameForPageChannelStatisticsSubscriberCount:self.nodeCellSize
+                                             secondRowFrameHeight:TOP_CHANNEL_SECOND_ROW_HEIGHT];
 
 }
 

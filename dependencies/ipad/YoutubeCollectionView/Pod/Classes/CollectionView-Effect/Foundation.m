@@ -56,6 +56,19 @@
    return [[NSAttributedString alloc] initWithString:text attributes:titleAttributes];
 }
 
++ (NSAttributedString *)attributedStringForChannelStatisticsSubscriberCount:(NSString *)text {
+   UIFont * font = [UIFont systemFontOfSize:12];
+
+   NSDictionary * titleAttributes =
+    @{ NSFontAttributeName : font,
+     NSForegroundColorAttributeName : [UIColor darkTextColor],
+     NSParagraphStyleAttributeName : [NSParagraphStyle justifiedParagraphStyleForPageChannelTitle]
+    };
+
+   return [[NSAttributedString alloc] initWithString:text attributes:titleAttributes];
+}
+
+
 
 - (NSDictionary *)createAttributesForFontStyle:(NSString *)style
                                      withTrait:(uint32_t)trait {
