@@ -137,7 +137,7 @@ NSMutableDictionary * channelIdThumbnailDictionary;
 
 + (NSString *)getChannelStatisticsSubscriberCount:(YTYouTubeChannel *)channel {
    unsigned long subscriberCount = channel.statistics.subscriberCount;
-   return [NSString stringWithFormat:@"%d", subscriberCount];
+   return [NSString stringWithFormat:@"%d subscribers", subscriberCount];
 }
 
 

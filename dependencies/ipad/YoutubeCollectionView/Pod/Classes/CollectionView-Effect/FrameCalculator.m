@@ -167,12 +167,13 @@
 
 + (CGRect)frameForPageChannelTitle:(CGSize)cellSize secondRowFrameHeight:(CGFloat)nodeFrameHeight {
    CGFloat divY = cellSize.height - nodeFrameHeight;
-   return CGRectMake(12, divY + 8, 200, 15);
+   return CGRectMake(12, divY + 8, 300, 15);
 }
+
 
 + (CGRect)frameForPageChannelStatisticsSubscriberCount:(CGSize)cellSize secondRowFrameHeight:(CGFloat)nodeFrameHeight {
    CGFloat divY = cellSize.height - nodeFrameHeight;
-   return CGRectMake(12, divY + 8, 200, 15);
+   return CGRectMake(12, divY + 8 + 18, 300, 15);
 }
 
 
