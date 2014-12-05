@@ -185,10 +185,9 @@ static const int THIRD_ROW_HEIGHT = 28;
 
 
 - (void)rowSecondForChannelTitle {
-   NSString * videoTitleValue = self.cardInfo.snippet.title;
-   // 2
+   // 1
    ASTextNode * titleTextNode = [[ASTextNode alloc] init];
-   titleTextNode.attributedString = [NSAttributedString attributedStringForTitleText:videoTitleValue];
+   titleTextNode.attributedString = [NSAttributedString attributedStringForTitleText:[YoutubeParser getVideoSnippetTitle:self.cardInfo]];
 
    //MARK: Container Node Creation Section
    self.videoTitleTextNode = titleTextNode;
@@ -210,9 +209,7 @@ static const int THIRD_ROW_HEIGHT = 28;
 
 
 - (void)effectSecondForChannelTitle {
-   // 3
    self.videoTitleTextNode.backgroundColor = [UIColor clearColor];
-
 }
 
 
@@ -224,10 +221,10 @@ static const int THIRD_ROW_HEIGHT = 28;
    // 1
    [self showChannelThumbnail:[YoutubeParser getChannelIdByVideo:self.cardInfo]];
 
-   NSString * channelTitleValue = self.cardInfo.snippet.channelTitle;
    // 2
    ASTextNode * channelTitleTextNode = [[ASTextNode alloc] init];
-   channelTitleTextNode.attributedString = [NSAttributedString attributedStringForChannelTitleText:channelTitleValue];
+   channelTitleTextNode.attributedString =
+    [NSAttributedString attributedStringForChannelTitleText:[YoutubeParser getVideoSnippetChannelTitle:self.cardInfo]];
 
    //MARK: Container Node Creation Section
    self.channelTitleTextNode = channelTitleTextNode;

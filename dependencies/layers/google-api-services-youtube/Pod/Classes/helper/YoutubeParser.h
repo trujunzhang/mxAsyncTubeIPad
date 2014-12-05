@@ -43,6 +43,7 @@
 + (NSString *)getWatchVideoId:(YTYouTubeVideoCache *)video;
 + (NSString *)getChannelIdByVideo:(YTYouTubeVideoCache *)video;
 + (NSString *)getVideoSnippetTitle:(YTYouTubeVideoCache *)video;
++ (NSString *)getVideoSnippetChannelTitle:(YTYouTubeVideoCache *)video;
 + (NSString *)getVideoDurationForVideoInfo:(YTYouTubeVideoCache *)video;
 
 
