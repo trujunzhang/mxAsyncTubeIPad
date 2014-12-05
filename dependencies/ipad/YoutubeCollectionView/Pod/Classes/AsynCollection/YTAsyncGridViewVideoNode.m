@@ -19,7 +19,6 @@
 #import "UIColor+iOS8Colors.h"
 #import "YoutubeParser.h"
 
-#import "GYoutubeHelper.h"
 #import "AsyncDisplayKitStatic.h"
 #import "YTAsChannelThumbnailsImageNode.h"
 

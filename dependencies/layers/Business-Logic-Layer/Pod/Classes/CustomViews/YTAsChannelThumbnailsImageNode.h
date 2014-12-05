@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "ASCacheNetworkImageNode.h"
 
+static const int FIRST_ROW_HEIGHT = 142;
+static const int THIRD_ROW_HEIGHT = 28;
+
 
 @interface YTAsChannelThumbnailsImageNode : ASCacheNetworkImageNode
 
