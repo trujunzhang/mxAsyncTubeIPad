@@ -207,7 +207,11 @@
    NSUInteger lastRowCount = [self getYoutubeRequestInfo].videoList.count;
    [[self getYoutubeRequestInfo] appendNextPageData:array];
 
-   [self reloadTableView:array withLastRowCount:lastRowCount];
+   if (lastRowCount == 0) {
+      [self.baseCollectionView reloadData];
+   } else {
+      [self reloadTableView:array withLastRowCount:lastRowCount];
+   }
 }
 
 

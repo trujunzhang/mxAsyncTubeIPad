@@ -64,6 +64,6 @@
 - (UIEdgeInsets)getUIEdgeInsetsForLayout;
 @property(nonatomic, strong) NSOperationQueue * nodeConstructionQueue;
 
-- (void)reloadTableView:(NSArray *)array withLastRowCount:(NSUInteger)count;
+- (void)reloadTableView:(NSArray *)array withLastRowCount:(NSUInteger)lastRowCount;
 
 @end

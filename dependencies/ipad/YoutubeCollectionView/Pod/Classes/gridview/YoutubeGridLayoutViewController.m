@@ -41,8 +41,15 @@
 #pragma mark reload table
 
 
-- (void)reloadTableView:(NSArray *)array withLastRowCount:(NSUInteger)count {
+- (void)reloadTableView:(NSArray *)array withLastRowCount:(NSUInteger)lastRowCount {
+   int newCount = array.count;
+   NSMutableArray * indexPaths = [[NSMutableArray alloc] init];
+   for (int i = 0; i < newCount; i++) {
+      NSIndexPath * indexPath = [NSIndexPath indexPathForItem:(lastRowCount + i) inSection:0];
+      [indexPaths addObject:indexPath];
+   }
 
+   [self.collectionView appendNodesWithIndexPaths:indexPaths];
 }
 
 
