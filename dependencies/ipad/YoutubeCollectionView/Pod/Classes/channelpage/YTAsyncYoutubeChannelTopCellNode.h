@@ -17,10 +17,9 @@
 
 @interface YTAsyncYoutubeChannelTopCellNode : ASDisplayNode
 
-@property(nonatomic, strong) YTYouTubeSubscription * subscription;
-@property(nonatomic, strong) YTYouTubeChannel * currentChannel;
+@property(nonatomic, strong) YTYouTubeChannel * pageChannel;
 
-- (instancetype)initWithSubscription:(GTLYouTubeSubscription *)subscription cellSize:(CGSize)cellSize;
+- (instancetype)initWithChannel:(YTYouTubeChannel *)channel cellSize:(CGSize)cellSize;
 - (void)layoutNodes:(CGSize)cellSize;
 
 @end

@@ -21,6 +21,7 @@
 
 + (NSError *)getError:(NSData *)data httpresp:(NSHTTPURLResponse *)httpresp;
 
++ (NSString *)GetChannelBrandingSettingsTitle:(YTYouTubeChannel *)channel;
 // Channel for author
 + (NSString *)getAuthChannelSnippetThumbnailUrl:(YTYouTubeAuthorChannel *)channel;
 + (NSString *)getAuthChannelTitle:(YTYouTubeAuthorChannel *)channel;

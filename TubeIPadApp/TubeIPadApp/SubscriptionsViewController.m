@@ -86,13 +86,13 @@
 }
 
 
-- (void)endToggleLeftMenuEventForChannelPageWithSubscription:(GTLYouTubeSubscription *)subscription {
+- (void)endToggleLeftMenuEventForChannelPageWithChannelId:(NSString *)channelId withTitle:(NSString *)title {
    // 1
    YoutubeChannelPageViewController * controller =
-    [[YoutubeChannelPageViewController alloc] initWithChannelId:[YoutubeParser getChannelIdBySubscription:subscription]];
+    [[YoutubeChannelPageViewController alloc] initWithChannelId:channelId];
 
    controller.navigationItem.leftBarButtonItem = self.revealButtonItem;
-   controller.title = [YoutubeParser getSubscriptionSnippetTitle:subscription];
+   controller.title = title;
    controller.delegate = self;
 
    // 2

@@ -14,6 +14,7 @@
 #import "LeftMenuTableHeaderView.h"
 #import "YoutubeAuthDataStore.h"
 #import "GYoutubeAuthUser.h"
+#import "YoutubeParser.h"
 
 static const int TABLE_WIDTH = 258;
 
@@ -217,7 +218,10 @@ static const int TABLE_WIDTH = 258;
    // test
    if (debugLeftMenuTapSubscription) {
       if (self.authUser.subscriptions.count >= subscriptionIndex) {
-         [self.delegate endToggleLeftMenuEventForChannelPageWithSubscription:self.authUser.subscriptions[subscriptionIndex]];
+         YTYouTubeSubscription * subscription = self.authUser.subscriptions[subscriptionIndex];
+         NSString * title = [YoutubeParser getSubscriptionSnippetTitle:subscription];
+         [self.delegate endToggleLeftMenuEventForChannelPageWithChannelId:[YoutubeParser getChannelIdBySubscription:subscription]
+                                                                withTitle:nil];
       }
    }
 }

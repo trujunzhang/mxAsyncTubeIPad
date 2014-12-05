@@ -28,7 +28,7 @@
 - (NSArray *)getTableRows {
    NSMutableArray * rows = [[NSMutableArray alloc] init];
    for (YTYouTubeSubscription * subscription in self.subscriptions) {
-      NSString * title = subscription.snippet.title;
+      NSString * title = [YoutubeParser getSubscriptionSnippetTitle:subscription];
       NSString * thumbnailsUrl = [YoutubeParser getSubscriptionSnippetThumbnailUrl:subscription];
       NSString * channelId = [YoutubeParser getChannelIdBySubscription:subscription];
       NSArray * row = @[ title, thumbnailsUrl, [NSString stringWithFormat:@"_left_menu_%@", channelId] ];

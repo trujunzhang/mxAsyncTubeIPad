@@ -130,6 +130,11 @@ NSMutableDictionary * channelIdThumbnailDictionary;
 }
 
 
++ (NSString *)GetChannelBrandingSettingsTitle:(YTYouTubeChannel *)channel {
+   return channel.brandingSettings.channel.title;
+}
+
+
 #pragma mark -
 #pragma mark Channel for author
 

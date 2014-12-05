@@ -15,6 +15,7 @@
 #import "LeftMenuItemTree.h"
 #import "LeftMenuTableHeaderView.h"
 #import "YTLeftRowTableViewCell.h"
+#import "YoutubeParser.h"
 
 static NSString * const leftmenuIdentifier = @"LeftMenuViewIdentifier";
 
@@ -131,8 +132,9 @@ nodeConstructionQueue:self.nodeConstructionQueue];
          [self.delegate startToggleLeftMenuWithTitle:line[0] withType:[(line[2]) intValue]];
          break;
       case LMenuTreeSubscriptions: {
-         YTYouTubeSubscription * subscription = self.authUser.subscriptions[indexPath.row];
-         [self.delegate endToggleLeftMenuEventForChannelPageWithSubscription:subscription];
+         [self.delegate endToggleLeftMenuEventForChannelPageWithChannelId:
+           [YoutubeParser getChannelIdBySubscription:self.authUser.subscriptions[indexPath.row]]
+                                                                withTitle:line[1]];
       }
          break;
       case LMenuTreeCategories: {

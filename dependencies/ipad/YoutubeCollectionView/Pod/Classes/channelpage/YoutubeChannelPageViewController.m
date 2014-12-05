@@ -43,7 +43,10 @@
       self.channelId = channelId;
 
       YoutubeResponseBlock completion = ^(NSArray * array, NSObject * respObject) {
-          NSString * debug = @"debug";
+          self.pageChannel = array[0];
+          // 1
+          self.topBannerContainer.backgroundColor = [UIColor clearColor];
+          [self makeTopBanner:self.topBannerContainer];
       };
       ErrorResponseBlock error = ^(NSError * error) {
           NSString * debug = @"debug";
@@ -59,9 +62,6 @@
    [super viewDidLoad];
 
    // Do any additional setup after loading the view from its nib.
-   // 1
-   self.topBannerContainer.backgroundColor = [UIColor clearColor];
-   [self makeTopBanner:self.topBannerContainer];
 
    // 2
    [self makeSegmentTabs:self.tabbarViewsContainer];
@@ -107,12 +107,12 @@
 
    dispatch_async(_backgroundQueue, ^{
 
-//       self.topBanner = [[YTAsyncYoutubeChannelTopCellNode alloc] initWithSubscription:self.subscription
-//                                                                              cellSize:parentView.frame.size];
+       self.topBanner = [[YTAsyncYoutubeChannelTopCellNode alloc] initWithChannel:self.pageChannel
+                                                                         cellSize:parentView.frame.size];
        // self.view isn't a node, so we can only use it on the main thread
        dispatch_sync(dispatch_get_main_queue(), ^{
-//           self.topBanner.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;// used
-//           [parentView addSubview:self.topBanner.view];
+           self.topBanner.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;// used
+           [parentView addSubview:self.topBanner.view];
        });
    });
 }
