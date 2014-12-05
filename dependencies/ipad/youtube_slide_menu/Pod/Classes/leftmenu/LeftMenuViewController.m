@@ -134,7 +134,7 @@ nodeConstructionQueue:self.nodeConstructionQueue];
       case LMenuTreeSubscriptions: {
          [self.delegate endToggleLeftMenuEventForChannelPageWithChannelId:
            [YoutubeParser getChannelIdBySubscription:self.authUser.subscriptions[indexPath.row]]
-                                                                withTitle:line[1]];
+                                                                withTitle:line[0]];
       }
          break;
       case LMenuTreeCategories: {
