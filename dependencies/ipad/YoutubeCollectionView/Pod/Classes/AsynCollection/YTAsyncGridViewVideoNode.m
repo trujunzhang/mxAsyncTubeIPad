@@ -24,10 +24,6 @@
 #import "YTAsChannelThumbnailsImageNode.h"
 
 
-static const int FIRST_ROW_HEIGHT = 142;
-static const int THIRD_ROW_HEIGHT = 28;
-
-
 @interface YTAsyncGridViewVideoNode () {
 
 }
@@ -158,7 +154,7 @@ static const int THIRD_ROW_HEIGHT = 28;
 
 - (void)layoutFirstForChannelClover {
    self.videoCoverThumbnailsNode.frame =
-    [FrameCalculator frameForChannelThumbnails:self.nodeCellSize nodeFrameHeight:142.0f];
+    [FrameCalculator frameForChannelThumbnails:self.nodeCellSize nodeFrameHeight:FIRST_ROW_HEIGHT];
 
 
    self.durationTextNode.frame =

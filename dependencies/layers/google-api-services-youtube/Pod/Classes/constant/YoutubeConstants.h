@@ -123,7 +123,8 @@
 #define YTYouTubeResourceId  MABYT3_ResourceId
 
 
-
+static const int FIRST_ROW_HEIGHT = 142;
+static const int THIRD_ROW_HEIGHT = 28;
 
 
 

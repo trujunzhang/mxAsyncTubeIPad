@@ -17,18 +17,23 @@
 #import "UIColor+iOS8Colors.h"
 
 
-CGFloat thumbnailHeight = 142;
-
-
 @interface YTGridVideoCellNode () {
    CGSize _kittenSize;
 
+   // line01
    ASImageNode * _videoCoverThumbnailsNode;
-   ASDisplayNode * _infoContainerNode;
-   ASImageNode * _channelImageNode;
-   ASTextNode * _videoTitleNode;
-   ASTextNode * _channelTitleNode;
    ASTextNode * _durationTextNode;
+
+   // line02
+   ASDisplayNode * _infoContainerNode;
+   ASTextNode * _videoTitleNode;
+
+   // line03
+
+   // line04
+
+   ASImageNode * _channelImageNode;
+   ASTextNode * _channelTitleNode;
 }
 @end
 
@@ -148,15 +153,16 @@ CGFloat thumbnailHeight = 142;
 
 - (void)layout {
    // 1
-   _videoCoverThumbnailsNode.frame = CGRectMake(0, 0, _kittenSize.width, thumbnailHeight);
+   _videoCoverThumbnailsNode.frame = [FrameCalculator frameForChannelThumbnails:_kittenSize
+                                                                nodeFrameHeight:FIRST_ROW_HEIGHT];
 
    _durationTextNode.frame =
     [FrameCalculator frameForDurationWithCloverSize:_videoCoverThumbnailsNode.frame.size
                                   withDurationWidth:self.durationLabelWidth];
 
    // 2
-   CGFloat infoContainerHeight = _kittenSize.height - thumbnailHeight;
-   _infoContainerNode.frame = CGRectMake(0, thumbnailHeight + 8, _kittenSize.width, infoContainerHeight - 4);
+   CGFloat infoContainerHeight = _kittenSize.height - FIRST_ROW_HEIGHT;
+   _infoContainerNode.frame = CGRectMake(0, FIRST_ROW_HEIGHT + 8, _kittenSize.width, infoContainerHeight - 4);
 
    // 2.1
    CGFloat titleLeftX = 28;
