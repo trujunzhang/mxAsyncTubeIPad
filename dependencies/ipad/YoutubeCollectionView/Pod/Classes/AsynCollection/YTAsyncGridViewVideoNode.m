@@ -49,7 +49,7 @@ static const int THIRD_ROW_HEIGHT = 28;
       self.cardInfo = cardInfo;
       self.delegate = delegate;
 
-      [self setupContainerNode];
+      [self makeContainerNode];
       [self layoutSubNodes];
 
       [self setupAllNodesEffect];
@@ -80,7 +80,7 @@ static const int THIRD_ROW_HEIGHT = 28;
 #pragma mark Setup sub nodes.
 
 
-- (void)setupContainerNode {
+- (void)makeContainerNode {
    [self rowFirstForChannelClover];
    [self rowSecondForChannelTitle];
    [self rowThirdForChannelInfo];
