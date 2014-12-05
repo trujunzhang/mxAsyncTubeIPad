@@ -24,4 +24,9 @@
    NSLog(@"h = %f", h);
 }
 
+
++ (void)printCGSize:(CGSize)cellSize {
+   NSLog(@"Pretty printed size: %@", NSStringFromCGSize(cellSize));
+}
+
 @end

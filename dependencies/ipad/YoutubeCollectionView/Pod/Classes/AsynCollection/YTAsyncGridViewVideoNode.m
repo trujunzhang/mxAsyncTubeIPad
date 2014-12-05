@@ -35,9 +35,7 @@ static const int THIRD_ROW_HEIGHT = 28;
 @property(nonatomic, strong) ASCacheNetworkImageNode * videoChannelThumbnailsNode;
 @property(nonatomic, strong) ASTextNode * channelTitleTextNode;
 
-
 @property(nonatomic, strong) ASDisplayNode * divider;
-
 
 @end
 
@@ -197,8 +195,8 @@ static const int THIRD_ROW_HEIGHT = 28;
 - (void)layoutSecondForChannelTitle {
    self.videoTitleTextNode.frame = [FrameCalculator frameForTitleText:self.bounds
                                                     featureImageFrame:self.videoCoverThumbnailsNode.frame];
-   self.divider.frame = [FrameCalculator frameForDivider:self.bounds
-                                          thirdRowHeight:THIRD_ROW_HEIGHT];
+
+   self.divider.frame = [FrameCalculator frameForDivider:self.bounds.size thirdRowHeight:THIRD_ROW_HEIGHT];
 }
 
 

@@ -13,4 +13,5 @@
 
 + (void)printFrameInfo:(CGRect)frame withControllerName:(NSString *)controllerName;
 
++ (void)printCGSize:(CGSize)cellSize;
 @end

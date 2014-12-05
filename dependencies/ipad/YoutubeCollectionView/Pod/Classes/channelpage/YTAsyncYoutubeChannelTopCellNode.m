@@ -30,6 +30,10 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
 // line02
 @property(nonatomic, strong) ASTextNode * channelTitleTextNode;
 @property(nonatomic, strong) ASTextNode * channelSubscriptionCountTextNode;
+
+// line03
+@property(nonatomic, strong) ASDisplayNode * divider;
+
 @end
 
 
@@ -55,9 +59,6 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
 - (void)layoutNodes:(CGSize)cellSize {
    self.nodeCellSize = cellSize;
    [self layoutSubNodes];
-
-//   NSLog(@"Pretty printed size: %@", NSStringFromCGSize(cellSize));
-//   NSString * debug = @"debug";
 }
 
 
@@ -68,6 +69,7 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
 - (void)setupContainerNode {
    [self rowFirstForChannelBanner];
    [self rowSecondForChannelInfo];
+   [self rowThirdForDivide];
 }
 
 
@@ -83,7 +85,8 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
    self.shadowRadius = 2.0;
 
    [self effectFirstForChannelBanner];
-   [self effectThirdForChannelInfo];
+   [self effectSecondForChannelInfo];
+   [self effectThirdForDivide];
 }
 
 
@@ -92,7 +95,8 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
    self.frame = [FrameCalculator frameForContainer:self.nodeCellSize];
 
    [self layoutFirstForChannelBanner];
-   [self layoutThirdForChannelInfo];
+   [self layoutSecondForChannelInfo];
+   [self layoutThirdForDivide];
 }
 
 
@@ -160,7 +164,7 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
 }
 
 
-- (void)layoutThirdForChannelInfo {
+- (void)layoutSecondForChannelInfo {
    self.channelTitleTextNode.frame = [FrameCalculator frameForPageChannelTitle:self.nodeCellSize
                                                           secondRowFrameHeight:TOP_CHANNEL_SECOND_ROW_HEIGHT];
 
@@ -171,9 +175,34 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
 }
 
 
-- (void)effectThirdForChannelInfo {
+- (void)effectSecondForChannelInfo {
    // 3
    self.channelTitleTextNode.backgroundColor = [UIColor clearColor];
+}
+
+
+#pragma mark -
+#pragma mark second row for divide.(Row N03)
+
+
+- (void)rowThirdForDivide {
+   // hairline cell separator
+   self.divider = [[ASDisplayNode alloc] init];
+   self.divider.backgroundColor = [UIColor colorWithHexString:@"EAEAEA" alpha:1.0];
+   [self addSubnode:self.divider];
+
+}
+
+
+- (void)layoutThirdForDivide {
+
+   self.divider.frame = [FrameCalculator frameForDivider:self.nodeCellSize thirdRowHeight:0];
+
+}
+
+
+- (void)effectThirdForDivide {
+
 }
 
 

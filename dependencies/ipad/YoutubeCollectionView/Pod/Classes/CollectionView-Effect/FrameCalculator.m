@@ -36,9 +36,9 @@
 }
 
 
-+ (CGRect)frameForDivider:(CGRect)containerBounds thirdRowHeight:(CGFloat)thirdRowHeight {
-   CGFloat divY = containerBounds.size.height - thirdRowHeight - 1;
-   return CGRectMake(0.0f, divY, containerBounds.size.width, 1);
++ (CGRect)frameForDivider:(CGSize)containerSize thirdRowHeight:(CGFloat)thirdRowHeight {
+   CGFloat divY = containerSize.height - thirdRowHeight - 1;
+   return CGRectMake(0.0f, divY, containerSize.width, 1);
 }
 
 
