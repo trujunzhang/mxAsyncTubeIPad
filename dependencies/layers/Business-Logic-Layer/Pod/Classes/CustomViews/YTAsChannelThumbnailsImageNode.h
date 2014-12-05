@@ -13,8 +13,6 @@
 @interface YTAsChannelThumbnailsImageNode : ASCacheNetworkImageNode
 
 @property(nonatomic, strong) NSString * channelId;
-- (instancetype)initWithChannelId:(NSString *)channelId;
 + (instancetype)nodeWithChannelId:(NSString *)channelId;
-
 
 @end
