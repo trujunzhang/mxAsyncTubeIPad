@@ -120,7 +120,7 @@ NSMutableDictionary * channelIdThumbnailDictionary;
 
 
 + (NSString *)getChannelBannerImageUrl:(YTYouTubeChannel *)channel {
-   return channel.brandingSettings.image.bannerMobileHdImageUrl;;
+   return channel.brandingSettings.image.bannerMobileHdImageUrl;
 }
 
 
