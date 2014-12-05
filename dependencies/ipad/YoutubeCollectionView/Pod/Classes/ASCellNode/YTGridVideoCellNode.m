@@ -46,7 +46,7 @@ CGFloat thumbnailHeight = 142;
    self.delegate = delegate;
 
    [self makeUI];
-   [self bind:video placeholderImage:placeholder delegate:delegate];
+   [self setNodeTappedEvent];
 
    return self;
 }
@@ -74,17 +74,19 @@ CGFloat thumbnailHeight = 142;
    [self addSubnode:_infoContainerNode];
 
    // 2.1
-//   _channelImageNode = [[ASImageNode alloc] init];
    _channelImageNode = [YTAsChannelThumbnailsImageNode nodeWithChannelId:[YoutubeParser getChannelIdByVideo:self.video]];
-
    [_infoContainerNode addSubnode:_channelImageNode];
 
    // 2.2
-   _videoTitleNode = [[ASTextNode alloc] init];
+   _videoTitleNode = [ASTextNode initWithAttributedString:
+    [[NSAttributedString alloc] initWithString:[YoutubeParser getVideoSnippetTitle:self.video]
+                                    attributes:[self textStyleForVideoTitle]]];
    [_infoContainerNode addSubnode:_videoTitleNode];
 
    // 2.3
-   _channelTitleNode = [[ASTextNode alloc] init];
+   _channelTitleNode = [ASTextNode initWithAttributedString:
+    [[NSAttributedString alloc] initWithString:[YoutubeParser getVideoSnippetChannelTitle:self.video]
+                                    attributes:[self textStyleForChannelTitle]]];
    [_infoContainerNode addSubnode:_channelTitleNode];
 }
 
@@ -146,47 +148,16 @@ CGFloat thumbnailHeight = 142;
 }
 
 
-- (void)bind:(YTYouTubeVideoCache *)video placeholderImage:(UIImage *)placeholder delegate:(id<IpadGridViewCellDelegate>)delegate {
-   // 1
-   NSString * videoThumbnailsUrl = [YoutubeParser getVideoSnippetThumbnails:video];
-   NSString * videoTitleValue = video.snippet.title;
-   NSString * channelTitleValue = video.snippet.channelTitle;
+#pragma mark -
+#pragma mark node tapped event
 
+
+- (void)setNodeTappedEvent {
    // configure the button
    _imageNode.userInteractionEnabled = YES; // opt into touch handling
    [_imageNode addTarget:self
                   action:@selector(buttonTapped:)
         forControlEvents:ASControlNodeEventTouchUpInside];
-
-   // 2.1
-   [self showChannelThumbnail:[YoutubeParser getChannelIdByVideo:video]];
-
-   // 2.2
-   _videoTitleNode.attributedString = [[NSAttributedString alloc] initWithString:videoTitleValue
-                                                                      attributes:[self textStyleForVideoTitle]];
-
-   _channelTitleNode.attributedString = [[NSAttributedString alloc] initWithString:channelTitleValue
-                                                                        attributes:[self textStyleForChannelTitle]];
-}
-
-
-- (void)showChannelThumbnail:(NSString *)channelId {
-//   YoutubeResponseBlock completionBlock = ^(NSArray * array, NSObject * respObject) {
-//       [YTCacheImplement CacheWithImageView:_channelImageNode
-//                                    withUrl:respObject
-//                            withPlaceholder:nil
-//       ];
-//   };
-//   NSString * responseUrl = [[GYoutubeHelper getInstance] fetchChannelThumbnailsWithChannelId:channelId
-//                                                                                   completion:completionBlock
-//                                                                                 errorHandler:nil];
-//   if (responseUrl) {
-//      [YTCacheImplement CacheWithImageView:_channelImageNode
-//                                   withUrl:responseUrl
-//                           withPlaceholder:nil
-//      ];
-//   }
-
 }
 
 
