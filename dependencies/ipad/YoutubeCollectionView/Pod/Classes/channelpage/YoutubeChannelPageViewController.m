@@ -45,7 +45,6 @@
       YoutubeResponseBlock completion = ^(NSArray * array, NSObject * respObject) {
           self.pageChannel = array[0];
           // 1
-          self.topBannerContainer.backgroundColor = [UIColor clearColor];
           [self makeTopBanner:self.topBannerContainer];
       };
       ErrorResponseBlock error = ^(NSError * error) {

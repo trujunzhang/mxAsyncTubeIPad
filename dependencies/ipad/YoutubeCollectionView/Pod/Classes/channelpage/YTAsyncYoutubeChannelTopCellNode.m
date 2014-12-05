@@ -110,7 +110,7 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
    [self addSubnode:self.channelBannerThumbnailNode];
 
    // 2
-//   [self showChannelThumbnail:[YoutubeParser getSubscriptionSnippetThumbnailUrl:self.subscription]];
+   [self showChannelThumbnail:[YoutubeParser GetChannelSnippetThumbnail:self.pageChannel]];
 }
 
 

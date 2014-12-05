@@ -432,10 +432,10 @@ static GYoutubeHelper * instance = nil;
 
 - (void)fetchChannelForPageView:(NSString *)channelId completion:(YoutubeResponseBlock)completion errorHandler:(ErrorResponseBlock)errorBlock {
    NSDictionary * parameters = @{
-    @"part" : @"brandingSettings,statistics",
+    @"part" : @"snippet,brandingSettings,statistics",
     @"id" : channelId,
 //    @"fields" : @"items/brandingSettings(channel,image),statistics(subscriberCount)",
-    @"fields" : @"items/brandingSettings(channel,image),items/statistics(subscriberCount)",
+    @"fields" : @"items/snippet(thumbnails),items/brandingSettings(channel,image),items/statistics(subscriberCount)",
 //    @"fields" : @"items/brandingSettings/channel(title),items/statistics(subscriberCount)",
    };
    NSURLSessionDataTask * task = [self fetchChannelWithDictionary:parameters
