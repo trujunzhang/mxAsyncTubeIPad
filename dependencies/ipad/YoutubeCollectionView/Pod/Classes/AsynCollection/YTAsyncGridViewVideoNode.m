@@ -21,6 +21,7 @@
 
 #import "GYoutubeHelper.h"
 #import "AsyncDisplayKitStatic.h"
+#import "YTAsChannelThumbnailsImageNode.h"
 
 
 static const int FIRST_ROW_HEIGHT = 142;
@@ -32,12 +33,12 @@ static const int THIRD_ROW_HEIGHT = 28;
 }
 @property(nonatomic) CGFloat durationLabelWidth;
 
-@property(nonatomic, strong) ASNetworkImageNode * videoCoverThumbnailsNode;
+@property(nonatomic, strong) ASImageNode * videoCoverThumbnailsNode;
 @property(nonatomic, strong) ASTextNode * durationTextNode;
 
 @property(nonatomic, strong) ASTextNode * videoTitleTextNode;
 
-@property(nonatomic, strong) ASCacheNetworkImageNode * videoChannelThumbnailsNode;
+@property(nonatomic, strong) ASImageNode * videoChannelThumbnailsNode;
 @property(nonatomic, strong) ASTextNode * channelTitleTextNode;
 
 @property(nonatomic, strong) ASDisplayNode * divider;
@@ -238,20 +239,22 @@ static const int THIRD_ROW_HEIGHT = 28;
 
 
 - (void)showChannelThumbnail:(NSString *)channelId {
-   // 1
-   ASCacheNetworkImageNode * videoChannelThumbnailsNode = [[ASCacheNetworkImageNode alloc] initForImageCache];
-   if (self.cardInfo.channelThumbnailUrl) {
-      [videoChannelThumbnailsNode startFetchImageWithString:self.cardInfo.channelThumbnailUrl];
-      return;
-   }
+   YTAsChannelThumbnailsImageNode * videoChannelThumbnailsNode = [YTAsChannelThumbnailsImageNode nodeWithChannelId:channelId];
 
-   YoutubeResponseBlock completionBlock = ^(NSArray * array, NSObject * respObject) {
-       self.cardInfo.channelThumbnailUrl = respObject;
-       [videoChannelThumbnailsNode startFetchImageWithString:self.cardInfo.channelThumbnailUrl];
-   };
-   [[GYoutubeHelper getInstance] fetchChannelThumbnailsWithChannelId:channelId
-                                                          completion:completionBlock
-                                                        errorHandler:nil];
+//   // 1
+//   ASCacheNetworkImageNode * videoChannelThumbnailsNode = [[ASCacheNetworkImageNode alloc] initForImageCache];
+//   if (self.cardInfo.channelThumbnailUrl) {
+//      [videoChannelThumbnailsNode startFetchImageWithString:self.cardInfo.channelThumbnailUrl];
+//      return;
+//   }
+//
+//   YoutubeResponseBlock completionBlock = ^(NSArray * array, NSObject * respObject) {
+//       self.cardInfo.channelThumbnailUrl = respObject;
+//       [videoChannelThumbnailsNode startFetchImageWithString:self.cardInfo.channelThumbnailUrl];
+//   };
+//   [[GYoutubeHelper getInstance] fetchChannelThumbnailsWithChannelId:channelId
+//                                                          completion:completionBlock
+//                                                        errorHandler:nil];
 
    self.videoChannelThumbnailsNode = videoChannelThumbnailsNode;
    [self addSubnode:self.videoChannelThumbnailsNode];

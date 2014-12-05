@@ -27,6 +27,9 @@ Pod::Spec.new do |s|
     sub.source_files = 'Pod/Classes/LeftReveal/*.{h,m}'
   end
 
+  s.subspec 'CustomViews' do |sub|
+    sub.source_files = 'Pod/Classes/CustomViews/*.{h,m}'
+  end
 
 end
 
