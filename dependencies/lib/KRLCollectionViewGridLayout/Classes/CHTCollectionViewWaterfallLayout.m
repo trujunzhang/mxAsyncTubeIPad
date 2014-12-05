@@ -12,8 +12,7 @@ NSString * const CHTCollectionElementKindSectionFooter = @"CHTCollectionElementK
 
 
 @interface CHTCollectionViewWaterfallLayout ()
-/// The delegate will point to collection view's delegate automatically.
-@property(nonatomic, weak) id<CHTCollectionViewDelegateWaterfallLayout> delegate;
+
 /// Array to store height for each column
 @property(nonatomic, strong) NSMutableArray * columnHeights;
 /// Array of arrays. Each array stores item attributes for each section
@@ -230,7 +229,7 @@ const NSInteger unionSize = 20;
       return;
    }
 
-   NSAssert([self.delegate conformsToProtocol:@ protocol(CHTCollectionViewDelegateWaterfallLayout)], @"UICollectionView's delegate should conform to CHTCollectionViewDelegateWaterfallLayout protocol");
+//   NSAssert([self.delegate conformsToProtocol:@ protocol(CHTCollectionViewDelegateWaterfallLayout)], @"UICollectionView's delegate should conform to CHTCollectionViewDelegateWaterfallLayout protocol");
    NSAssert(self.columnCount > 0 || [self.delegate respondsToSelector:@
     selector(collectionView:layout:columnCountForSection:)], @"UICollectionViewWaterfallLayout's columnCount should be greater than 0, or delegate must implement columnCountForSection:");
 
@@ -325,9 +324,11 @@ const NSInteger unionSize = 20;
       NSInteger itemCount = [self.collectionView numberOfItemsInSection:section];
       NSMutableArray * itemAttributes = [NSMutableArray arrayWithCapacity:itemCount];
 
-      CGSize itemSize = [self.delegate collectionView:self.collectionView
+      CGSize itemSize = [self.delegate collectionWaterfallView:self.collectionView
                                                layout:self
                                sizeForItemAtIndexPath:nil];
+
+//      CGSize itemSize = CGSizeMake(100, 200);
 
       // Item will be put into shortest column.
       for (idx = 0; idx < itemCount; idx++) {

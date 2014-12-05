@@ -1,5 +1,5 @@
 //
-//  YoutubeGridCHTLayoutViewController.m
+//  YoutubeAsGridCHTLayoutViewController.m
 //  YoutubePlayApp
 //
 //  Created by djzhang on 10/15/14.
@@ -7,28 +7,42 @@
 //
 
 #import <YoutubeCollectionView/IpadGridViewCell.h>
-#import "YoutubeGridCHTLayoutViewController.h"
+#import "YoutubeAsGridCHTLayoutViewController.h"
 #import "CHTCollectionViewWaterfallLayout.h"
+#import "YTGridVideoCellNode.h"
 #import "YoutubeFooterView.h"
-#import "YTAsyncGridViewVideoCollectionViewCell.h"
-#import "YTGridViewVideoCell.h"
-#import "HexColor.h"
 
 
-@interface YoutubeGridCHTLayoutViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, CHTCollectionViewDelegateWaterfallLayout>
-@property(strong, nonatomic) UICollectionView * collectionView;
-@property(nonatomic, strong) CHTCollectionViewWaterfallLayout * layout;
+@interface YoutubeAsGridCHTLayoutViewController ()<ASCollectionViewDataSource, ASCollectionViewDelegate, CHTCollectionViewDelegateWaterfallLayout>
+@property(strong, nonatomic) ASCollectionView * collectionView;
+@property(nonatomic, strong) UIImage * placeHolderImage;
 @end
 
 
-//YoutubeGridFlowLayoutViewController
-@implementation YoutubeGridCHTLayoutViewController
+@implementation YoutubeAsGridCHTLayoutViewController
 
 - (void)viewDidLoad {
    [self.view addSubview:[self getCollectionView]];
+   self.placeHolderImage = [UIImage imageNamed:@"mt_cell_cover_placeholder"];
    [self setUICollectionView:self.collectionView];
 
    [super viewDidLoad];
+}
+
+
+#pragma mark -
+#pragma mark reload table
+
+
+- (void)reloadTableView:(NSArray *)array withLastRowCount:(NSUInteger)lastRowCount {
+   int newCount = array.count;
+   NSMutableArray * indexPaths = [[NSMutableArray alloc] init];
+   for (int i = 0; i < newCount; i++) {
+      NSIndexPath * indexPath = [NSIndexPath indexPathForItem:(lastRowCount + i) inSection:0];
+      [indexPaths addObject:indexPath];
+   }
+
+   [self.collectionView appendNodesWithIndexPaths:indexPaths];
 }
 
 
@@ -44,29 +58,18 @@
       self.layout.delegate = self;
 
 
-      self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
-      self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-      self.collectionView.dataSource = self;
-      self.collectionView.delegate = self;
-      self.collectionView.backgroundColor = [UIColor colorWithHexString:@"ebebeb"];
+      self.collectionView = [[ASCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
+      self.collectionView.asyncDataSource = self;
+      self.collectionView.asyncDelegate = self;
 
-      [self.collectionView registerClass:[CollectionVideoReuseCell class]
-              forCellWithReuseIdentifier:[GYoutubeRequestInfo getIdentifyByItemType:YTSegmentItemVideo]];
+      self.collectionView.backgroundColor = [UIColor whiteColor];
 
       [self.collectionView registerClass:[YoutubeFooterView class]
               forSupplementaryViewOfKind:CHTCollectionElementKindSectionFooter
                      withReuseIdentifier:FOOTER_IDENTIFIER];
+
    }
    return self.collectionView;
-}
-
-
-#pragma mark -
-#pragma mark reload table
-
-
-- (void)reloadTableView:(NSArray *)array withLastRowCount:(NSUInteger)count {
-   [self.collectionView reloadData];
 }
 
 
@@ -74,14 +77,15 @@
 
 
 - (void)dealloc {
-   self.collectionView.delegate = nil;
-   self.collectionView.dataSource = nil;
+   self.collectionView.asyncDataSource = nil;
+   self.collectionView.asyncDelegate = nil;
 }
 
 
 - (void)viewDidLayoutSubviews {
    [super viewDidLayoutSubviews];
-   _collectionView.frame = self.view.bounds;
+   self.collectionView.frame = self.view.bounds;
+
    [self updateLayout:[UIApplication sharedApplication].statusBarOrientation];
 }
 
@@ -99,13 +103,32 @@
 }
 
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-   return 1;
+- (ASCellNode *)collectionView:(ASCollectionView *)collectionView nodeForItemAtIndexPath:(NSIndexPath *)indexPath {
+   ASCellNode * node = [self getCellNodeAtIndexPath:indexPath];
+
+   return node;
 }
 
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-   return [self collectionCellAtIndexPath:indexPath];
+- (ASCellNode *)getCellNodeAtIndexPath:(NSIndexPath *)indexPath {
+
+   ASCellNode * node;
+
+   YTSegmentItemType itemType = [self getYoutubeRequestInfo].itemType;
+
+   if (itemType == YTSegmentItemVideo) {
+      YTYouTubeVideoCache * video = [[self getYoutubeRequestInfo].videoList objectAtIndex:indexPath.row];
+
+      YTGridVideoCellNode * videoCellNode =
+       [[YTGridVideoCellNode alloc] initWithCellNodeOfSize:[self cellSize]
+                                                 withVideo:video
+                                          placeholderImage:self.placeHolderImage
+                                                  delegate:self.delegate];
+
+      node = videoCellNode;
+   }
+
+   return node;
 }
 
 

@@ -52,7 +52,7 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  *  @return
  *    The original size of the specified item. Both width and height must be greater than 0.
  */
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath;
+- (CGSize)collectionWaterfallView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath;
 
 @optional
 /**
@@ -205,6 +205,9 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  *  @note CHTCollectionViewWaterfallLayout doesn't support decoration view, and it supports vertical scrolling direction only.
  */
 @interface CHTCollectionViewWaterfallLayout : UICollectionViewLayout
+
+/// The delegate will point to collection view's delegate automatically.
+@property(nonatomic, weak) id<CHTCollectionViewDelegateWaterfallLayout> delegate;
 
 /**
  *  @brief How many columns for this layout.
