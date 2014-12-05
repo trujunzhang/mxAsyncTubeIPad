@@ -47,4 +47,5 @@
 + (NSString *)getVideoDurationForVideoInfo:(YTYouTubeVideoCache *)video;
 
 
++ (void)cacheWithKey:(NSString *)key withValue:(NSString *)value;
 @end

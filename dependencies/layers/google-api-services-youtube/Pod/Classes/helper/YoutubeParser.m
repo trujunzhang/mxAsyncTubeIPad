@@ -8,9 +8,7 @@
 
 #import "MABYT3_APIRequest.h"
 #import "YoutubeParser.h"
-
-
-NSMutableDictionary * channelIdThumbnailDictionary;
+#import "ISMemoryCache.h"
 
 
 @interface YoutubeParser ()
@@ -19,13 +17,6 @@ NSMutableDictionary * channelIdThumbnailDictionary;
 
 
 @implementation YoutubeParser
-
-+ (NSMutableDictionary *)getChannelIdThumbnailDictionary {
-   if (channelIdThumbnailDictionary == nil) {
-      channelIdThumbnailDictionary = [[NSMutableDictionary alloc] init];
-   }
-   return channelIdThumbnailDictionary;
-}
 
 
 + (NSString *)getVideoIdsByActivityList:searchResultList {
@@ -170,25 +161,6 @@ NSMutableDictionary * channelIdThumbnailDictionary;
 }
 
 
-+ (NSString *)checkAndAppendThumbnailWithChannelId:(NSString *)channelId {
-   NSMutableDictionary * dictionary = [YoutubeParser getChannelIdThumbnailDictionary];
-   NSString * value = [dictionary objectForKey:channelId];
-   if (value) {
-      return value;
-   }
-//   else {
-//      [dictionary setValue:nil forKey:keyWithChannelId];
-//   }
-   return nil;
-}
-
-
-+ (void)AppendThumbnailWithChannelId:(NSString *)channelId withThumbnailUrl:(NSString *)thumbnailUrl {
-   NSMutableDictionary * dictionary = [YoutubeParser getChannelIdThumbnailDictionary];
-   [dictionary setValue:thumbnailUrl forKey:channelId];
-}
-
-
 + (NSError *)getError:(NSData *)data httpresp:(NSHTTPURLResponse *)httpresp {
    NSError * error;
    NSError * e = nil;
@@ -252,6 +224,20 @@ NSMutableDictionary * channelIdThumbnailDictionary;
       return [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
    }
    return [NSString stringWithFormat:@"%02d:%02d:%02d", hours, minutes, seconds];
+}
+
+
+#pragma mark -
+#pragma mark Url cache
+
+
++ (void)cacheWithKey:(NSString *)key withValue:(NSString *)value {
+   [[ISMemoryCache sharedCache] setObject:value forKey:key];
+}
+
+
++ (NSString *)checkAndAppendThumbnailWithChannelId:(NSString *)key {
+   return [[ISMemoryCache sharedCache] objectForKey:key];
 }
 
 

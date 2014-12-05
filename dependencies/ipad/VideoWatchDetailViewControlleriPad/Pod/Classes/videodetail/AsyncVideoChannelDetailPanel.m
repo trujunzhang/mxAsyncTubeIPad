@@ -92,14 +92,12 @@ static CGFloat kTextPadding = 10.0f;
 - (void)showChannelThumbnail:(NSString *)channelId {
    if (self.cardInfo.channelThumbnailUrl) {
       [self.videoChannelThumbnailsNode startFetchImageWithString:self.cardInfo.channelThumbnailUrl];
-//      self.videoCoverThumbnailsNode.URL = [NSURL URLWithString:self.cardInfo.channelThumbnailUrl];
       return;
    }
 
    YoutubeResponseBlock completionBlock = ^(NSArray * array, NSObject * respObject) {
        self.cardInfo.channelThumbnailUrl = respObject;
        [self.videoChannelThumbnailsNode startFetchImageWithString:self.cardInfo.channelThumbnailUrl];
-//       self.videoCoverThumbnailsNode.URL = [NSURL URLWithString:respObject];
    };
    [[GYoutubeHelper getInstance] fetchChannelThumbnailsWithChannelId:channelId
                                                           completion:completionBlock

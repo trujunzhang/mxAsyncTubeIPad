@@ -239,20 +239,21 @@ static const int THIRD_ROW_HEIGHT = 28;
 
 - (void)showChannelThumbnail:(NSString *)channelId {
    // 1
-   self.videoChannelThumbnailsNode = [[ASCacheNetworkImageNode alloc] initForImageCache];
+   ASCacheNetworkImageNode * videoChannelThumbnailsNode = [[ASCacheNetworkImageNode alloc] initForImageCache];
    if (self.cardInfo.channelThumbnailUrl) {
-      [self.videoChannelThumbnailsNode startFetchImageWithString:self.cardInfo.channelThumbnailUrl];
+      [videoChannelThumbnailsNode startFetchImageWithString:self.cardInfo.channelThumbnailUrl];
       return;
    }
 
    YoutubeResponseBlock completionBlock = ^(NSArray * array, NSObject * respObject) {
        self.cardInfo.channelThumbnailUrl = respObject;
-       [self.videoChannelThumbnailsNode startFetchImageWithString:self.cardInfo.channelThumbnailUrl];
+       [videoChannelThumbnailsNode startFetchImageWithString:self.cardInfo.channelThumbnailUrl];
    };
    [[GYoutubeHelper getInstance] fetchChannelThumbnailsWithChannelId:channelId
                                                           completion:completionBlock
                                                         errorHandler:nil];
 
+   self.videoChannelThumbnailsNode = videoChannelThumbnailsNode;
    [self addSubnode:self.videoChannelThumbnailsNode];
 }
 
