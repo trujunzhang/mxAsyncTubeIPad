@@ -486,12 +486,7 @@ static GYoutubeHelper * instance = nil;
 }
 
 
-- (NSString *)fetchChannelThumbnailsWithChannelId:(NSString *)channelId completion:(YoutubeResponseBlock)completion errorHandler:(ErrorResponseBlock)errorBlock {
-//   NSString * thumbnailUrl = [YoutubeParser checkAndAppendThumbnailWithChannelId:channelId];
-//   if (thumbnailUrl) {
-//      return thumbnailUrl;
-//   }
-
+- (void)fetchChannelThumbnailsWithChannelId:(NSString *)channelId completion:(YoutubeResponseBlock)completion errorHandler:(ErrorResponseBlock)errorBlock {
    NSDictionary * parameters = @{
     @"part" : @"snippet",
     @"id" : channelId,
@@ -509,33 +504,10 @@ static GYoutubeHelper * instance = nil;
     [self fetchChannelWithDictionary:parameters
                           completion:thumbnailCompletion
                         errorHandler:errorBlock];
-
-   return nil;
 }
 
 
-- (void)fetchChannelThumbnailsWithChannelId123:(NSString *)channelId completion:(YoutubeResponseBlock)completion errorHandler:(ErrorResponseBlock)errorBlock {
-   YTServiceYouTube * service = self.youTubeService;
 
-   YTQueryYouTube * query = [YTQueryYouTube queryForChannelsListWithPart:@"snippet"];
-//   YTQueryYouTube * query = [YTQueryYouTube queryForChannelsListWithPart:@"id,snippet"];
-   query.identifier = channelId;
-   query.fields = @"items/snippet(thumbnails)";
-
-   _searchListTicket = [service executeQuery:query
-                           completionHandler:^(GTLServiceTicket * ticket,
-                            GTLYouTubeChannelListResponse * resultList,
-                            NSError * error) {
-                               // The contentDetails of the response has the playlists available for "my channel".
-                               NSArray * array = [resultList items];
-                               GTLYouTubeChannel * channel = array[0];
-                               if ([array count] > 0) {
-                                  completion(array, nil);
-                               }
-                               errorBlock(error);
-                               _searchListTicket = nil;
-                           }];
-}
 
 
 - (NSString *)getPlayListIdByPlaylists:(GTLYouTubeChannelContentDetailsRelatedPlaylists *)playlists tagType:(NSInteger)tagType {

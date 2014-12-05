@@ -11,6 +11,7 @@
 #import "YoutubeParser.h"
 #import "GYoutubeHelper.h"
 #import "CacheImageConstant.h"
+#import "YTAsChannelThumbnailsImageNode.h"
 
 
 CGFloat thumbnailHeight = 142;
@@ -20,9 +21,7 @@ CGFloat thumbnailHeight = 142;
    CGSize _kittenSize;
 
    ASImageNode * _imageNode;
-
    ASDisplayNode * _infoContainerNode;
-
    ASImageNode * _channelImageNode;
    ASTextNode * _videoTitleNode;
    ASTextNode * _channelTitleNode;
@@ -33,19 +32,22 @@ CGFloat thumbnailHeight = 142;
 @implementation YTGridVideoCellNode
 
 
-- (instancetype)initWithCellNodeOfSize:(CGSize)size { //242,242
+- (instancetype)initWithCellNodeOfSize:(CGSize)size withVideo:(YTYouTubeVideoCache *)video placeholderImage:(UIImage *)placeholder delegate:(id<IpadGridViewCellDelegate>)delegate { //242,242
    if (!(self = [super init]))
       return nil;
 
    _kittenSize = size;
+   self.video = video;
+   self.delegate = delegate;
 
-   [self setupUI];
+   [self makeUI];
+   [self bind:video placeholderImage:placeholder delegate:delegate];
 
    return self;
 }
 
 
-- (void)setupUI {
+- (void)makeUI {
    // 1
    _imageNode = [[ASImageNode alloc] init];
    _imageNode.backgroundColor = [UIColor clearColor];
@@ -57,7 +59,9 @@ CGFloat thumbnailHeight = 142;
    [self addSubnode:_infoContainerNode];
 
    // 2.1
-   _channelImageNode = [[ASImageNode alloc] init];
+//   _channelImageNode = [[ASImageNode alloc] init];
+   _channelImageNode = [YTAsChannelThumbnailsImageNode nodeWithChannelId:[YoutubeParser getChannelIdByVideo:self.video]];
+
    [_infoContainerNode addSubnode:_channelImageNode];
 
    // 2.2
@@ -124,8 +128,6 @@ CGFloat thumbnailHeight = 142;
 
 
 - (void)bind:(YTYouTubeVideoCache *)video placeholderImage:(UIImage *)placeholder delegate:(id<IpadGridViewCellDelegate>)delegate {
-   self.video = video;
-   self.delegate = delegate;
 
    // 1
    NSString * videoThumbnailsUrl = [YoutubeParser getVideoSnippetThumbnails:video];
@@ -168,21 +170,21 @@ CGFloat thumbnailHeight = 142;
 
 
 - (void)showChannelThumbnail:(NSString *)channelId {
-   YoutubeResponseBlock completionBlock = ^(NSArray * array, NSObject * respObject) {
-       [YTCacheImplement CacheWithImageView:_channelImageNode
-                                    withUrl:respObject
-                            withPlaceholder:nil
-       ];
-   };
-   NSString * responseUrl = [[GYoutubeHelper getInstance] fetchChannelThumbnailsWithChannelId:channelId
-                                                                                   completion:completionBlock
-                                                                                 errorHandler:nil];
-   if (responseUrl) {
-      [YTCacheImplement CacheWithImageView:_channelImageNode
-                                   withUrl:responseUrl
-                           withPlaceholder:nil
-      ];
-   }
+//   YoutubeResponseBlock completionBlock = ^(NSArray * array, NSObject * respObject) {
+//       [YTCacheImplement CacheWithImageView:_channelImageNode
+//                                    withUrl:respObject
+//                            withPlaceholder:nil
+//       ];
+//   };
+//   NSString * responseUrl = [[GYoutubeHelper getInstance] fetchChannelThumbnailsWithChannelId:channelId
+//                                                                                   completion:completionBlock
+//                                                                                 errorHandler:nil];
+//   if (responseUrl) {
+//      [YTCacheImplement CacheWithImageView:_channelImageNode
+//                                   withUrl:responseUrl
+//                           withPlaceholder:nil
+//      ];
+//   }
 
 }
 

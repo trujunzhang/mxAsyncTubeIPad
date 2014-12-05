@@ -162,10 +162,9 @@
 
    if (itemType == YTSegmentItemVideo) {
       YTYouTubeVideoCache * video = [[self getYoutubeRequestInfo].videoList objectAtIndex:indexPath.row];
+
       YTGridVideoCellNode * videoCellNode = [[YTGridVideoCellNode alloc] initWithCellNodeOfSize:[self cellSize]];
-      [videoCellNode bind:video
-         placeholderImage:self.placeHolderImage
-                 delegate:self.delegate];
+      [videoCellNode bind:video placeholderImage:self.placeHolderImage delegate:self.delegate];
 
 //      videoCellNode.backgroundColor = [UIColor redColor];
 
