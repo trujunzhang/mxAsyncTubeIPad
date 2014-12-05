@@ -15,7 +15,6 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-
   s.subspec 'CacheImage' do |sub|
     sub.source_files = 'Pod/Classes/CacheImage/*.{h,m}'
   end
@@ -50,6 +49,14 @@ Pod::Spec.new do |s|
 
   s.subspec 'UIColor-Colors' do |sub|
     sub.source_files = 'Pod/Classes/UIColor-Colors/*.{h,m}'
+  end
+
+  s.subspec 'UIColor-Colors' do |sub|
+    sub.source_files = 'Pod/Classes/UIColor-Colors/*.{h,m}'
+  end
+
+  s.subspec 'AsyncDisplayKitCatelog' do |sub|
+    sub.source_files = 'Pod/Classes/AsyncDisplayKitCatelog/*.{h,m}'
   end
 
   s.dependency 'JMImageCache'

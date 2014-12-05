@@ -7,15 +7,20 @@
 //
 
 #import <YoutubeCollectionView/IpadGridViewCell.h>
-#import "YTAsyncGridViewVideoNode.h"
+
+#import "ASCacheNetworkImageNode.h"
+
 #import "FrameCalculator.h"
+
+#import "YTAsyncGridViewVideoNode.h"
 #import "AnimatedContentsDisplayLayer.h"
 #import "Foundation.h"
 #import "HexColor.h"
 #import "UIColor+iOS8Colors.h"
 #import "YoutubeParser.h"
-#import "ASCacheNetworkImageNode.h"
+
 #import "GYoutubeHelper.h"
+#import "AsyncDisplayKitStatic.h"
 
 
 static const int FIRST_ROW_HEIGHT = 142;
@@ -222,9 +227,9 @@ static const int THIRD_ROW_HEIGHT = 28;
    [self showChannelThumbnail:[YoutubeParser getChannelIdByVideo:self.cardInfo]];
 
    // 2
-   ASTextNode * channelTitleTextNode = [[ASTextNode alloc] init];
-   channelTitleTextNode.attributedString =
-    [NSAttributedString attributedStringForChannelTitleText:[YoutubeParser getVideoSnippetChannelTitle:self.cardInfo]];
+   ASTextNode * channelTitleTextNode = [ASTextNode initWithAttributedString:
+    [NSAttributedString attributedStringForChannelTitleText:[YoutubeParser getVideoSnippetChannelTitle:self.cardInfo]]];
+
 
    //MARK: Container Node Creation Section
    self.channelTitleTextNode = channelTitleTextNode;

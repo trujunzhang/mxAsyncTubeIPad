@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
 #import "AsyncDisplayKit.h"
+
 #import "YoutubeConstants.h"
 
-@class GradientNode;
 
 
 @interface YTAsyncGridViewVideoNode : ASDisplayNode
