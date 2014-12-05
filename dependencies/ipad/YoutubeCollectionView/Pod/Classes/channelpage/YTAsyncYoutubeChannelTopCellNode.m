@@ -117,7 +117,7 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
    ASCacheNetworkImageNode * channelThumbnailsNode = [[ASCacheNetworkImageNode alloc] initForImageCache];
    [channelThumbnailsNode startFetchImageWithString:channelThumbnailUrl];
 
-   self.channelBannerThumbnailNode = channelThumbnailsNode;
+   self.channelThumbnailsNode = channelThumbnailsNode;
    [self addSubnode:self.channelThumbnailsNode];
 }
 
