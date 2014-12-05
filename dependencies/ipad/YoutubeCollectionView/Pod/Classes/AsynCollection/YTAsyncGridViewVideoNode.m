@@ -53,9 +53,26 @@ static const int THIRD_ROW_HEIGHT = 28;
       [self layoutSubNodes];
 
       [self setupAllNodesEffect];
+      [self setAllNodeBacked];
    }
 
    return self;
+}
+
+
+- (void)setAllNodeBacked {
+   self.layerBacked = true;
+   // line01
+   self.videoCoverThumbnailsNode.layerBacked = true;
+   self.durationTextNode.layerBacked = true;
+
+   // line02
+   self.videoTitleTextNode.layerBacked = true;
+   self.divider.layerBacked = true;
+
+   // line03
+   self.videoChannelThumbnailsNode.layerBacked = true;
+   self.channelTitleTextNode.layerBacked = true;
 }
 
 
@@ -71,15 +88,10 @@ static const int THIRD_ROW_HEIGHT = 28;
 
 
 - (void)setupAllNodesEffect {
-
-   // 1
-   self.layerBacked = true;
-
    // 1.1
    self.backgroundColor = [UIColor whiteColor];
 
    // 1.2
-//   self.layer.shadowPath =[UIBezierPath bezierPathWithRect:self.root.view.bounds].CGPath;
    self.shadowColor = [UIColor colorWithHexString:@"B5B5B5" alpha:0.8].CGColor;
    self.shadowOffset = CGSizeMake(1, 3);
    self.shadowOpacity = 1.0;
@@ -146,7 +158,7 @@ static const int THIRD_ROW_HEIGHT = 28;
 
 - (void)effectFirstForChannelClover {
    // 2
-   self.videoCoverThumbnailsNode.layerBacked = true;
+
    self.videoCoverThumbnailsNode.contentMode = UIViewContentModeScaleAspectFit;// .ScaleAspectFit
 
    // 2.1
@@ -161,8 +173,6 @@ static const int THIRD_ROW_HEIGHT = 28;
    self.videoCoverThumbnailsNode.shadowRadius = 2.0;
 
 
-   // 3
-   self.durationTextNode.layerBacked = true;
 }
 
 
@@ -202,16 +212,13 @@ static const int THIRD_ROW_HEIGHT = 28;
 
 - (void)effectSecondForChannelTitle {
    // 3
-   self.videoTitleTextNode.layerBacked = true;
    self.videoTitleTextNode.backgroundColor = [UIColor clearColor];
 
-   // 4
-   self.divider.layerBacked = true;
 }
 
 
 #pragma mark -
-#pragma mark second row for channel title.(Row N02)
+#pragma mark second row for channel info.(Row N03)
 
 
 - (void)rowThirdForChannelInfo {
@@ -260,11 +267,9 @@ static const int THIRD_ROW_HEIGHT = 28;
 
 
 - (void)effectThirdForChannelInfo {
-   // 4
-   self.videoChannelThumbnailsNode.layerBacked = true;
+
 
    // 3
-   self.channelTitleTextNode.layerBacked = true;
    self.channelTitleTextNode.backgroundColor = [UIColor clearColor];
 }
 
