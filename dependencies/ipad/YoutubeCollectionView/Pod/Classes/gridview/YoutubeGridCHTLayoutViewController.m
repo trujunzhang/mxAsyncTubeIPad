@@ -60,6 +60,15 @@
 }
 
 
+#pragma mark -
+#pragma mark reload table
+
+
+- (void)reloadTableView:(NSArray *)array withLastRowCount:(NSUInteger)count {
+[self.collectionView reloadData];
+}
+
+
 #pragma mark - Life Cycle
 
 

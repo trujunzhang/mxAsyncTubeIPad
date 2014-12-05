@@ -32,6 +32,7 @@
 
 
 @interface YoutubeCollectionViewBase : UIViewController
+
 @property(nonatomic, assign) id<IpadGridViewCellDelegate> delegate;
 
 @property(nonatomic, strong) GYoutubeRequestInfo * youtubeRequestInfo;
@@ -48,6 +49,7 @@
 - (void)cleanup;
 - (void)fetchActivityListByType:(YTSegmentItemType)type withChannelId:(NSString *)channelId;
 - (void)fetchActivityListByPageToken;
+
 - (void)fetchVideoListFromChannelWithChannelId:(NSString *)channelId;
 - (void)fetchVideoListFromChannelByPageToken;
 - (void)fetchPlayListFromChannelWithChannelId:(NSString *)channelId;
@@ -61,5 +63,7 @@
 - (CGSize)cellSize;
 - (UIEdgeInsets)getUIEdgeInsetsForLayout;
 @property(nonatomic, strong) NSOperationQueue * nodeConstructionQueue;
+
+- (void)reloadTableView:(NSArray *)array withLastRowCount:(NSUInteger)count;
 
 @end

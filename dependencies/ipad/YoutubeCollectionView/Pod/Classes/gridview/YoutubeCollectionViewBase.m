@@ -203,9 +203,11 @@
 - (void)updateAfterResponse:(NSArray *)array {
    [self.refreshControl endRefreshing];
    [self getYoutubeRequestInfo].isLoading = NO;
+
+   NSUInteger lastRowCount = [self getYoutubeRequestInfo].videoList.count;
    [[self getYoutubeRequestInfo] appendNextPageData:array];
 
-   [[self baseCollectionView] reloadData];
+   [self reloadTableView:array withLastRowCount:lastRowCount];
 }
 
 

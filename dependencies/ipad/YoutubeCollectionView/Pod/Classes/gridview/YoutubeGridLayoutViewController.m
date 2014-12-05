@@ -33,7 +33,16 @@
 - (void)viewWillAppear:(BOOL)animated {
    [super viewDidAppear:animated];
 
-   [self.nextPageDelegate executeNextPageTask]; // test
+//   [self.nextPageDelegate executeNextPageTask]; // test
+}
+
+
+#pragma mark -
+#pragma mark reload table
+
+
+- (void)reloadTableView:(NSArray *)array withLastRowCount:(NSUInteger)count {
+
 }
 
 
@@ -107,6 +116,8 @@
       case 1:
          node = [self getLoadMoreNode];
          [self checkVisible];
+         NSLog(@"collection view loading more. %s", sel_getName(_cmd));
+         [self.nextPageDelegate executeNextPageTask];
          break;
    }
 
@@ -168,9 +179,6 @@
                                                  withVideo:video
                                           placeholderImage:self.placeHolderImage
                                                   delegate:self.delegate];
-//      [videoCellNode bind:video placeholderImage:self.placeHolderImage delegate:self.delegate];
-
-//      videoCellNode.backgroundColor = [UIColor redColor];
 
       node = videoCellNode;
    }
@@ -182,9 +190,8 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
    for (UICollectionViewCell * cell in [self.collectionView visibleCells]) {
       NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
-//      NSLog(@"%@", indexPath);
       if (indexPath.section == 1) {
-         [self.nextPageDelegate executeNextPageTask];
+//         [self.nextPageDelegate executeNextPageTask];
          return;
       }
    }
