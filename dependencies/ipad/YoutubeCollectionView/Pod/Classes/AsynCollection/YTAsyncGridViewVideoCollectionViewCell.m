@@ -97,7 +97,7 @@
           YTAsyncGridViewVideoNode * containerNode = [[YTAsyncGridViewVideoNode alloc] initWithCardInfo:cardInfo
                                                                                                cellSize:self.featureImageSizeOptional
                                                                                                delegate:delegate
-          ];
+                                                                                               isBacked:YES];
           if (nodeConstructionOperation.cancelled)
              return;
 

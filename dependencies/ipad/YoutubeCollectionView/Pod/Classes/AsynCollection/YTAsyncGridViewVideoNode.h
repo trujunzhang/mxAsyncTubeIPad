@@ -23,5 +23,5 @@
 
 @property(nonatomic, strong) id<IpadGridViewCellDelegate> delegate;
 
-- (instancetype)initWithCardInfo:(YTYouTubeVideoCache *)cardInfo cellSize:(CGSize)cellSize delegate:(id<IpadGridViewCellDelegate>)delegate;
+- (instancetype)initWithCardInfo:(YTYouTubeVideoCache *)cardInfo cellSize:(CGSize)cellSize delegate:(id<IpadGridViewCellDelegate>)delegate isBacked:(BOOL)isBacked;
 @end
