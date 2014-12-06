@@ -10,8 +10,11 @@
 #import "YoutubeAsGridCHTLayoutViewController.h"
 #import "CHTCollectionViewWaterfallLayout.h"
 #import "YTGridVideoCellNode.h"
+#import "YTAsGridVideoCellNode.h"
 #import "YoutubeFooterView.h"
 
+//#define ASGRIDROWCELL YTGridVideoCellNode
+#define ASGRIDROWCELL YTAsGridVideoCellNode
 
 @interface YoutubeAsGridCHTLayoutViewController ()<ASCollectionViewDataSource, ASCollectionViewDelegate, CHTCollectionViewDelegateWaterfallLayout>
 @property(strong, nonatomic) ASCollectionView * collectionView;
@@ -129,8 +132,8 @@
    if (itemType == YTSegmentItemVideo) {
       YTYouTubeVideoCache * video = [[self getYoutubeRequestInfo].videoList objectAtIndex:indexPath.row];
 
-      YTGridVideoCellNode * videoCellNode =
-       [[YTGridVideoCellNode alloc] initWithCellNodeOfSize:[self cellSize]
+      ASGRIDROWCELL * videoCellNode =
+       [[ASGRIDROWCELL alloc] initWithCellNodeOfSize:[self cellSize]
                                                  withVideo:video
                                           placeholderImage:self.placeHolderImage
                                                   delegate:self.delegate];
