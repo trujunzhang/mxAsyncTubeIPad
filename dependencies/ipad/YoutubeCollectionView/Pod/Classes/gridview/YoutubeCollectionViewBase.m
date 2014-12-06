@@ -11,15 +11,14 @@
 
 #import <YoutubeCollectionView/IpadGridViewCell.h>
 #import "YoutubeCollectionViewBase.h"
-#import "GYoutubeRequestInfo.h"
 #import "GYoutubeHelper.h"
 #import "YTAsyncGridViewVideoCollectionViewCell.h"
 #import "YTGridViewPlaylistCell.h"
-#import "YTGridViewVideoCell.h"
-#import "VideoDetailViewControlleriPad.h"
 
 
-@interface YoutubeCollectionViewBase ()
+@interface YoutubeCollectionViewBase () {
+   BOOL isFirstRequest;
+}
 
 @property(nonatomic, strong) UIRefreshControl * refreshControl;
 @property(strong, nonatomic) UICollectionView * baseCollectionView;
@@ -52,6 +51,8 @@
    self.baseCollectionView.showsVerticalScrollIndicator = NO;
 
    [self setupRefresh];
+
+   isFirstRequest = NO;
 }
 
 
@@ -61,7 +62,10 @@
    NSAssert(self.nextPageDelegate, @"not found YoutubeCollectionNextPageDelegate!");
    NSAssert(self.numbersPerLineArray, @"not found numbersPerLineArray!");
 
-   [self tableWillAppear];
+   if (isFirstRequest == NO) {
+      [self tableWillAppear];
+      isFirstRequest = YES;
+   }
 }
 
 
