@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "YoutubeCollectionViewBase.h"
 
-@class KRLCollectionViewGridLayout;
+
 @protocol IpadGridViewCellDelegate;
 @class CHTCollectionViewWaterfallLayout;
 

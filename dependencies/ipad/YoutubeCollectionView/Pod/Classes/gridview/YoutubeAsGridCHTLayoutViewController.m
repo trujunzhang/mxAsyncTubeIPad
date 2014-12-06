@@ -26,6 +26,7 @@
    self.placeHolderImage = [UIImage imageNamed:@"mt_cell_cover_placeholder"];
    [self setUICollectionView:self.collectionView];
 
+   [self.collectionView reloadData];
    [super viewDidLoad];
 }
 
@@ -46,12 +47,21 @@
 }
 
 
+- (void)tableWillAppear {
+   [self showTopRefreshing];
+   [self.nextPageDelegate executeNextPageTask];
+}
+
+
+#pragma mark -
+#pragma mark
+
+
 - (UICollectionView *)getCollectionView {
    if (!self.collectionView) {
       self.layout = [[CHTCollectionViewWaterfallLayout alloc] init];
 
-      UIEdgeInsets uiEdgeInsets = [self getUIEdgeInsetsForLayout];
-      self.layout.sectionInset = uiEdgeInsets;
+      self.layout.sectionInset = [self getUIEdgeInsetsForLayout];
       self.layout.footerHeight = DEFAULT_LOADING_MORE_HEIGHT;
       self.layout.minimumColumnSpacing = LAYOUT_MINIMUMCOLUMNSPACING;
       self.layout.minimumInteritemSpacing = 10;
@@ -160,12 +170,6 @@
 
 #pragma mark -
 #pragma mark  UICollectionViewDelegate
-
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-   YTYouTubeVideoCache * video = [[self getYoutubeRequestInfo].videoList objectAtIndex:indexPath.row];
-   [self.delegate gridViewCellTap:video];
-}
 
 
 #pragma mark - CHTCollectionViewDelegateWaterfallLayout

@@ -60,12 +60,18 @@
 
    NSAssert(self.nextPageDelegate, @"not found YoutubeCollectionNextPageDelegate!");
    NSAssert(self.numbersPerLineArray, @"not found numbersPerLineArray!");
+
+   [self tableWillAppear];
 }
 
 
 - (void)setUICollectionView:(UICollectionView *)collectionView {
    self.baseCollectionView = collectionView;
 }
+
+
+#pragma mark -
+#pragma mark all refresh methods
 
 
 - (void)setupRefresh {
@@ -79,16 +85,26 @@
 }
 
 
-- (void)refreshControlAction {
-   // Enter your code for request you are creating here when you pull the collectionView. When the request is completed then the collectionView go to its original position.
-   [self performSelector:@selector(refreshPerform) withObject:(self) afterDelay:(4.0)];
+- (void)showTopRefreshing {
+   [self.refreshControl beginRefreshing];
 }
 
 
-- (void)refreshPerform {
-//   [self.nextPageDelegate executeRefreshTask];//used
-   [self.nextPageDelegate executeNextPageTask];//test
+- (void)hideTopRefreshing {
    [self.refreshControl endRefreshing];
+}
+
+
+- (void)refreshControlAction {
+   // Enter your code for request you are creating here when you pull the collectionView. When the request is completed then the collectionView go to its original position.
+   [self performSelector:@selector(executeRefreshPerformEvent) withObject:(self) afterDelay:(4.0)];
+}
+
+
+- (void)executeRefreshPerformEvent {
+   [self.nextPageDelegate executeRefreshTask];//used
+//   [self.nextPageDelegate executeNextPageTask];//test
+//   [self.refreshControl endRefreshing];//test
 }
 
 
@@ -369,8 +385,11 @@
    UIEdgeInsets uiEdgeInsets = [self getUIEdgeInsetsForLayout];
 
    CGFloat mini_num_column_space = LAYOUT_MINIMUMCOLUMNSPACING;
+//   CGFloat aFloat = layout.collectionViewContentSize.width;
+   CGFloat aFloat = self.view.frame.size.width;
+
    CGFloat usableSpace =
-    (layout.collectionViewContentSize.width
+    (aFloat
      - uiEdgeInsets.left - uiEdgeInsets.right
      - ((columnCount - 1) * mini_num_column_space)
     );
