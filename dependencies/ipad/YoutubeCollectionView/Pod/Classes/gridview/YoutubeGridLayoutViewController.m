@@ -72,6 +72,15 @@ int step = 0;
 }
 
 
+- (void)tableWillAppear {
+
+}
+
+
+#pragma mark -
+#pragma mark
+
+
 - (UICollectionView *)getCollectionView {
    if (!self.collectionView) {
       self.layout = [[KRLCollectionViewGridLayout alloc] init];
