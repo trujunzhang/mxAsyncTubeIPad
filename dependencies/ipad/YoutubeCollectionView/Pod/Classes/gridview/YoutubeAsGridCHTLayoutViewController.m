@@ -13,8 +13,8 @@
 #import "YTAsGridVideoCellNode.h"
 #import "YoutubeFooterView.h"
 
-//#define ASGRIDROWCELL YTGridVideoCellNode
-#define ASGRIDROWCELL YTAsGridVideoCellNode
+#define ASGRIDROWCELL YTGridVideoCellNode
+//#define ASGRIDROWCELL YTAsGridVideoCellNode
 
 @interface YoutubeAsGridCHTLayoutViewController ()<ASCollectionViewDataSource, ASCollectionViewDelegate, CHTCollectionViewDelegateWaterfallLayout>
 @property(strong, nonatomic) ASCollectionView * collectionView;
