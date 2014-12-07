@@ -214,9 +214,9 @@
       }
 
       if (i != buttonCount - 1) {// last item
-         UIView * seperatorView = _separators[i];
-         seperatorView.frame = CGRectMake(startX, 0, seperatorWidth, tabBarHeight);
-         startX = startX + seperatorWidth;
+         UIView * separatorView = _separators[i];
+         separatorView.frame = CGRectMake(startX, 0, separatorWidth, tabBarHeight);
+         startX = startX + separatorWidth;
       }
    }
 }
@@ -225,7 +225,7 @@
 - (CGFloat)getTabBarItemWidth:(NSUInteger)buttonCount {
    CGFloat aFloat = self.frame.size.width;
    CGFloat totalWidth = (aFloat - tabBarPadding * 2);
-   CGFloat allSeperatorWidth = seperatorWidth * _separators.count;
+   CGFloat allSeperatorWidth = separatorWidth * _separators.count;
 
    CGFloat tabBarItemWidth = (totalWidth - allSeperatorWidth) / buttonCount;
    return tabBarItemWidth;

@@ -15,7 +15,7 @@ static const NSInteger kMarginSeparatorOffsetTag = 8000;
 
 
 static CGFloat tabBarPadding = 0.0f;
-static CGFloat seperatorWidth = 1.0f;
+static CGFloat separatorWidth = 2.0f;
 
 
 @interface GGTabBar : UIView
