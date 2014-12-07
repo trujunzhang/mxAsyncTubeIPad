@@ -25,8 +25,6 @@
 @property(nonatomic, strong) YTAsyncYoutubeChannelTopCellNode * topBanner;
 @property(nonatomic, strong) GGTabBarController * videoTabBarController;
 
-@property(nonatomic, strong) NSMutableArray * tabBarControllers;
-
 @property(nonatomic, strong) YTCollectionViewController * selectedController;
 @property(nonatomic) YTSegmentItemType selectedSegmentItemType;
 
@@ -60,7 +58,6 @@
    [super viewDidLoad];
 
    // Do any additional setup after loading the view from its nib.
-
    [self makeSegmentTabs:self.tabbarViewsContainer];
 
    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
@@ -72,19 +69,19 @@
 
 - (void)makeSegmentTabs:(UIView *)parentView {
    // 1
-   self.tabBarControllers = [[NSMutableArray alloc] init];
+   NSMutableArray * tabBarControllers = [[NSMutableArray alloc] init];
    for (NSString * title in [GYoutubeRequestInfo getChannelPageSegmentTitlesArray]) {
       YTCollectionViewController * controller = [[YTCollectionViewController alloc] init];
       controller.delegate = self.delegate;
       controller.nextPageDelegate = self;
       controller.title = title;
       controller.numbersPerLineArray = [NSArray arrayWithObjects:@"3", @"4", nil];
-      [self.tabBarControllers addObject:controller];
+      [tabBarControllers addObject:controller];
    }
 
    // 2
    GGTabBar * topTabBar = [[GGLayoutStringTabBar alloc] initWithFrame:CGRectZero
-                                                      viewControllers:self.tabBarControllers
+                                                      viewControllers:tabBarControllers
                                                            appearance:nil
                                                                 inTop:YES
                                                         selectedIndex:0];
