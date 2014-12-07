@@ -89,7 +89,6 @@
     self.thirdViewController, ];
    GGTabBar * topTabBar = [[GGLayoutStringTabBar alloc] initWithFrame:CGRectZero
                                                       viewControllers:array
-                                                           appearance:nil
                                                                 inTop:YES
                                                         selectedIndex:0];
 

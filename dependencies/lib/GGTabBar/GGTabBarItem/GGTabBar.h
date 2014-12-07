@@ -29,9 +29,8 @@ static CGFloat seperatorWidth = 1.0f;
 
 @property(nonatomic) BOOL inTop;
 
-- (instancetype)initWithFrame:(CGRect)frame viewControllers:(NSArray *)viewControllers appearance:(NSDictionary *)appearance inTop:(BOOL)inTop selectedIndex:(NSInteger)selectedIndex;
+- (instancetype)initWithFrame:(CGRect)frame viewControllers:(NSArray *)viewControllers inTop:(BOOL)inTop selectedIndex:(NSInteger)selectedIndex;
 
-- (void)setAppearance:(NSDictionary *)appearance;
 - (void)startDebugMode;
 
 @end

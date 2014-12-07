@@ -45,10 +45,6 @@
       self.translatesAutoresizingMaskIntoConstraints = NO;
       [self initSubViewsWithControllers:self.viewControllers];
 
-      if (appearance) {
-         [self setAppearance:appearance];
-      }
-
       [self addHeightConstraints];
       [self addAllLayoutConstraints];
    }
@@ -71,21 +67,6 @@
    }
 
    _selectedButton = selectedButton;
-}
-
-
-- (void)setAppearance:(NSDictionary *)appearance {
-   if (appearance[kTabBarAppearanceBackgroundColor]) {
-      self.backgroundColor = self.tabBarBackgroundColor = appearance[kTabBarAppearanceBackgroundColor];
-   }
-
-   if (appearance[kTabBarAppearanceHeight]) {
-      self.tabBarHeight = [appearance[kTabBarAppearanceHeight] floatValue];
-   }
-
-   if (appearance[kTabBarAppearanceTint]) {
-      // Do something with the tint here.
-   }
 }
 
 

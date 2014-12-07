@@ -82,7 +82,6 @@
    // 2
    GGTabBar * topTabBar = [[GGLayoutStringTabBar alloc] initWithFrame:CGRectZero
                                                       viewControllers:tabBarControllers
-                                                           appearance:nil
                                                                 inTop:YES
                                                         selectedIndex:0];
 

@@ -34,7 +34,7 @@
 #pragma mark - Public API
 
 
-- (instancetype)initWithFrame:(CGRect)frame viewControllers:(NSArray *)viewControllers appearance:(NSDictionary *)appearance inTop:(BOOL)inTop selectedIndex:(NSInteger)selectedIndex {
+- (instancetype)initWithFrame:(CGRect)frame viewControllers:(NSArray *)viewControllers inTop:(BOOL)inTop selectedIndex:(NSInteger)selectedIndex {
    self = [super initWithFrame:frame];
    if (self) {
       self.inTop = inTop;
@@ -47,9 +47,6 @@
       self.translatesAutoresizingMaskIntoConstraints = NO;
       [self initSubViewsWithControllers:self.viewControllers];
 
-      if (appearance) {
-         [self setAppearance:appearance];
-      }
 
       [self addHeightConstraints];
    }
@@ -77,21 +74,6 @@
 
 - (UIColor *)getDefaultLabelColor {
    return [UIColor lightGrayColor];
-}
-
-
-- (void)setAppearance:(NSDictionary *)appearance {
-   if (appearance[kTabBarAppearanceBackgroundColor]) {
-      self.backgroundColor = self.tabBarBackgroundColor = appearance[kTabBarAppearanceBackgroundColor];
-   }
-
-   if (appearance[kTabBarAppearanceHeight]) {
-      self.tabBarHeight = [appearance[kTabBarAppearanceHeight] floatValue];
-   }
-
-   if (appearance[kTabBarAppearanceTint]) {
-      // Do something with the tint here.
-   }
 }
 
 
