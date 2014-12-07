@@ -54,19 +54,21 @@
    [self setupRefresh];
 
    isFirstRequest = NO;
+
+   NSAssert(self.nextPageDelegate, @"not found YoutubeCollectionNextPageDelegate!");
+   NSAssert(self.numbersPerLineArray, @"not found numbersPerLineArray!");
+
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
    [super viewDidAppear:animated];
 
-   NSAssert(self.nextPageDelegate, @"not found YoutubeCollectionNextPageDelegate!");
-   NSAssert(self.numbersPerLineArray, @"not found numbersPerLineArray!");
 
-   if (isFirstRequest == NO) {
-      [self tableWillAppear];
-      isFirstRequest = YES;
-   }
+//   if (isFirstRequest == NO) {
+//      [self tableWillAppear];
+//      isFirstRequest = YES;
+//   }
 }
 
 

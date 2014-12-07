@@ -12,6 +12,10 @@
 @class YoutubePopUpTableViewController;
 
 
-@interface SearchViewController : YTCollectionViewController
+//@interface SearchViewController : YTCollectionViewController
+@interface SearchViewController : UIViewController
+
+
+
 @end
 

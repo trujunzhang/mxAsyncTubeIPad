@@ -70,8 +70,8 @@
 #endif
 
 
-//#define hasShowLeftMenu NO
-#define hasShowLeftMenu YES
+#define hasShowLeftMenu NO
+//#define hasShowLeftMenu YES
 
 
 #define SUBSCRIPTION_LIST_MAX 2

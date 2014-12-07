@@ -48,6 +48,7 @@
 - (UICollectionViewCell *)collectionCellAtIndexPath:(NSIndexPath *)indexPath;
 - (void)search:(NSString *)text withItemType:(YTSegmentItemType)itemType;
 - (void)searchByPageToken;
+- (void)cleanupForTableView;
 - (void)cleanup;
 - (void)fetchActivityListByType:(YTSegmentItemType)type withChannelId:(NSString *)channelId;
 - (void)fetchActivityListByPageToken;

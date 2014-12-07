@@ -15,13 +15,18 @@
 #import "GYoutubeHelper.h"
 
 
-@interface SearchViewController ()<IpadGridViewCellDelegate, UISearchBarDelegate, YoutubeCollectionNextPageDelegate, UIPopoverControllerDelegate, YoutubePopUpTableViewDelegate>
+@interface SearchViewController ()<IpadGridViewCellDelegate, UISearchBarDelegate, YoutubeCollectionNextPageDelegate, UIPopoverControllerDelegate, YoutubePopUpTableViewDelegate> {
+   YTCollectionViewController * _collectionViewController;
+   YTCollectionViewController * _lastCollectionViewController;
+}
 @property(strong, nonatomic) UISegmentedControl * segment_title;
 @property(nonatomic, strong) UISearchBar * searchBar;
 @property(nonatomic, strong) UIBarButtonItem * sarchBarItem;
 
 @property(nonatomic, strong) YoutubePopUpTableViewController * searchAutoCompleteViewController;
 @property(nonatomic, strong) UIPopoverController * popover;
+
+
 @end
 
 
@@ -33,15 +38,43 @@
    // Do any additional setup after loading the view, typically from a nib.
    self.view.backgroundColor = [UIColor clearColor];
 
-   self.delegate = self;
-   self.nextPageDelegate = self;
-   self.numbersPerLineArray = [NSArray arrayWithObjects:@"3", @"4", nil];
-
    self.searchAutoCompleteViewController = [[YoutubePopUpTableViewController alloc] init];
    self.searchAutoCompleteViewController.popupDelegate = self;
 
    [self setupNavigationRightItem];
    [self setupNavigationTitle];
+}
+
+
+- (void)makeNewCollectionViewForSearchBar {
+   // 1
+   if (_collectionViewController) {
+      [_collectionViewController.view removeFromSuperview];
+      [_collectionViewController removeFromParentViewController];
+
+      _lastCollectionViewController = _collectionViewController;
+   }
+
+   // 2
+   _collectionViewController = [[YTCollectionViewController alloc] init];
+
+   _collectionViewController.delegate = self;
+   _collectionViewController.nextPageDelegate = self;
+   _collectionViewController.numbersPerLineArray = [NSArray arrayWithObjects:@"3", @"4", nil];
+}
+
+
+- (void)showNewCollectionViewForSearchBar:(NSString *)text withItemType:(YTSegmentItemType)itemType {
+
+   [self addChildViewController:_collectionViewController];
+   [self.view addSubview:_collectionViewController.view];
+
+   _collectionViewController.view.frame = self.view.bounds;// used
+   _collectionViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+
+   [_collectionViewController search:text withItemType:itemType];
+
+//   self.navigationController.viewControllers = @[ _collectionViewController ];
 }
 
 
@@ -52,8 +85,8 @@
    self.searchBar.userInteractionEnabled = YES;
    self.searchBar.placeholder = @"Search";
 
-   [self search:@"reagan degate" withItemType:YTSegmentItemVideo];// test
-//   [self searchByPageToken];// test
+   self.searchBar.text = @"sketch 3";
+   [self segmentAction:nil];
 
    self.searchBar.delegate = self;
 
@@ -138,7 +171,9 @@
       return;
 
    YTSegmentItemType itemType = [GYoutubeRequestInfo getItemTypeByIndex:self.segment_title.selectedSegmentIndex];
-   [self search:self.searchBar.text withItemType:itemType];
+   [self makeNewCollectionViewForSearchBar];
+   [self showNewCollectionViewForSearchBar:self.searchBar.text withItemType:itemType];
+
 }
 
 
@@ -152,7 +187,7 @@
 
 
 - (void)executeNextPageTask {
-   [self searchByPageToken];
+   [_collectionViewController searchByPageToken];
 }
 
 
