@@ -40,10 +40,10 @@
       _buttons = [[NSMutableArray alloc] init];
       _separators = [[NSMutableArray alloc] init];
       _marginSeparators = [[NSMutableArray alloc] init];
-      _viewControllers = viewControllers;
+      self.viewControllers = viewControllers;
       self.tabBarHeight = CGFLOAT_MIN;
       self.translatesAutoresizingMaskIntoConstraints = NO;
-      [self initSubViewsWithControllers:_viewControllers];
+      [self initSubViewsWithControllers:self.viewControllers];
 
       if (appearance) {
          [self setAppearance:appearance];
@@ -61,12 +61,12 @@
    NSUInteger newButtonIndex = [_buttons indexOfObject:selectedButton];
 
    if (oldButtonIndex != NSNotFound) {
-      UIViewController * oldSelectedViewController = _viewControllers[oldButtonIndex];
+      UIViewController * oldSelectedViewController = self.viewControllers[oldButtonIndex];
       [_selectedButton setImage:oldSelectedViewController.tabBarItem.image forState:UIControlStateNormal];
    }
 
    if (newButtonIndex != NSNotFound) {
-      UIViewController * newSelectedViewController = _viewControllers[newButtonIndex];
+      UIViewController * newSelectedViewController = self.viewControllers[newButtonIndex];
       [selectedButton setImage:newSelectedViewController.tabBarItem.selectedImage forState:UIControlStateNormal];
    }
 
@@ -188,7 +188,7 @@
 - (void)reloadTabBarButtons {
    [self removeConstraints:[self constraints]];
    [self removeSubViews];
-   [self initSubViewsWithControllers:_viewControllers];
+   [self initSubViewsWithControllers:self.viewControllers];
 }
 
 
