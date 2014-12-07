@@ -14,13 +14,11 @@
 #import "YoutubeConstants.h"
 #import "CollectionConstant.h"
 
-@class WHTopTabBarController;
-
 @class YKYouTubeVideo;
 
 @protocol IpadGridViewCellDelegate;
 @class VideoDetailViewController;
-
+@class GGTabBarController;
 
 
 @interface VideoDetailViewControlleriPad : UIViewController
@@ -29,7 +27,7 @@
 @property(nonatomic, strong) YTYouTubeVideoCache * video;
 
 @property(nonatomic, strong) VideoDetailViewController * videoDetailController;
-@property(nonatomic, strong) WHTopTabBarController * videoTabBarController;
+@property(nonatomic, strong) GGTabBarController * videoTabBarController;
 
 @property(nonatomic, strong) UIViewController * firstViewController;
 @property(nonatomic, strong) UIViewController * secondViewController;

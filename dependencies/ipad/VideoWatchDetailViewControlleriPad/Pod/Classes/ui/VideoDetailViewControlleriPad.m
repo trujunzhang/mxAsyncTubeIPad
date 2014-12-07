@@ -1,12 +1,11 @@
 #import "VideoDetailViewControlleriPad.h"
 
-
-#import "WHTopTabBarController.h"
-
 #import "IpadGridViewCell.h"
 #import "YKYouTubeVideo.h"
 #include "YoutubeParser.h"
 #import "VideoDetailViewController.h"
+#import "GGTabBarController.h"
+#import "GGLayoutStringTabBar.h"
 
 
 @interface VideoDetailViewControlleriPad ()<YoutubeCollectionNextPageDelegate>
@@ -83,7 +82,15 @@
 
 
    // 3
-   self.videoTabBarController = [[WHTopTabBarController alloc] init];
+   GGTabBar * topTabBar = [[GGLayoutStringTabBar alloc] initWithFrame:CGRectZero
+                                                      viewControllers:controllers
+                                                           appearance:nil
+                                                                inTop:YES
+                                                        selectedIndex:0];
+
+   self.videoTabBarController = [[GGTabBarController alloc] initWithTabBarView:topTabBar
+                                                               viewControllers:controllers];
+
    self.videoTabBarController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
    [self.tabbarView addSubview:self.videoTabBarController.view];
 

@@ -6,7 +6,7 @@ pod 'Reveal-iOS-SDK'
 
 target 'TubeIPadApp', :exclusive => true do
   # ________________open projects___________________
-  pod "WHTopTabBarController", :path => "../dependencies/lib/WHTopTabBarController"
+  pod "GGTabBar", :path => "../dependencies/lib/GGTabBar"
   pod "YKMediaPlayerKit", :path => "../dependencies/lib/YKMediaPlayerKit"
   pod "XCDYouTubeKit", :path => "../dependencies/lib/XCDYouTubeKit"
   pod "STCollapseTableView", :path => "../dependencies/lib/STCollapseTableView"
