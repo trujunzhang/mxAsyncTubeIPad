@@ -16,6 +16,7 @@ static const NSInteger kLitterSize = 2;
 
 @interface VideoDetailViewController ()<ASTableViewDataSource, ASTableViewDelegate> {
    ASTableView * _tableView;
+   YTYouTubeVideoCache * _video;
 }
 
 @end
@@ -31,7 +32,8 @@ static const NSInteger kLitterSize = 2;
 - (instancetype)initWithVideo:(YTYouTubeVideoCache *)video {
    if (!(self = [super init]))
       return nil;
-   self.video = video;
+
+   _video = video;
 
    _tableView = [[ASTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone; // KittenNode has its own separator
@@ -63,9 +65,9 @@ static const NSInteger kLitterSize = 2;
    ASCellNode * node;
    // special-case the first row
    if (indexPath.row == 0) {
-      node = [[AsyncVideoChannelDetailPanel alloc] initWithVideo:self.video];
+      node = [[AsyncVideoChannelDetailPanel alloc] initWithVideo:_video];
    } else if (indexPath.row == 1) {
-      node = [[AsyncVideoDetailPanel alloc] initWithVideo:self.video];
+      node = [[AsyncVideoDetailPanel alloc] initWithVideo:_video];
    }
 
    return node;

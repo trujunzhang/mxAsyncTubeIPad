@@ -24,6 +24,8 @@ static CGFloat kTextPadding = 10.0f;
    ASDisplayNode * _divider;
 }
 
+@property(nonatomic, strong) YoutubeVideoCache * cardInfo;
+
 @property(nonatomic, strong) ASImageNode * videoChannelThumbnailsNode;
 @end
 

@@ -13,7 +13,6 @@
 
 
 @interface VideoDetailViewController : UIViewController
-@property(nonatomic, strong) YTYouTubeVideoCache * video;
 
 - (instancetype)initWithVideo:(YTYouTubeVideoCache *)video;
 

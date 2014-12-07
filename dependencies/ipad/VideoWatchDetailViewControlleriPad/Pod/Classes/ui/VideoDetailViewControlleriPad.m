@@ -172,18 +172,17 @@
       [self removeDetailPanel:self.detailView];
       // 2  layout
       [self setupVerticalLayout];
-      [self setupUIViewVerticalLayout];
+//      [self setupUIViewVerticalLayout];
    } else {// 3
       // 1  UIView contains
-//      [self addDetailPanel:self.detailView];
+      [self addDetailPanel:self.detailView];
       // 2 layout
       [self setupHorizontalLayout];
 //      [self setupUIViewHorizontalLayout];
    }
 
-//   self.videoTabBarController.view.frame = self.tabbarView.bounds;
+   [self.videoDetailController.view setNeedsLayout];
    [self.selectedController.view setNeedsLayout];
-
 }
 
 
