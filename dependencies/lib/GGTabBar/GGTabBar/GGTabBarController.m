@@ -82,7 +82,8 @@
 
    if ([_delegate respondsToSelector:@selector(ggTabBarController:shouldSelectViewController:)]) {
       if ([_delegate ggTabBarController:self shouldSelectViewController:selectedViewController]) {
-         [self selectViewController:selectedViewController withButton:button];
+         [_delegate ggTabBarController:self didSelectViewController:selectedViewController];
+//         [self selectViewController:selectedViewController withButton:button];
       }
    }
 

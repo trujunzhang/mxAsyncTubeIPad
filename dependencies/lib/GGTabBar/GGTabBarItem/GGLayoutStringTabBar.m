@@ -228,7 +228,8 @@
       startX = startX + tabBarItemWidth;
 
       if (i == _selectedIndex) {
-         [self setSelectedButton:label];
+         [self.delegate tabBar:self didPressButton:label atIndex:_selectedIndex];
+//         [self setSelectedButton:label];
       }
 
       if (i != buttonCount - 1) {// last item
@@ -241,7 +242,8 @@
 
 
 - (CGFloat)getTabBarItemWidth:(NSUInteger)buttonCount {
-   CGFloat totalWidth = (self.frame.size.width - tabBarPadding * 2);
+   CGFloat aFloat = self.frame.size.width;
+   CGFloat totalWidth = (aFloat - tabBarPadding * 2);
    CGFloat allSeperatorWidth = seperatorWidth * _separators.count;
 
    CGFloat tabBarItemWidth = (totalWidth - allSeperatorWidth) / buttonCount;

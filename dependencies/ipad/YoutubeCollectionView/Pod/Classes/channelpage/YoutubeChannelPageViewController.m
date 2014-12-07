@@ -62,7 +62,6 @@
    // Do any additional setup after loading the view from its nib.
 
    [self makeSegmentTabs:self.tabbarViewsContainer];
-   [self fetchListWithController:self.tabBarControllers[0] withType:YTSegmentItemVideo];
 
    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
       self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -136,6 +135,11 @@
 
 #pragma mark -
 #pragma mark GGTabBarControllerDelegate
+
+
+- (BOOL)ggTabBarController:(GGTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+   return YES;
+}
 
 
 - (void)ggTabBarController:(GGTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
