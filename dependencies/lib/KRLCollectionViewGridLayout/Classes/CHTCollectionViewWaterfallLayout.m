@@ -6,6 +6,7 @@
 //
 
 #import "CHTCollectionViewWaterfallLayout.h"
+#import "DebugUtils.h"
 
 NSString * const CHTCollectionElementKindSectionHeader = @"CHTCollectionElementKindSectionHeader";
 NSString * const CHTCollectionElementKindSectionFooter = @"CHTCollectionElementKindSectionFooter";
@@ -325,10 +326,13 @@ const NSInteger unionSize = 20;
       NSMutableArray * itemAttributes = [NSMutableArray arrayWithCapacity:itemCount];
 
       CGSize itemSize = [self.delegate collectionWaterfallView:self.collectionView
-                                               layout:self
-                               sizeForItemAtIndexPath:nil];
+                                                        layout:self
+                                        sizeForItemAtIndexPath:nil];
 
-//      CGSize itemSize = CGSizeMake(100, 200);
+      CGFloat itemHeight = 0;
+      if (itemSize.height > 0 && itemSize.width > 0) {
+         itemHeight = floorf(itemSize.height * itemWidth / itemSize.width);
+      }
 
       // Item will be put into shortest column.
       for (idx = 0; idx < itemCount; idx++) {
@@ -337,13 +341,11 @@ const NSInteger unionSize = 20;
          CGFloat xOffset = sectionInset.left + (itemWidth + self.minimumColumnSpacing) * columnIndex;
          CGFloat yOffset = [self.columnHeights[section][columnIndex] floatValue];
 
-         CGFloat itemHeight = 0;
-         if (itemSize.height > 0 && itemSize.width > 0) {
-            itemHeight = floorf(itemSize.height * itemWidth / itemSize.width);
-         }
-
          attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
          attributes.frame = CGRectMake(xOffset, yOffset, itemWidth, itemHeight);
+
+         [DebugUtils printCGRect:attributes.frame];
+
          [itemAttributes addObject:attributes];
          [self.allItemAttributes addObject:attributes];
          self.columnHeights[section][columnIndex] = @(CGRectGetMaxY(attributes.frame) + minimumInteritemSpacing);

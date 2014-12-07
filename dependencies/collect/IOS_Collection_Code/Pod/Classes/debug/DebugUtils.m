@@ -25,6 +25,11 @@
 }
 
 
++ (void)printCGRect:(CGRect)cellRect {
+   NSLog(@"Pretty printed rect: %@", NSStringFromCGRect(cellRect));
+}
+
+
 + (void)printCGSize:(CGSize)cellSize {
    NSLog(@"Pretty printed size: %@", NSStringFromCGSize(cellSize));
 }
