@@ -65,10 +65,10 @@
    [super viewDidAppear:animated];
 
 
-//   if (isFirstRequest == NO) {
-//      [self tableWillAppear];
-//      isFirstRequest = YES;
-//   }
+   if (isFirstRequest == NO) {
+      [self tableWillAppear];
+      isFirstRequest = YES;
+   }
 }
 
 

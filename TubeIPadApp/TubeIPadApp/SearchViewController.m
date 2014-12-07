@@ -43,6 +43,11 @@
 
    [self setupNavigationRightItem];
    [self setupNavigationTitle];
+
+   if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+      self.edgesForExtendedLayout = UIRectEdgeNone;
+      self.automaticallyAdjustsScrollViewInsets = NO;
+   }
 }
 
 
@@ -66,13 +71,13 @@
 
 - (void)showNewCollectionViewForSearchBar:(NSString *)text withItemType:(YTSegmentItemType)itemType {
 
+   [_collectionViewController search:text withItemType:itemType];
+
    [self addChildViewController:_collectionViewController];
    [self.view addSubview:_collectionViewController.view];
 
    _collectionViewController.view.frame = self.view.bounds;// used
    _collectionViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-
-   [_collectionViewController search:text withItemType:itemType];
 
 //   self.navigationController.viewControllers = @[ _collectionViewController ];
 }
