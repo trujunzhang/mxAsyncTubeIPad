@@ -17,7 +17,6 @@ int step = 0;
 
 @interface YoutubeGridLayoutViewController ()<ASCollectionViewDataSource, ASCollectionViewDelegate, CHTCollectionViewDelegateWaterfallLayout, UICollectionViewDelegate>
 @property(strong, nonatomic) ASCollectionView * collectionView;
-@property(nonatomic, strong) UIImage * placeHolderImage;
 @end
 
 
@@ -25,7 +24,6 @@ int step = 0;
 
 - (void)viewDidLoad {
    [self.view addSubview:[self getCollectionView]];
-   self.placeHolderImage = [UIImage imageNamed:@"mt_cell_cover_placeholder"];
    [self setUICollectionView:self.collectionView];
 
    [super viewDidLoad];
@@ -96,8 +94,6 @@ int step = 0;
       self.collectionView = [[ASCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
       self.collectionView.asyncDataSource = self;
       self.collectionView.asyncDelegate = self;
-
-      self.collectionView.backgroundColor = [UIColor whiteColor];
    }
    return self.collectionView;
 }
@@ -186,10 +182,7 @@ int step = 0;
       YTYouTubeVideoCache * video = [[self getYoutubeRequestInfo].videoList objectAtIndex:indexPath.row];
 
       YTGridVideoCellNode * videoCellNode =
-       [[YTGridVideoCellNode alloc] initWithCellNodeOfSize:[self cellSize]
-                                                 withVideo:video
-                                          placeholderImage:self.placeHolderImage
-                                                  delegate:self.delegate];
+       [[YTGridVideoCellNode alloc] initWithCellNodeOfSize:[self cellSize] withVideo:video delegate:self.delegate];
 
       node = videoCellNode;
    }

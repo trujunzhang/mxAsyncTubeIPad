@@ -14,7 +14,7 @@
 
 @interface YTGridVideoCellNode : ASCellNode
 
-- (instancetype)initWithCellNodeOfSize:(CGSize)size withVideo:(YTYouTubeVideoCache *)video placeholderImage:(UIImage *)placeholder delegate:(id<IpadGridViewCellDelegate>)delegate;
+- (instancetype)initWithCellNodeOfSize:(CGSize)size withVideo:(YTYouTubeVideoCache *)video delegate:(id<IpadGridViewCellDelegate>)delegate;
 @property(nonatomic, strong) YTYouTubeVideoCache * video;
 @property(nonatomic, strong) id<IpadGridViewCellDelegate> delegate;
 @property(nonatomic) CGFloat durationLabelWidth;
