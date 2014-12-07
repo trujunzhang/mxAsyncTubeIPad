@@ -344,8 +344,6 @@ const NSInteger unionSize = 20;
          attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
          attributes.frame = CGRectMake(xOffset, yOffset, itemWidth, itemHeight);
 
-         [DebugUtils printCGRect:attributes.frame];
-
          [itemAttributes addObject:attributes];
          [self.allItemAttributes addObject:attributes];
          self.columnHeights[section][columnIndex] = @(CGRectGetMaxY(attributes.frame) + minimumInteritemSpacing);
@@ -465,6 +463,8 @@ const NSInteger unionSize = 20;
          break;
       }
    }
+   begin = begin - 4;
+   begin = MAX(begin, 0);
    for (i = begin; i < end; i++) {
       UICollectionViewLayoutAttributes * attr = self.allItemAttributes[i];
       if (CGRectIntersectsRect(rect, attr.frame)) {
