@@ -13,7 +13,7 @@
 #import "GGLayoutStringTabBar.h"
 
 
-@interface YoutubeChannelPageViewController ()<YoutubeCollectionNextPageDelegate>
+@interface YoutubeChannelPageViewController ()<YoutubeCollectionNextPageDelegate, GGTabBarControllerDelegate>
 
 @property(strong, nonatomic) IBOutlet UIView * topBannerContainer;
 @property(strong, nonatomic) IBOutlet UIView * tabbarViewsContainer;
@@ -25,7 +25,7 @@
 @property(nonatomic, strong) YTAsyncYoutubeChannelTopCellNode * topBanner;
 @property(nonatomic, strong) GGTabBarController * videoTabBarController;
 
-@property(nonatomic, strong) NSMutableArray * defaultTableControllers;
+@property(nonatomic, strong) NSMutableArray * tabBarControllers;
 
 @property(nonatomic, strong) YTCollectionViewController * selectedController;
 @property(nonatomic) YTSegmentItemType selectedSegmentItemType;
@@ -65,7 +65,7 @@
    [self makeSegmentTabs:self.tabbarViewsContainer];
 
    // 3
-   [self fetchListWithController:self.defaultTableControllers[0] withType:YTSegmentItemVideo];
+   [self fetchListWithController:self.tabBarControllers[0] withType:YTSegmentItemVideo];
 
    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
       self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -76,19 +76,19 @@
 
 - (void)makeSegmentTabs:(UIView *)parentView {
    // 1
-   self.defaultTableControllers = [[NSMutableArray alloc] init];
+   self.tabBarControllers = [[NSMutableArray alloc] init];
    for (NSString * title in [GYoutubeRequestInfo getChannelPageSegmentTitlesArray]) {
       YTCollectionViewController * controller = [[YTCollectionViewController alloc] init];
       controller.delegate = self.delegate;
       controller.nextPageDelegate = self;
       controller.title = title;
       controller.numbersPerLineArray = [NSArray arrayWithObjects:@"3", @"4", nil];
-      [self.defaultTableControllers addObject:controller];
+      [self.tabBarControllers addObject:controller];
    }
 
    // 2
    GGTabBar * topTabBar = [[GGLayoutStringTabBar alloc] initWithFrame:CGRectZero
-                                                      viewControllers:self.defaultTableControllers
+                                                      viewControllers:self.tabBarControllers
                                                            appearance:nil
                                                                 inTop:YES
                                                         selectedIndex:0];
@@ -98,8 +98,6 @@
    tabBarController.view.frame = parentView.bounds;
    tabBarController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 
-
-   tabBarController.viewControllers = self.defaultTableControllers;
    tabBarController.delegate = self;
 
    self.videoTabBarController = tabBarController;
@@ -140,15 +138,15 @@
 
 
 #pragma mark -
-#pragma mark JBTopTabBarControllerDelegate
+#pragma mark GGTabBarControllerDelegate
 
 
-//- (void)tabBarController:(WHTopTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-//   if (self.selectedController == viewController)
-//      return;
-//
-//   [self fetchListWithController:viewController withType:tabBarController.selectedIndex];
-//}
+- (void)ggTabBarController:(GGTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+   if (self.selectedController == viewController)
+      return;
+
+   [self fetchListWithController:viewController withType:tabBarController.selectedIndex];
+}
 
 
 - (void)fetchListWithController:(YTCollectionViewController *)controller withType:(YTSegmentItemType)type {
