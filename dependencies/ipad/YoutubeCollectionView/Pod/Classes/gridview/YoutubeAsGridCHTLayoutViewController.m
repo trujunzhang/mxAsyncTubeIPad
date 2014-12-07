@@ -50,7 +50,7 @@
 }
 
 
-- (void)tableWillAppear {
+- (void)tableWillAppear { // used
    [self showTopRefreshing];
    [self.nextPageDelegate executeNextPageTask];
 }

@@ -25,9 +25,10 @@
 @implementation YoutubeGridCHTLayoutViewController
 
 - (void)viewDidLoad {
-   [self.view addSubview:[self getCollectionView]];
-   [self setUICollectionView:self.collectionView];
 
+   [self.view addSubview:[self getCollectionView]];
+
+   [self setUICollectionView:self.collectionView];
    [super viewDidLoad];
 }
 
@@ -48,7 +49,6 @@
       self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
       self.collectionView.dataSource = self;
       self.collectionView.delegate = self;
-      self.collectionView.backgroundColor = [UIColor colorWithHexString:@"ebebeb"];
 
       [self.collectionView registerClass:[CollectionVideoReuseCell class]
               forCellWithReuseIdentifier:[GYoutubeRequestInfo getIdentifyByItemType:YTSegmentItemVideo]];
@@ -70,8 +70,7 @@
 }
 
 
-- (void)tableWillAppear {
-
+- (void)tableWillAppear {// used
 }
 
 
@@ -86,6 +85,7 @@
 
 - (void)viewDidLayoutSubviews {
    [super viewDidLayoutSubviews];
+
    _collectionView.frame = self.view.bounds;
    [self updateLayout:[UIApplication sharedApplication].statusBarOrientation];
 }

@@ -14,6 +14,7 @@
 #import "GYoutubeHelper.h"
 #import "YTAsyncGridViewVideoCollectionViewCell.h"
 #import "YTGridViewPlaylistCell.h"
+#import "HexColor.h"
 
 
 @interface YoutubeCollectionViewBase () {
@@ -71,6 +72,7 @@
 
 - (void)setUICollectionView:(UICollectionView *)collectionView {
    self.baseCollectionView = collectionView;
+   self.baseCollectionView.backgroundColor = [UIColor colorWithHexString:@"ebebeb"];
 }
 
 
