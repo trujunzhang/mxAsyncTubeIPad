@@ -88,7 +88,8 @@
    GGTabBar * topTabBar = [[GGLayoutStringTabBar alloc] initWithFrame:CGRectZero
                                                       viewControllers:controllerArray
                                                                 inTop:YES
-                                                        selectedIndex:controllerArray.count - 1
+//                                                        selectedIndex:controllerArray.count - 1
+                                                        selectedIndex:0
                                                           tabBarWidth:0];
 
    GGTabBarController * tabBarController = [[GGTabBarController alloc] initWithTabBarView:topTabBar];
@@ -224,13 +225,13 @@
 
 - (void)setupHorizontalLayout {
    CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
-   CGFloat statusbarHeight = statusRect.size.height;
-   CGFloat navbarHeight = 44;
-   CGFloat topHeight = statusbarHeight + navbarHeight;
-   CGFloat tabbarHeight = 50;
+   CGFloat statusBarHeight = statusRect.size.height;
+   CGFloat navBarHeight = 44;
+   CGFloat topHeight = statusBarHeight + navBarHeight;
+   CGFloat tabBarHeight = 50;
 
    CGFloat aHaflWidth = self.view.frame.size.width / 2;
-   CGFloat aHeight = self.view.frame.size.height - topHeight - tabbarHeight;
+   CGFloat aHeight = self.view.frame.size.height - topHeight - tabBarHeight;
 
    CGRect rect = self.videoPlayViewContainer.frame;
    rect.origin.x = 0;
@@ -292,6 +293,7 @@
 
 - (void)ggTabBarController:(GGTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
    self.selectedController = viewController;
+//   [viewController.view setNeedsLayout];
 }
 
 
