@@ -24,17 +24,16 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
    ASImageNode * _channelBannerThumbnailNode;
    ASImageNode * _channelThumbnailsNode;
 
+   // line02
+   ASTextNode * _channelTitleTextNode;
+   ASTextNode * _channelSubscriptionCountTextNode;
+
+   // line03
+   ASDisplayNode * _divider;
 }
 @property(nonatomic) CGSize nodeCellSize;
 @property(nonatomic, strong) YTYouTubeChannel * pageChannel;
 
-
-// line02
-@property(nonatomic, strong) ASTextNode * channelTitleTextNode;
-@property(nonatomic, strong) ASTextNode * channelSubscriptionCountTextNode;
-
-// line03
-@property(nonatomic, strong) ASDisplayNode * divider;
 
 @end
 
@@ -148,8 +147,8 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
     [NSAttributedString attributedStringForPageChannelTitleText:[YoutubeParser getChannelBrandingSettingsTitle:self.pageChannel]];
 
    //MARK: Container Node Creation Section
-   self.channelTitleTextNode = channelTitleTextNode;
-   [self addSubnode:self.channelTitleTextNode];
+   _channelTitleTextNode = channelTitleTextNode;
+   [self addSubnode:_channelTitleTextNode];
 
    // 2
    ASTextNode * channelSubscriptionCountTextNode = [[ASTextNode alloc] init];
@@ -157,8 +156,8 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
     [NSAttributedString attributedStringForChannelStatisticsSubscriberCount:[YoutubeParser getChannelStatisticsSubscriberCount:self.pageChannel]];
 
    //MARK: Container Node Creation Section
-   self.channelSubscriptionCountTextNode = channelSubscriptionCountTextNode;
-   [self addSubnode:self.channelSubscriptionCountTextNode];
+   _channelSubscriptionCountTextNode = channelSubscriptionCountTextNode;
+   [self addSubnode:_channelSubscriptionCountTextNode];
 
    // 3
 
@@ -166,10 +165,10 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
 
 
 - (void)layoutSecondForChannelInfo {
-   self.channelTitleTextNode.frame = [FrameCalculator frameForPageChannelTitle:self.nodeCellSize
-                                                          secondRowFrameHeight:TOP_CHANNEL_SECOND_ROW_HEIGHT];
+   _channelTitleTextNode.frame = [FrameCalculator frameForPageChannelTitle:self.nodeCellSize
+                                                      secondRowFrameHeight:TOP_CHANNEL_SECOND_ROW_HEIGHT];
 
-   self.channelSubscriptionCountTextNode.frame =
+   _channelSubscriptionCountTextNode.frame =
     [FrameCalculator frameForPageChannelStatisticsSubscriberCount:self.nodeCellSize
                                              secondRowFrameHeight:TOP_CHANNEL_SECOND_ROW_HEIGHT];
 
@@ -178,7 +177,7 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
 
 - (void)effectSecondForChannelInfo {
    // 3
-   self.channelTitleTextNode.backgroundColor = [UIColor clearColor];
+   _channelTitleTextNode.backgroundColor = [UIColor clearColor];
 }
 
 
@@ -188,16 +187,14 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
 
 - (void)rowThirdForDivide {
    // hairline cell separator
-   self.divider = [[ASDisplayNode alloc] init];
-   self.divider.backgroundColor = [UIColor colorWithHexString:@"EAEAEA" alpha:1.0];
-   [self addSubnode:self.divider];
-
+   _divider = [[ASDisplayNode alloc] init];
+   _divider.backgroundColor = [UIColor colorWithHexString:@"EAEAEA" alpha:1.0];
+   [self addSubnode:_divider];
 }
 
 
 - (void)layoutThirdForDivide {
-
-   self.divider.frame = [FrameCalculator frameForDivider:self.nodeCellSize thirdRowHeight:0];
+   _divider.frame = [FrameCalculator frameForDivider:self.nodeCellSize thirdRowHeight:0];
 
 }
 
