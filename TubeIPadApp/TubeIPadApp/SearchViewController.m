@@ -52,7 +52,7 @@
    self.searchBar.userInteractionEnabled = YES;
    self.searchBar.placeholder = @"Search";
 
-   [self search:@"lightroom" withItemType:YTSegmentItemVideo];// test
+   [self search:@"reagan degate" withItemType:YTSegmentItemVideo];// test
 //   [self searchByPageToken];// test
 
    self.searchBar.delegate = self;
@@ -97,8 +97,10 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
    [self segmentAction:nil];
+
    [self.searchBar resignFirstResponder];
-   if (self.popover != nil) {
+
+   if (self.popover) {
       [self.popover dismissPopoverAnimated:YES];
       self.popover = nil;
    }
