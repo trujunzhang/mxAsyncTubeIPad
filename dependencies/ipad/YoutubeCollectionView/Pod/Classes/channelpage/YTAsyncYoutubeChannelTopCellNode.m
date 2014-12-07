@@ -20,13 +20,14 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
 
 
 @interface YTAsyncYoutubeChannelTopCellNode () {
+   // line01
+   ASImageNode * _channelBannerThumbnailNode;
+   ASImageNode * _channelThumbnailsNode;
+
 }
 @property(nonatomic) CGSize nodeCellSize;
 @property(nonatomic, strong) YTYouTubeChannel * pageChannel;
 
-// line01
-@property(nonatomic, strong) ASImageNode * channelBannerThumbnailNode;
-@property(nonatomic, strong) ASImageNode * channelThumbnailsNode;
 
 // line02
 @property(nonatomic, strong) ASTextNode * channelTitleTextNode;
@@ -106,8 +107,8 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
     [[ASCacheNetworkImageNode alloc] initWithPlaceHolder:[UIImage imageNamed:@"channel_default_banner.jpg"]];
    [channelBannerThumbnailNode startFetchImageWithString:[YoutubeParser getChannelBannerImageUrl:self.pageChannel]];
 
-   self.channelBannerThumbnailNode = channelBannerThumbnailNode;
-   [self addSubnode:self.channelBannerThumbnailNode];
+   _channelBannerThumbnailNode = channelBannerThumbnailNode;
+   [self addSubnode:_channelBannerThumbnailNode];
 
    // 2
    [self showChannelThumbnail:[YoutubeParser getChannelSnippetThumbnail:self.pageChannel]];
@@ -118,21 +119,21 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
    ASCacheNetworkImageNode * channelThumbnailsNode = [[ASCacheNetworkImageNode alloc] initForImageCache];
    [channelThumbnailsNode startFetchImageWithString:channelThumbnailUrl];
 
-   self.channelThumbnailsNode = channelThumbnailsNode;
-   [self addSubnode:self.channelThumbnailsNode];
+   _channelThumbnailsNode = channelThumbnailsNode;
+   [self addSubnode:_channelThumbnailsNode];
 }
 
 
 - (void)layoutFirstForChannelBanner {
-   self.channelBannerThumbnailNode.frame = [FrameCalculator frameForPageChannelBannerThumbnails:self.nodeCellSize
-                                                                           secondRowFrameHeight:TOP_CHANNEL_SECOND_ROW_HEIGHT];
+   _channelBannerThumbnailNode.frame = [FrameCalculator frameForPageChannelBannerThumbnails:self.nodeCellSize
+                                                                       secondRowFrameHeight:TOP_CHANNEL_SECOND_ROW_HEIGHT];
 
-   self.channelThumbnailsNode.frame = [FrameCalculator frameForPageChannelThumbnails:self.frame.size];
+   _channelThumbnailsNode.frame = [FrameCalculator frameForPageChannelThumbnails:self.frame.size];
 }
 
 
 - (void)effectFirstForChannelBanner {
-   self.channelBannerThumbnailNode.contentMode = UIViewContentModeScaleToFill;
+   _channelBannerThumbnailNode.contentMode = UIViewContentModeScaleToFill;
 }
 
 
