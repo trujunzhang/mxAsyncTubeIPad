@@ -72,10 +72,12 @@
    NSMutableArray * tabBarControllers = [[NSMutableArray alloc] init];
    for (NSString * title in [GYoutubeRequestInfo getChannelPageSegmentTitlesArray]) {
       YTCollectionViewController * controller = [[YTCollectionViewController alloc] init];
+
       controller.delegate = self.delegate;
       controller.nextPageDelegate = self;
       controller.title = title;
       controller.numbersPerLineArray = [NSArray arrayWithObjects:@"3", @"4", nil];
+
       [tabBarControllers addObject:controller];
    }
 
@@ -94,7 +96,6 @@
 
    self.videoTabBarController = tabBarController;
    [parentView addSubview:self.videoTabBarController.view];
-
 }
 
 
@@ -109,8 +110,10 @@
        self.topBanner = [[YTAsyncYoutubeChannelTopCellNode alloc] initWithChannel:self.pageChannel];
        // self.view isn't a node, so we can only use it on the main thread
        dispatch_sync(dispatch_get_main_queue(), ^{
+
            self.topBanner.frame = parentView.bounds;// used
            self.topBanner.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;// used
+
            [parentView addSubview:self.topBanner.view];
        });
    });

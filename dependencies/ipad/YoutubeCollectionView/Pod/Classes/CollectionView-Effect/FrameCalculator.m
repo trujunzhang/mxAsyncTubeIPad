@@ -16,14 +16,6 @@
 @implementation FrameCalculator {
 
 }
-- (instancetype)init {
-   self = [super init];
-   if (self) {
-
-   }
-
-   return self;
-}
 
 
 #pragma mark -
