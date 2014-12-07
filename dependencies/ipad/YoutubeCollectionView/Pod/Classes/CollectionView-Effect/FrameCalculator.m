@@ -161,7 +161,11 @@
 
 
 + (CGRect)frameForPageChannelThumbnails:(CGSize)cellSize {
-   return CGRectMake(17, 0, 70, 70);
+//   return CGRectMake(17, 0, 70, 70);
+
+   CGFloat dX = cellSize.width - 70 - 2;
+//   dX = 17;
+   return CGRectMake(dX, 0, 70, 70);
 }
 
 

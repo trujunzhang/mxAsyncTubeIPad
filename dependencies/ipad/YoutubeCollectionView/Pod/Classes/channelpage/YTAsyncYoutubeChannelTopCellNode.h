@@ -17,9 +17,6 @@
 
 @interface YTAsyncYoutubeChannelTopCellNode : ASDisplayNode
 
-@property(nonatomic, strong) YTYouTubeChannel * pageChannel;
-
-- (instancetype)initWithChannel:(YTYouTubeChannel *)channel cellSize:(CGSize)cellSize;
-- (void)layoutNodes:(CGSize)cellSize;
+- (instancetype)initWithChannel:(YTYouTubeChannel *)channel;
 
 @end

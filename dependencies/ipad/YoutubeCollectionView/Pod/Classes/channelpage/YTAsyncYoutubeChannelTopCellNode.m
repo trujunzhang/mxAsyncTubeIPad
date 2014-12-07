@@ -22,6 +22,7 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
 @interface YTAsyncYoutubeChannelTopCellNode () {
 }
 @property(nonatomic) CGSize nodeCellSize;
+@property(nonatomic, strong) YTYouTubeChannel * pageChannel;
 
 // line01
 @property(nonatomic, strong) ASImageNode * channelBannerThumbnailNode;
@@ -39,11 +40,10 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
 
 @implementation YTAsyncYoutubeChannelTopCellNode
 
-- (instancetype)initWithChannel:(YTYouTubeChannel *)channel cellSize:(CGSize)cellSize {
+- (instancetype)initWithChannel:(YTYouTubeChannel *)channel {
    self = [super init];
    if (self) {
       self.pageChannel = channel;
-      self.nodeCellSize = cellSize;
 
       [self setupContainerNode];
       [self setupAllNodesEffect];
@@ -53,11 +53,8 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
 }
 
 
-// do as little work as possible in main-thread layout
-//856,135 (horizontal)
-//600,135 (vertical)
-- (void)layoutNodes:(CGSize)cellSize {
-   self.nodeCellSize = cellSize;
+- (void)layout {
+   self.nodeCellSize = self.view.bounds.size;
    [self layoutSubNodes];
 }
 
@@ -129,7 +126,8 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
 - (void)layoutFirstForChannelBanner {
    self.channelBannerThumbnailNode.frame = [FrameCalculator frameForPageChannelBannerThumbnails:self.nodeCellSize
                                                                            secondRowFrameHeight:TOP_CHANNEL_SECOND_ROW_HEIGHT];
-   self.channelThumbnailsNode.frame = [FrameCalculator frameForPageChannelThumbnails:self.channelBannerThumbnailNode.frame.size];
+
+   self.channelThumbnailsNode.frame = [FrameCalculator frameForPageChannelThumbnails:self.frame.size];
 }
 
 
@@ -160,6 +158,8 @@ static const int TOP_CHANNEL_SECOND_ROW_HEIGHT = 48;
    //MARK: Container Node Creation Section
    self.channelSubscriptionCountTextNode = channelSubscriptionCountTextNode;
    [self addSubnode:self.channelSubscriptionCountTextNode];
+
+   // 3
 
 }
 

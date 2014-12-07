@@ -42,7 +42,7 @@
       YoutubeResponseBlock completion = ^(NSArray * array, NSObject * respObject) {
           self.pageChannel = array[0];
           // 1
-//          [self makeTopBanner:self.topBannerContainer];
+          [self makeTopBanner:self.topBannerContainer];
       };
       ErrorResponseBlock error = ^(NSError * error) {
           NSString * debug = @"debug";
@@ -87,13 +87,10 @@
                                                           tabBarWidth:0];
 
    GGTabBarController * tabBarController = [[GGTabBarController alloc] initWithTabBarView:topTabBar];
-
-   tabBarController.view.frame = parentView.bounds;
-
-//   tabBarController.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-   tabBarController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-
    tabBarController.delegate = self;
+
+   tabBarController.view.frame = parentView.bounds;// used
+   tabBarController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 
    self.videoTabBarController = tabBarController;
    [parentView addSubview:self.videoTabBarController.view];
@@ -109,10 +106,10 @@
 
    dispatch_async(_backgroundQueue, ^{
 
-       self.topBanner = [[YTAsyncYoutubeChannelTopCellNode alloc] initWithChannel:self.pageChannel
-                                                                         cellSize:parentView.frame.size];
+       self.topBanner = [[YTAsyncYoutubeChannelTopCellNode alloc] initWithChannel:self.pageChannel];
        // self.view isn't a node, so we can only use it on the main thread
        dispatch_sync(dispatch_get_main_queue(), ^{
+           self.topBanner.frame = parentView.bounds;// used
            self.topBanner.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;// used
            [parentView addSubview:self.topBanner.view];
        });
@@ -130,9 +127,7 @@
    [super viewDidLayoutSubviews];
 
    [self.selectedController.view setNeedsLayout];
-
-   CGSize size = self.topBannerContainer.frame.size;
-   [self.topBanner layoutNodes:size];
+   [self.topBanner setNeedsLayout];
 }
 
 
