@@ -2,9 +2,9 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, 7.0
 
-pod 'Reveal-iOS-SDK'
-
 target 'TubeIPadApp', :exclusive => true do
+  pod 'Reveal-iOS-SDK'
+
   # ________________open projects___________________
   pod "GGTabBar", :path => "../dependencies/lib/GGTabBar"
   pod "YKMediaPlayerKit", :path => "../dependencies/lib/YKMediaPlayerKit"
