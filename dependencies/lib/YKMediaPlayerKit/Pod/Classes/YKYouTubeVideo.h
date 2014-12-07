@@ -25,5 +25,5 @@
 
 - (instancetype)initWithVideoId:(NSString *)videoId;
 - (void)playInView:(UIView *)pView withQualityOptions:(YKQualityOptions)quality;
-- (void)setVideoLayout:(UIView *)pView;
+
 @end

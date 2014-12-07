@@ -148,11 +148,6 @@
 }
 
 
-- (void)setVideoLayout:(UIView *)pView {
-   self.player.moviePlayer.view.frame = pView.bounds;
-}
-
-
 - (void)play:(YKQualityOptions)quality {
    if (!self.player) [self movieViewController:quality];
 

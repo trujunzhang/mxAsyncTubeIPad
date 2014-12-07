@@ -169,7 +169,7 @@
 
    if (isPortrait) {// 4
       // 1  UIView contains
-//      [self removeDetailPanel:self.detailView];
+      [self removeDetailPanel:self.detailView];
       // 2  layout
       [self setupVerticalLayout];
       [self setupUIViewVerticalLayout];
@@ -181,7 +181,6 @@
 //      [self setupUIViewHorizontalLayout];
    }
 
-//   [self.youTubeVideo setVideoLayout:self.videoPlayView];
 //   self.videoTabBarController.view.frame = self.tabbarView.bounds;
    [self.selectedController.view setNeedsLayout];
 
