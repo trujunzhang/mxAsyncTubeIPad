@@ -82,8 +82,13 @@
 
 
    // 3
+   NSArray * array = @[
+    self.videoDetailController,
+    self.firstViewController,
+    self.secondViewController,
+    self.thirdViewController, ];
    GGTabBar * topTabBar = [[GGLayoutStringTabBar alloc] initWithFrame:CGRectZero
-                                                      viewControllers:nil
+                                                      viewControllers:array
                                                            appearance:nil
                                                                 inTop:YES
                                                         selectedIndex:0];
@@ -102,20 +107,24 @@
 }
 
 
-- (void)setupTabbarPanelInHorizontal:(UIView *)view {
-   NSArray * array = [self.defaultTableControllers copy];
+- (NSArray *)getTabBarControllerArray {
+   UIInterfaceOrientation toInterfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+   BOOL isPortrait = (toInterfaceOrientation == UIInterfaceOrientationPortrait) || (toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
+   if (isPortrait) {
+      NSArray * array = @[
+       self.videoDetailController,
+       self.firstViewController,
+       self.secondViewController,
+       self.thirdViewController, ];
+      return array;
+   } else {
+      return @[
+       self.firstViewController,
+       self.secondViewController,
+       self.thirdViewController, ];
+   }
 
-   self.videoTabBarController.viewControllers = array;
-   self.videoTabBarController.selectedIndex = array.count - 1;
-}
-
-
-- (void)setupTabbarPanelInVertical:(UIView *)view {
-   NSMutableArray * array = [self.defaultTableControllers mutableCopy];
-   [array insertObject:self.videoDetailController atIndex:0];
-
-   self.videoTabBarController.viewControllers = array;
-   self.videoTabBarController.selectedIndex = array.count - 1;
+   return nil;
 }
 
 
@@ -159,14 +168,14 @@
    BOOL isPortrait = (toInterfaceOrientation == UIInterfaceOrientationPortrait) || (toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
    if (isPortrait) {
       // 1  UIView contains
-      [self setupTabbarPanelInVertical:self.tabbarView];
+//      [self setupTabBarPanelInVertical:self.tabbarView];
       [self removeDetailPanel:self.detailView];
       // 2  layout
       [self setupVerticalLayout];
       [self setupUIViewVerticalLayout];
    } else {
       // 1  UIView contains
-      [self setupTabbarPanelInHorizontal:self.tabbarView];
+//      [self setupTabBarPanelInHorizontal:self.tabbarView];
       [self addDetailPanel:self.detailView];
       // 2 layout
       [self setupHorizontalLayout];
@@ -176,9 +185,6 @@
    [self.youTubeVideo setVideoLayout:self.videoPlayView];
    self.videoTabBarController.view.frame = self.tabbarView.bounds;
 
-//   self.videoDetailPanel.view.frame = self.videoDetailController.view.frame;
-//   self.videoDetailPanel.frame = self.videoDetailController.view.frame;
-//   [self.videoDetailPanel setCurrentFrame:self.videoDetailController.view.frame];
 }
 
 

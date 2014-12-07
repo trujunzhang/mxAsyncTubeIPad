@@ -42,10 +42,10 @@
       _buttons = [[NSMutableArray alloc] init];
       _separators = [[NSMutableArray alloc] init];
       _marginSeparators = [[NSMutableArray alloc] init];
-      _viewControllers = viewControllers;
+      self.viewControllers = viewControllers;
       self.tabBarHeight = 42;
       self.translatesAutoresizingMaskIntoConstraints = NO;
-      [self initSubViewsWithControllers:_viewControllers];
+      [self initSubViewsWithControllers:self.viewControllers];
 
       if (appearance) {
          [self setAppearance:appearance];
@@ -276,7 +276,7 @@
 - (void)reloadTabBarButtons {
    [self removeConstraints:[self constraints]];
    [self removeSubViews];
-   [self initSubViewsWithControllers:_viewControllers];
+   [self initSubViewsWithControllers:self.viewControllers];
 }
 
 
