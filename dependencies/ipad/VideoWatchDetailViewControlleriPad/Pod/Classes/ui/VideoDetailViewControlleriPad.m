@@ -87,7 +87,7 @@
    GGTabBar * topTabBar = [[GGLayoutStringTabBar alloc] initWithFrame:CGRectZero
                                                       viewControllers:controllerArray
                                                                 inTop:YES
-                                                        selectedIndex:0
+                                                        selectedIndex:controllerArray.count - 1
                                                           tabBarWidth:0];
 
    GGTabBarController * tabBarController = [[GGTabBarController alloc] initWithTabBarView:topTabBar];
@@ -127,15 +127,17 @@
 
 
 - (void)removeDetailPanel:(UIView *)pView {
-   [self.detailView removeFromSuperview];
+//   [self.videoDetailController.view removeFromSuperview];
+//   [self.detailView removeFromSuperview];
 }
 
 
 - (void)addDetailPanel:(UIView *)pView {
-   // 1
-   [self.view addSubview:pView];
+   [self.videoDetailController.view removeConstraints:[self.videoDetailController.view constraints]];
+
    // 2
    [pView addSubview:self.videoDetailController.view];
+   self.videoDetailController.view.frame = pView.bounds;
 }
 
 
@@ -172,17 +174,15 @@
       [self removeDetailPanel:self.detailView];
       // 2  layout
       [self setupVerticalLayout];
-//      [self setupUIViewVerticalLayout];
    } else {// 3
       // 1  UIView contains
       [self addDetailPanel:self.detailView];
       // 2 layout
       [self setupHorizontalLayout];
-//      [self setupUIViewHorizontalLayout];
    }
 
-   [self.videoDetailController.view setNeedsLayout];
-   [self.selectedController.view setNeedsLayout];
+//   [self.videoDetailController.view setNeedsLayout];
+//   [self.selectedController.view setNeedsLayout];
 }
 
 
@@ -219,11 +219,6 @@
 }
 
 
-- (void)setupUIViewHorizontalLayout {
-   self.videoDetailController.view.frame = self.detailView.bounds;
-}
-
-
 - (void)setupVerticalLayout {
    CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
    CGFloat statusbarHeight = statusRect.size.height;
@@ -247,11 +242,6 @@
    rect.size.width = aWidth;
    rect.size.height = aHeight / 2;
    self.tabbarView.frame = rect;
-}
-
-
-- (void)setupUIViewVerticalLayout {
-
 }
 
 
