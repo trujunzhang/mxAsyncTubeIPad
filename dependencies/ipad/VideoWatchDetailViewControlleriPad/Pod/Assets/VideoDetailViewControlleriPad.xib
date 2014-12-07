@@ -6,9 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoDetailViewControlleriPad">
             <connections>
-                <outlet property="detailView" destination="De8-8a-WzS" id="sNh-Ff-yCC"/>
-                <outlet property="tabbarView" destination="juk-hr-xlx" id="x5T-8R-PW0"/>
-                <outlet property="videoPlayView" destination="csz-Ll-CEy" id="WIf-22-apf"/>
+                <outlet property="detailViewContainer" destination="De8-8a-WzS" id="sNh-Ff-yCC"/>
+                <outlet property="tabBarViewContainer" destination="juk-hr-xlx" id="x5T-8R-PW0"/>
+                <outlet property="videoPlayViewContainer" destination="csz-Ll-CEy" id="WIf-22-apf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,17 +17,17 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" id="csz-Ll-CEy" userLabel="videoPlayView">
+                <view contentMode="scaleToFill" id="csz-Ll-CEy" userLabel="videoPlayViewContainer">
                     <rect key="frame" x="0.0" y="0.0" width="160" height="284"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="0.68155729580000002" blue="0.2979368744" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <view contentMode="scaleToFill" id="De8-8a-WzS" userLabel="detailView">
+                <view contentMode="scaleToFill" id="De8-8a-WzS" userLabel="detailViewContainer">
                     <rect key="frame" x="0.0" y="284" width="160" height="284"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <view contentMode="scaleToFill" id="juk-hr-xlx" userLabel="tabbarView">
+                <view contentMode="scaleToFill" id="juk-hr-xlx" userLabel="tabBarViewContainer">
                     <rect key="frame" x="160" y="0.0" width="160" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

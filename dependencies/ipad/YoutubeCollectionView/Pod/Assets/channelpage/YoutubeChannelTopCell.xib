@@ -32,7 +32,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="channel_photo.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="TLe-np-hxa">
                     <rect key="frame" x="17" y="0.0" width="70" height="70"/>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vs-ZF-VeF" userLabel="detailView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vs-ZF-VeF" userLabel="detailViewContainer">
                     <rect key="frame" x="0.0" y="92" width="600" height="42"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Adobe Acrobat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBd-sB-knc">

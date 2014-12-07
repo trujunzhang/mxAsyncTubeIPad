@@ -10,9 +10,9 @@
 
 @interface VideoDetailViewControlleriPad ()<YoutubeCollectionNextPageDelegate, GGTabBarControllerDelegate>
 
-@property(strong, nonatomic) IBOutlet UIView * videoPlayView;
-@property(strong, nonatomic) IBOutlet UIView * detailView;
-@property(strong, nonatomic) IBOutlet UIView * tabbarView;
+@property(strong, nonatomic) IBOutlet UIView * videoPlayViewContainer;
+@property(strong, nonatomic) IBOutlet UIView * detailViewContainer;
+@property(strong, nonatomic) IBOutlet UIView * tabBarViewContainer;
 
 @end
 
@@ -41,7 +41,7 @@
    self.view.backgroundColor = [UIColor clearColor];
 
    [self initViewControllers];
-   [self setupPlayer:self.videoPlayView];
+   [self setupPlayer:self.videoPlayViewContainer];
 
    self.title = [YoutubeParser getVideoSnippetTitle:self.video];
 
@@ -78,7 +78,6 @@
 
    // 2
    self.videoDetailController = [[VideoDetailViewController alloc] initWithVideo:self.video];
-   self.videoDetailController.title = @"Info";
 }
 
 
@@ -128,7 +127,34 @@
 
 - (void)removeDetailPanel:(UIView *)pView {
 //   [self.videoDetailController.view removeFromSuperview];
-//   [self.detailView removeFromSuperview];
+//   [self.detailViewContainer removeFromSuperview];
+}
+
+
+- (void)selectDetailViewControllerInHorizontal:(UIViewController *)viewController {
+   UIView * presentedView = [self.detailViewContainer.subviews firstObject];
+   if (presentedView) {
+      [presentedView removeFromSuperview];
+   }
+
+   viewController.view.translatesAutoresizingMaskIntoConstraints = NO;
+   [self.detailViewContainer addSubview:viewController.view];
+   [self fitView:viewController.view intoView:self.detailViewContainer];
+}
+
+
+- (void)fitView:(UIView *)toPresentView intoView:(UIView *)containerView {
+   NSDictionary * viewsDictioanry = @{ @"detailView_Container" : toPresentView };
+
+   [containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[detailView_Container]|"
+                                                                         options:0
+                                                                         metrics:nil
+                                                                           views:viewsDictioanry]];
+
+   [containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[detailView_Container]|"
+                                                                         options:0
+                                                                         metrics:nil
+                                                                           views:viewsDictioanry]];
 }
 
 
@@ -167,16 +193,17 @@
 - (void)updateLayout:(UIInterfaceOrientation)toInterfaceOrientation {
    BOOL isPortrait = (toInterfaceOrientation == UIInterfaceOrientationPortrait) || (toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
 
-   [self makeTabBarController:self.tabbarView withControllerArray:[self getTabBarControllerArray]];
+   [self makeTabBarController:self.tabBarViewContainer withControllerArray:[self getTabBarControllerArray]];
 
    if (isPortrait) {// 4
       // 1  UIView contains
-      [self removeDetailPanel:self.detailView];
+      [self removeDetailPanel:self.detailViewContainer];
       // 2  layout
       [self setupVerticalLayout];
    } else {// 3
       // 1  UIView contains
-      [self addDetailPanel:self.detailView];
+//      [self addDetailPanel:self.detailViewContainer];
+      [self selectDetailViewControllerInHorizontal:self.videoDetailController];
       // 2 layout
       [self setupHorizontalLayout];
    }
@@ -196,26 +223,26 @@
    CGFloat aHaflWidth = self.view.frame.size.width / 2;
    CGFloat aHeight = self.view.frame.size.height - topHeight - tabbarHeight;
 
-   CGRect rect = self.videoPlayView.frame;
+   CGRect rect = self.videoPlayViewContainer.frame;
    rect.origin.x = 0;
    rect.origin.y = topHeight;
    rect.size.width = aHaflWidth;
    rect.size.height = aHeight / 2;
-   self.videoPlayView.frame = rect;
+   self.videoPlayViewContainer.frame = rect;
 
-   rect = self.detailView.frame;
+   rect = self.detailViewContainer.frame;
    rect.origin.x = 0;
    rect.origin.y = topHeight + aHeight / 2;
    rect.size.width = aHaflWidth;
    rect.size.height = aHeight / 2;
-   self.detailView.frame = rect;
+   self.detailViewContainer.frame = rect;
 
-   rect = self.tabbarView.frame;
+   rect = self.tabBarViewContainer.frame;
    rect.origin.x = aHaflWidth;
    rect.origin.y = topHeight;
    rect.size.width = aHaflWidth;
    rect.size.height = aHeight;
-   self.tabbarView.frame = rect;
+   self.tabBarViewContainer.frame = rect;
 }
 
 
@@ -229,19 +256,19 @@
    CGFloat aWidth = self.view.frame.size.width;
    CGFloat aHeight = self.view.frame.size.height - topHeight - tabbarHeight;
 
-   CGRect rect = self.videoPlayView.frame;
+   CGRect rect = self.videoPlayViewContainer.frame;
    rect.origin.x = 0;
    rect.origin.y = topHeight;
    rect.size.width = aWidth;
    rect.size.height = aHeight / 2;
-   self.videoPlayView.frame = rect;
+   self.videoPlayViewContainer.frame = rect;
 
-   rect = self.tabbarView.frame;
+   rect = self.tabBarViewContainer.frame;
    rect.origin.x = 0;
    rect.origin.y = topHeight + aHeight / 2;
    rect.size.width = aWidth;
    rect.size.height = aHeight / 2;
-   self.tabbarView.frame = rect;
+   self.tabBarViewContainer.frame = rect;
 }
 
 

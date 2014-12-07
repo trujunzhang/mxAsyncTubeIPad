@@ -41,6 +41,8 @@ static const NSInteger kLitterSize = 2;
    _tableView.asyncDataSource = self;
    _tableView.asyncDelegate = self;
 
+   self.title = @"info";
+
    return self;
 }
 
