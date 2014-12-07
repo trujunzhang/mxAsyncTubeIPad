@@ -8,7 +8,7 @@
 #import "GGLayoutStringTabBar.h"
 
 
-@interface VideoDetailViewControlleriPad ()<YoutubeCollectionNextPageDelegate>
+@interface VideoDetailViewControlleriPad ()<YoutubeCollectionNextPageDelegate, GGTabBarControllerDelegate>
 
 @property(strong, nonatomic) IBOutlet UIView * videoPlayView;
 @property(strong, nonatomic) IBOutlet UIView * detailView;
@@ -79,31 +79,29 @@
    // 2
    self.videoDetailController = [[VideoDetailViewController alloc] initWithVideo:self.video];
    self.videoDetailController.title = @"Info";
+}
 
 
-   // 3
-   NSArray * array = @[
-    self.videoDetailController,
-    self.firstViewController,
-    self.secondViewController,
-    self.thirdViewController, ];
+- (void)makeTabBarController:(UIView *)parentView withControllerArray:(NSArray *)controllerArray {
+   // 2
    GGTabBar * topTabBar = [[GGLayoutStringTabBar alloc] initWithFrame:CGRectZero
-                                                      viewControllers:array
+                                                      viewControllers:controllerArray
                                                                 inTop:YES
                                                         selectedIndex:0
                                                           tabBarWidth:0];
 
-   self.videoTabBarController = [[GGTabBarController alloc] initWithTabBarView:topTabBar];
+   GGTabBarController * tabBarController = [[GGTabBarController alloc] initWithTabBarView:topTabBar];
+   tabBarController.delegate = self;
 
-   self.videoTabBarController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-   [self.tabbarView addSubview:self.videoTabBarController.view];
+   tabBarController.view.frame = parentView.bounds;// used
+   tabBarController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 
-   // 5
-   self.defaultTableControllers = [NSArray arrayWithObjects:
-    self.firstViewController,
-    self.secondViewController,
-    self.thirdViewController,
-     nil];
+   // 3
+   self.videoTabBarController = tabBarController;
+
+   // 4
+   [self.videoTabBarController.view removeFromSuperview];
+   [parentView addSubview:self.videoTabBarController.view];
 }
 
 
@@ -166,24 +164,26 @@
 
 - (void)updateLayout:(UIInterfaceOrientation)toInterfaceOrientation {
    BOOL isPortrait = (toInterfaceOrientation == UIInterfaceOrientationPortrait) || (toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
-   if (isPortrait) {
+
+   [self makeTabBarController:self.tabbarView withControllerArray:[self getTabBarControllerArray]];
+
+   if (isPortrait) {// 4
       // 1  UIView contains
-//      [self setupTabBarPanelInVertical:self.tabbarView];
-      [self removeDetailPanel:self.detailView];
+//      [self removeDetailPanel:self.detailView];
       // 2  layout
       [self setupVerticalLayout];
       [self setupUIViewVerticalLayout];
-   } else {
+   } else {// 3
       // 1  UIView contains
-//      [self setupTabBarPanelInHorizontal:self.tabbarView];
-      [self addDetailPanel:self.detailView];
+//      [self addDetailPanel:self.detailView];
       // 2 layout
       [self setupHorizontalLayout];
-      [self setupUIViewHorizontalLayout];
+//      [self setupUIViewHorizontalLayout];
    }
 
-   [self.youTubeVideo setVideoLayout:self.videoPlayView];
-   self.videoTabBarController.view.frame = self.tabbarView.bounds;
+//   [self.youTubeVideo setVideoLayout:self.videoPlayView];
+//   self.videoTabBarController.view.frame = self.tabbarView.bounds;
+   [self.selectedController.view setNeedsLayout];
 
 }
 
@@ -254,6 +254,20 @@
 
 - (void)setupUIViewVerticalLayout {
 
+}
+
+
+#pragma mark -
+#pragma mark GGTabBarControllerDelegate
+
+
+- (BOOL)ggTabBarController:(GGTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+   return YES;
+}
+
+
+- (void)ggTabBarController:(GGTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+   self.selectedController = viewController;
 }
 
 

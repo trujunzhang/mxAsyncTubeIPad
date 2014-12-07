@@ -79,6 +79,9 @@
 #define debugLeftMenuTapSubscription NO
 //#define debugLeftMenuTapSubscription YES
 
+//#define debugCollectionViewToDetail  NO
+#define debugCollectionViewToDetail  YES
+
 
 // module
 

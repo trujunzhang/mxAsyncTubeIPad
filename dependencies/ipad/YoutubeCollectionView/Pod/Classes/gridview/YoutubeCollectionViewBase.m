@@ -10,6 +10,7 @@
 
 
 #import <YoutubeCollectionView/IpadGridViewCell.h>
+#import <VideoWatchDetailViewControlleriPad/VideoDetailViewControlleriPad.h>
 #import "YoutubeCollectionViewBase.h"
 #import "GYoutubeHelper.h"
 #import "YTAsyncGridViewVideoCollectionViewCell.h"
@@ -170,6 +171,11 @@
 
 
 - (void)searchByPageToken {
+   if (debugCollectionViewToDetail) {
+      if ([self getYoutubeRequestInfo].videoList.count > 0) {
+         return;
+      }
+   }
    if ([self checkRequest])
       return;
 
@@ -178,9 +184,11 @@
        [self updateAfterResponse:array];
 
        // test
-//       [self.navigationController pushViewController:[[VideoDetailViewControlleriPad alloc] initWithDelegate:self
-//                                                                                                       video:array[0]]
-//                                            animated:YES];
+       if (debugCollectionViewToDetail) {
+          [self.navigationController pushViewController:[[VideoDetailViewControlleriPad alloc] initWithDelegate:self
+                                                                                                          video:array[0]]
+                                               animated:YES];
+       }
 
    };
    ErrorResponseBlock error = ^(NSError * error) {

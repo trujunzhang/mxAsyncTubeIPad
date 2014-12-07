@@ -139,6 +139,10 @@
 - (void)playInView:(UIView *)pView withQualityOptions:(YKQualityOptions)quality {
    if (!self.player) [self movieViewController:quality];
 
+   self.player.moviePlayer.view.frame = pView.bounds;// used
+   self.player.moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+
+
    [pView addSubview:self.player.moviePlayer.view];
    [self.player.moviePlayer play];
 }
