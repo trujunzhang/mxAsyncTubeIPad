@@ -44,7 +44,7 @@
       YoutubeResponseBlock completion = ^(NSArray * array, NSObject * respObject) {
           self.pageChannel = array[0];
           // 1
-          [self makeTopBanner:self.topBannerContainer];
+//          [self makeTopBanner:self.topBannerContainer];
       };
       ErrorResponseBlock error = ^(NSError * error) {
           NSString * debug = @"debug";
@@ -61,10 +61,7 @@
 
    // Do any additional setup after loading the view from its nib.
 
-   // 2
    [self makeSegmentTabs:self.tabbarViewsContainer];
-
-   // 3
    [self fetchListWithController:self.tabBarControllers[0] withType:YTSegmentItemVideo];
 
    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {

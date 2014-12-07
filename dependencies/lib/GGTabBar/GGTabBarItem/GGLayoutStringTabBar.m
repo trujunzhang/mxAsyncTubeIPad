@@ -67,12 +67,8 @@
    }
 
    if (newButtonIndex != NSNotFound) {
-
-//      UIImage * img = [UIImage imageNamed:@"tab_titles_button_selected.png"];
-//      selectedButton.backgroundColor = [UIColor colorWithPatternImage:newImage];
       [selectedButton setTextColor:[UIColor redColor]];
    }
-
 
    _selectedButton = selectedButton;
    _selectedIndex = NSNotFound;
