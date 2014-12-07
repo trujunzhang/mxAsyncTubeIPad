@@ -211,7 +211,6 @@
 
       if (i == _selectedIndex) {
          [self.delegate tabBar:self didPressButton:label atIndex:_selectedIndex];
-//         [self setSelectedButton:label];
       }
 
       if (i != buttonCount - 1) {// last item
