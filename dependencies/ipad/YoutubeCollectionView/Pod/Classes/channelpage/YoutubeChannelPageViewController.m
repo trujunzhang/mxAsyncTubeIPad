@@ -83,17 +83,21 @@
    GGTabBar * topTabBar = [[GGLayoutStringTabBar alloc] initWithFrame:CGRectZero
                                                       viewControllers:tabBarControllers
                                                                 inTop:YES
-                                                        selectedIndex:0];
+                                                        selectedIndex:0
+                                                          tabBarWidth:0];
 
    GGTabBarController * tabBarController = [[GGTabBarController alloc] initWithTabBarView:topTabBar];
 
    tabBarController.view.frame = parentView.bounds;
+
+//   tabBarController.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
    tabBarController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 
    tabBarController.delegate = self;
 
    self.videoTabBarController = tabBarController;
    [parentView addSubview:self.videoTabBarController.view];
+
 }
 
 
@@ -125,7 +129,10 @@
 - (void)viewDidLayoutSubviews {
    [super viewDidLayoutSubviews];
 
-   [self.topBanner layoutNodes:self.topBannerContainer.frame.size];
+   [self.selectedController.view setNeedsLayout];
+
+   CGSize size = self.topBannerContainer.frame.size;
+   [self.topBanner layoutNodes:size];
 }
 
 

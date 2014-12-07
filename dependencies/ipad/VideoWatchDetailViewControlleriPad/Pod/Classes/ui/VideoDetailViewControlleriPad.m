@@ -90,7 +90,8 @@
    GGTabBar * topTabBar = [[GGLayoutStringTabBar alloc] initWithFrame:CGRectZero
                                                       viewControllers:array
                                                                 inTop:YES
-                                                        selectedIndex:0];
+                                                        selectedIndex:0
+                                                          tabBarWidth:0];
 
    self.videoTabBarController = [[GGTabBarController alloc] initWithTabBarView:topTabBar];
 

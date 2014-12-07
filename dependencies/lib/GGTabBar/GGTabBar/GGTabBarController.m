@@ -47,6 +47,7 @@
    [super viewWillLayoutSubviews];
    [self layoutTabBarView];
    [_tabBarView needsUpdateConstraints];
+   [_tabBarView setNeedsLayout];
 
    if (_debug) {
       [self startDebugMode];

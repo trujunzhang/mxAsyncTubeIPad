@@ -7,22 +7,20 @@
 //
 
 #import "GGLayoutStringTabBar.h"
-#import "GGTabBarAppearanceKeys.h"
 
 
 @interface GGLayoutStringTabBar () {
    UILabel * _selectedButton;
    NSInteger _selectedIndex;
+   CGFloat _tabBarWidth;
 }
 
 @property(nonatomic, strong) NSMutableArray * buttons;
 @property(nonatomic, strong) NSMutableArray * separators; // Between-buttons separators
-@property(nonatomic, strong) NSMutableArray * marginSeparators; // Start/End Separators
+//@property(nonatomic, strong) NSMutableArray * marginSeparators; // Start/End Separators
 
 // Appearance
 @property(nonatomic, assign) CGFloat tabBarHeight;
-@property(nonatomic, strong) UIColor * tabBarBackgroundColor;
-@property(nonatomic, strong) UIColor * tabBarTintColor;
 
 // References to Constraints
 @property(nonatomic, weak) NSLayoutConstraint * heightConstraint;
@@ -34,14 +32,16 @@
 #pragma mark - Public API
 
 
-- (instancetype)initWithFrame:(CGRect)frame viewControllers:(NSArray *)viewControllers inTop:(BOOL)inTop selectedIndex:(NSInteger)selectedIndex {
+- (instancetype)initWithFrame:(CGRect)frame viewControllers:(NSArray *)viewControllers inTop:(BOOL)inTop selectedIndex:(NSInteger)selectedIndex tabBarWidth:(CGFloat)tabBarWidth {
    self = [super initWithFrame:frame];
    if (self) {
       self.inTop = inTop;
       _selectedIndex = selectedIndex;
       _buttons = [[NSMutableArray alloc] init];
       _separators = [[NSMutableArray alloc] init];
-      _marginSeparators = [[NSMutableArray alloc] init];
+//      _marginSeparators = [[NSMutableArray alloc] init];
+      _tabBarWidth = tabBarWidth;
+
       self.viewControllers = viewControllers;
       self.tabBarHeight = 42;
       self.translatesAutoresizingMaskIntoConstraints = NO;
@@ -69,6 +69,8 @@
 
    _selectedButton = selectedButton;
    _selectedIndex = NSNotFound;
+
+   [self paintDebugViews];
 }
 
 
@@ -145,15 +147,15 @@
    }
 
    // Add Margin Separators (we always have two margins)
-   for (int i = 0; i < 2; ++i) {
-      UIView * marginSeparator = [[UIView alloc] init];
-
-      marginSeparator.translatesAutoresizingMaskIntoConstraints = NO;
-      marginSeparator.tag = i + kMarginSeparatorOffsetTag;
-
-      [self addSubview:marginSeparator];
-      [_marginSeparators addObject:marginSeparator];
-   }
+//   for (int i = 0; i < 2; ++i) {
+//      UIView * marginSeparator = [[UIView alloc] init];
+//
+//      marginSeparator.translatesAutoresizingMaskIntoConstraints = NO;
+//      marginSeparator.tag = i + kMarginSeparatorOffsetTag;
+//
+//      [self addSubview:marginSeparator];
+//      [_marginSeparators addObject:marginSeparator];
+//   }
 }
 
 
@@ -277,7 +279,7 @@
 
 - (void)addDebugConstraints {
    [self addConstraints:[self heightConstraintsWithSeparators:_separators]];
-   [self addConstraints:[self heightConstraintsWithSeparators:_marginSeparators]];
+//   [self addConstraints:[self heightConstraintsWithSeparators:_marginSeparators]];
 }
 
 
@@ -317,9 +319,9 @@
       separator.backgroundColor = [UIColor redColor];
    }
 
-   for (UIView * marginSeparator in _marginSeparators) {
-      marginSeparator.backgroundColor = [UIColor greenColor];
-   }
+//   for (UIView * marginSeparator in _marginSeparators) {
+//      marginSeparator.backgroundColor = [UIColor greenColor];
+//   }
 }
 
 @end
