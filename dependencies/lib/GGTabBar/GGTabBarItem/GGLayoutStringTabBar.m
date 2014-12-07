@@ -69,18 +69,7 @@
    if (newButtonIndex != NSNotFound) {
 
       UIImage * img = [UIImage imageNamed:@"tab_titles_button_selected.png"];
-
-      CGFloat tabBarItemWidth = [self getTabBarItemWidth:_buttons.count];
-
-      CGSize cgSize = CGSizeMake(tabBarItemWidth, self.tabBarHeight);
-      CGSize imgSize = cgSize;
-
-      UIGraphicsBeginImageContext(imgSize);
-      [img drawInRect:CGRectMake(0, 0, imgSize.width, imgSize.height)];
-      UIImage * newImage = UIGraphicsGetImageFromCurrentImageContext();
-      UIGraphicsEndImageContext();
-
-      selectedButton.backgroundColor = [UIColor colorWithPatternImage:newImage];
+//      selectedButton.backgroundColor = [UIColor colorWithPatternImage:newImage];
       [selectedButton setTextColor:[UIColor redColor]];
    }
 

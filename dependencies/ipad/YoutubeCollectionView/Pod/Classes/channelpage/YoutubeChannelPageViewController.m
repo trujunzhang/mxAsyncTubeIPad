@@ -22,14 +22,14 @@
 @property(nonatomic, strong) NSString * channelId;
 @property(nonatomic, strong) YTYouTubeChannel * pageChannel;
 
-//@property(nonatomic, strong) YoutubeChannelTopCell * topBanner;
 @property(nonatomic, strong) YTAsyncYoutubeChannelTopCellNode * topBanner;
 @property(nonatomic, strong) GGTabBarController * videoTabBarController;
 
 @property(nonatomic, strong) NSMutableArray * defaultTableControllers;
 
-@property(nonatomic) YTSegmentItemType selectedSegmentItemType;
 @property(nonatomic, strong) YTCollectionViewController * selectedController;
+@property(nonatomic) YTSegmentItemType selectedSegmentItemType;
+
 @end
 
 
