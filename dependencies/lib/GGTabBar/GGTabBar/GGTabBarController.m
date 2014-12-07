@@ -31,7 +31,7 @@
 
 - (void)viewDidLoad {
    [super viewDidLoad];
-   self.view.frame = [[UIScreen mainScreen] bounds];
+//   self.view.frame = [[UIScreen mainScreen] bounds];
 
    _tabBarView.delegate = self;
 

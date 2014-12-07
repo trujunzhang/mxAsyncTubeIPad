@@ -8,7 +8,9 @@
 #import "GGLayoutStringTabBar.h"
 
 
-@interface VideoDetailViewControlleriPad ()<YoutubeCollectionNextPageDelegate, GGTabBarControllerDelegate>
+@interface VideoDetailViewControlleriPad ()<YoutubeCollectionNextPageDelegate, GGTabBarControllerDelegate> {
+   NSArray * _lastControllerArray;
+}
 
 @property(strong, nonatomic) IBOutlet UIView * videoPlayViewContainer;
 @property(strong, nonatomic) IBOutlet UIView * detailViewContainer;
@@ -99,7 +101,6 @@
    self.videoTabBarController = tabBarController;
 
    // 4
-   [self.videoTabBarController.view removeFromSuperview];
    [parentView addSubview:self.videoTabBarController.view];
 }
 
@@ -193,7 +194,15 @@
 - (void)updateLayout:(UIInterfaceOrientation)toInterfaceOrientation {
    BOOL isPortrait = (toInterfaceOrientation == UIInterfaceOrientationPortrait) || (toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
 
-   [self makeTabBarController:self.tabBarViewContainer withControllerArray:[self getTabBarControllerArray]];
+   NSArray * array = [self getTabBarControllerArray];
+   if (_lastControllerArray && (array.count != _lastControllerArray.count)) {
+      _lastControllerArray = nil;
+   }
+   if (_lastControllerArray == nil) {
+      [self makeTabBarController:self.tabBarViewContainer withControllerArray:array];
+      _lastControllerArray = array;
+   }
+
 
    if (isPortrait) {// 4
       // 1  UIView contains

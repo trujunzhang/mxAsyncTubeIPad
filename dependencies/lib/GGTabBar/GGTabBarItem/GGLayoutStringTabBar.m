@@ -146,16 +146,6 @@
       [_separators addObject:separator];
    }
 
-   // Add Margin Separators (we always have two margins)
-//   for (int i = 0; i < 2; ++i) {
-//      UIView * marginSeparator = [[UIView alloc] init];
-//
-//      marginSeparator.translatesAutoresizingMaskIntoConstraints = NO;
-//      marginSeparator.tag = i + kMarginSeparatorOffsetTag;
-//
-//      [self addSubview:marginSeparator];
-//      [_marginSeparators addObject:marginSeparator];
-//   }
 }
 
 
@@ -211,7 +201,7 @@
       label.frame = CGRectMake(startX, 0, tabBarItemWidth, tabBarHeight);
       startX = startX + tabBarItemWidth;
 
-      if (i == _selectedIndex) {
+      if (i == _selectedIndex && _selectedIndex != NSNotFound) {
          [self.delegate tabBar:self didPressButton:label atIndex:_selectedIndex];
       }
 
