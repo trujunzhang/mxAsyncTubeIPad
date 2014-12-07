@@ -20,8 +20,7 @@
 @property(nonatomic, weak) id<GGTabBarControllerDelegate> delegate;
 @property(nonatomic, strong) NSDictionary * tabBarAppearanceSettings;
 @property(nonatomic, assign) BOOL debug;
-- (instancetype)initWithTabBarView:(GGTabBar *)tabBarView viewControllers:(NSArray *)viewControllers;
-+ (instancetype)controllerWithTabBarView:(GGTabBar *)tabBarView viewControllers:(NSArray *)viewControllers;
+- (instancetype)initWithTabBarView:(GGTabBar *)tabBarView;
 
 @end
 

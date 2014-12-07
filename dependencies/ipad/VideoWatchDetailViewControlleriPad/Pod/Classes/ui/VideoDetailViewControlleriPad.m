@@ -83,13 +83,12 @@
 
    // 3
    GGTabBar * topTabBar = [[GGLayoutStringTabBar alloc] initWithFrame:CGRectZero
-                                                      viewControllers:controllers
+                                                      viewControllers:nil
                                                            appearance:nil
                                                                 inTop:YES
                                                         selectedIndex:0];
 
-   self.videoTabBarController = [[GGTabBarController alloc] initWithTabBarView:topTabBar
-                                                               viewControllers:controllers];
+   self.videoTabBarController = [[GGTabBarController alloc] initWithTabBarView:topTabBar];
 
    self.videoTabBarController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
    [self.tabbarView addSubview:self.videoTabBarController.view];

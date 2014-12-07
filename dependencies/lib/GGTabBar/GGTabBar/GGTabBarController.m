@@ -18,19 +18,14 @@
 
 @implementation GGTabBarController
 
-- (instancetype)initWithTabBarView:(GGTabBar *)tabBarView viewControllers:(NSArray *)viewControllers {
+- (instancetype)initWithTabBarView:(GGTabBar *)tabBarView {
    self = [super init];
    if (self) {
       self.tabBarView = tabBarView;
-      self.viewControllers = viewControllers;
+      self.viewControllers = tabBarView.viewControllers;
    }
 
    return self;
-}
-
-
-+ (instancetype)controllerWithTabBarView:(GGTabBar *)tabBarView viewControllers:(NSArray *)viewControllers {
-   return [[self alloc] initWithTabBarView:tabBarView viewControllers:viewControllers];
 }
 
 
@@ -72,6 +67,7 @@
       [self selectViewController:[_viewControllers firstObject]];
    }
 }
+
 
 - (BOOL)prefersStatusBarHidden {
    return YES;
