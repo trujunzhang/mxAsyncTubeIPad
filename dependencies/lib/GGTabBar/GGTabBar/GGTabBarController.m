@@ -33,9 +33,6 @@
    [super viewDidLoad];
    self.view.frame = [[UIScreen mainScreen] bounds];
 
-//   _tabBarView = [[GGTabBar alloc] initWithFrame:CGRectZero
-//                                 viewControllers:_viewControllers
-//                                      appearance:_tabBarAppearanceSettings];
    _tabBarView.delegate = self;
 
    _presentationView = [[UIView alloc] init];
@@ -69,21 +66,16 @@
 }
 
 
-//- (BOOL)prefersStatusBarHidden {
-//   return YES;
-//}
-
-
 #pragma mark - Delegation
 
 
 - (void)tabBar:(GGTabBar *)tabBar didPressButton:(id)button atIndex:(NSUInteger)tabIndex {
    UIViewController * selectedViewController = _viewControllers[tabIndex];
+   self.selectedIndex = tabIndex;
 
    if ([_delegate respondsToSelector:@selector(ggTabBarController:shouldSelectViewController:)]) {
       if ([_delegate ggTabBarController:self shouldSelectViewController:selectedViewController]) {
          [_delegate ggTabBarController:self didSelectViewController:selectedViewController];
-//         [self selectViewController:selectedViewController withButton:button];
       }
    }
 
@@ -128,11 +120,6 @@
                                                                      options:0
                                                                      metrics:nil
                                                                        views:viewsDictionary]];
-
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[][]|"
-//                                                                      options:0
-//                                                                      metrics:nil
-//                                                                        views:viewsDictionary]];
 
    NSString * format = @"V:|[presentation_view][tabbar_view]|";
    if (self.tabBarView.inTop) {

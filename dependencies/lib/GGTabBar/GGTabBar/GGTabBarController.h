@@ -15,10 +15,8 @@
 @interface GGTabBarController : UIViewController
 @property(nonatomic, strong) GGTabBar * tabBarView;
 @property(nonatomic, copy) NSArray * viewControllers;
-@property(nonatomic, weak) UIViewController * selectedViewController;
 @property(nonatomic, assign) NSUInteger selectedIndex;
 @property(nonatomic, weak) id<GGTabBarControllerDelegate> delegate;
-@property(nonatomic, strong) NSDictionary * tabBarAppearanceSettings;
 @property(nonatomic, assign) BOOL debug;
 - (instancetype)initWithTabBarView:(GGTabBar *)tabBarView;
 
