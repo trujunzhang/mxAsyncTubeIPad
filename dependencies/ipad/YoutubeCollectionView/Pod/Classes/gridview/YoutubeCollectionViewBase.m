@@ -44,20 +44,13 @@
    [super viewDidLoad];
 
    // Do any additional setup after loading the view.
-   self.view.backgroundColor = [UIColor clearColor];
-
-   self.cellSizeDictionary = [[NSMutableDictionary alloc] init];
-
    NSAssert(self.baseCollectionView, @"not set UICollectionVier instance!");
-   self.baseCollectionView.showsVerticalScrollIndicator = NO;
-
-   [self setupRefresh];
-
-   isFirstRequest = NO;
-
    NSAssert(self.nextPageDelegate, @"not found YoutubeCollectionNextPageDelegate!");
    NSAssert(self.numbersPerLineArray, @"not found numbersPerLineArray!");
 
+   isFirstRequest = NO;
+   self.cellSizeDictionary = [[NSMutableDictionary alloc] init];
+   [self setupRefresh];
 }
 
 
@@ -72,9 +65,17 @@
 }
 
 
+- (void)dealloc {
+
+}
+
+
 - (void)setUICollectionView:(UICollectionView *)collectionView {
    self.baseCollectionView = collectionView;
    self.baseCollectionView.backgroundColor = [UIColor colorWithHexString:@"ebebeb"];
+
+   self.baseCollectionView.showsVerticalScrollIndicator = NO;
+   self.baseCollectionView.directionalLockEnabled = YES;
 }
 
 
